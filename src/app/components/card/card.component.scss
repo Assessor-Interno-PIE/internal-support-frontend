@@ -1,0 +1,14 @@
+
+  .item {
+    padding: 10px;
+    background-color: lightblue;
+  }
+
+  section {
+    max-height: 1080px;
+    height: 100vh;
+    padding-bottom: var(--space-l);
+    padding-left: calc(var(--space-6xl) * 2);
+    padding-right: var(--space-2xl);
+  }
+  

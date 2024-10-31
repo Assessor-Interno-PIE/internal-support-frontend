@@ -1,0 +1,9 @@
+.input-group {
+    width: 100%; /* Ocupa 100% da largura do container */
+  }
+  
+  .form-outline {
+    flex: 1; /* Faz a barra de pesquisa ocupar o máximo de espaço disponível */
+    min-width: 300px; /* Largura mínima para evitar que fique muito estreita */
+  }
+  

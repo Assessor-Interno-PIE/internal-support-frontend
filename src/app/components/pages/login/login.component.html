@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4">
+        <form (ngSubmit)="onSubmit()">
+        <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">LOGIN</h5>
+              <p class="card-text">Faça Login aí</p>
+                <input [(ngModel)]="username" mdbInput type="text" name="username" id="username" class="form-control" />
+                <label mdbLabel class="form-label" for="username">Usuário</label>
+              
+              <br>
+                <input [(ngModel)]="password" mdbInput type="password" name="senha" id="senha" class="form-control" />
+                <label mdbLabel class="form-label" for="senha">Senha</label>
+              
+              <br>
+              <button type="submit" class="btn btn-primary">Login</button>
+              <a href="cadastro" class="alinharDireita">
+              <a type="button" class="btn btn-white" href="cadastro">
+                Cadastre-se
+              </a>
+            </a>
+            </div>
+
+        </div>
+      </form>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>  

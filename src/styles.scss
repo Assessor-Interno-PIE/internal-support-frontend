@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    /* Cores */
+    --black: oklch(0% 0 0);
+    --white: oklch(100% 0 0);
+    --background-color: oklch(17.76% 0 0);
+    --background-light: oklch(21.78% 0 0);
+    --primary: oklch(84.42% 0.19 202.24);
+    --accent: oklch(84.42% 0.19 202.24);
+    --error: oklch(65.91% 0.249 13.76);
+    --text: var(--white);
+    --text-title: var(--text);
+    --text-body: color-mix(in lab, var(--text) 80%, transparent);
+    --text-light: color-mix(in lab, var(--text) 60%, transparent);
+  
+    /* Fontes */
+    --system-font-stack: system-ui, -apple-system, BlinkMacSystemFont, San Francisco, Roboto, Segoe UI, Ubuntu, Helvetica Neue, sans-serif;
+    --font-stack: 'Gotham', var(--system-font-stack);
+    --mono-font-stack: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    --japanese-font-stack: 'IPA Gothic', ヒラギノ角ゴ Pro W3, Hiragino Kaku Gothic Pro, Hiragino Sans, Osaka, メイリオ, Meiryo, Segoe UI, sans-serif;
+  
+    /* Pesos da fonte */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+  
+    /* Tamanhos da fonte */
+    --font-size-h0: 8.75rem;
+    /* Correspondente a pxToRem(140) */
+    --font-size-h1: 6.25rem;
+    /* Correspondente a pxToRem(100) */
+    --font-size-h2: 3.625rem;
+    /* Correspondente a pxToRem(58) */
+    --font-size-h3: 2.25rem;
+    /* Correspondente a pxToRem(38) */
+    --font-size-h4: 1.75rem;
+    /* Correspondente a pxToRem(28) */
+    --font-size-h5: 1.5rem;
+    /* Correspondente a pxToRem(24) */
+    --font-size-body-xl: 1.375rem;
+    /* Correspondente a pxToRem(22) */
+    --font-size-body-l: 1.25rem;
+    /* Correspondente a pxToRem(20) */
+    --font-size-body-m: 1.125rem;
+    /* Correspondente a pxToRem(18) */
+    --font-size-body-s: 1rem;
+    /* Correspondente a pxToRem(16) */
+    --font-size-body-xs: 0.875rem;
+    /* Correspondente a pxToRem(14) */
+  
+    /* Altura da linha */
+    --line-height-title: 1.1;
+    --line-height-body: 1.6;
+  
+    /* Larguras máximas */
+    --max-width-s: 540px;
+    --max-width-m: 720px;
+    --max-width-l: 1096px;
+    --max-width-xl: 1680px;
+  
+    /* Espaçamento */
+    --space-outer: 64px;
+    --space-xs: 4px;
+    --space-s: 8px;
+    --space-m: 16px;
+    --space-l: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+    --space-3xl: 64px;
+    --space-4xl: 96px;
+    --space-5xl: 128px;
+    --space-6xl: 160px;
+  
+    /* Z-index */
+    --z-index-0: 0;
+    --z-index-1: 4;
+    --z-index-2: 8;
+    --z-index-3: 16;
+    --z-index-4: 32;
+    --z-index-5: 64;
+  
+    /* Durações */
+    --duration-xs: 200ms;
+    --duration-s: 300ms;
+    --duration-m: 400ms;
+    --duration-l: 600ms;
+    --duration-xl: 800ms;
+  }
+  
+  /*
+  @font-face {
+    font-family: 'Gotham';
+    src: url('assets/fonts/gotham-medium.woff2') format('woff2'),
+      url('assets/fonts/gotham-book.woff2') format('woff2'),
+      url('assets/fonts/ipa-gothic.woff2') format('woff2'),
+      url('assets/fonts/gotham-medium-italic.woff2') format('woff2');
+    font-style: normal;
+  } */
+
+  html, body {
+    font-family: var(--font-stack);
+ //   background-color: #3e4449; /* Ou a cor que você desejar */
+   // background-color: var(--background-color);
+    transition: var(--duration-m) ease;
+    color: var(--text-body);
+    width: 100vw;
+    overflow-x: hidden !important;
+    opacity: 1
+  }@import '@fortawesome/fontawesome-free/css/all.css';
+@import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
