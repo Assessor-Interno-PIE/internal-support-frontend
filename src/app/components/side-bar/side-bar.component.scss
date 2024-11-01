@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.enerluz-header{
+    font-family: "Inter", sans-serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: white;
+    font-weight: 500;
+}
+
+.nav-link {
+    font-family: 'Gotham';
+    display: flex;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #ec7324;
+    color: #fff !important;
+}
+
+.nav-link i {
+    margin-right: 10px;
+}
+
+.enerluzLogo{
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
