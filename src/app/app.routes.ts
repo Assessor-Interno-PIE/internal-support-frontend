@@ -10,6 +10,7 @@ import { DocumentsListComponent } from './components/pages/documents/documents-l
 import { DocumentsFormComponent } from './components/pages/documents/documents-form/documents-form.component';
 import { DepartmentListComponent } from './components/pages/department/department-list/department-list.component';
 import { DepartmentFormComponent } from './components/pages/department/department-form/department-form.component';
+import { PAGINASINVISIVEISComponent } from './components/paginas-invisiveis/paginas-invisiveis.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full'},
@@ -17,6 +18,8 @@ export const routes: Routes = [
     {path: "register", component: RegisterComponent},
     {path: "admin", component: PrincipalComponent, children: [
         {path: "dashboard", component: DashboardComponent},
+
+        {path: "pagInv", component: PAGINASINVISIVEISComponent},
 
         {path: "departamentos", component: DepartmentListComponent},
         {path: "departamentos/add", component: DepartmentFormComponent},
