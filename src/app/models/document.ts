@@ -1,4 +1,4 @@
-import { Timestamp } from "rxjs";
+// import { Timestamp } from "rxjs";
 import { Category } from "./category";
 import { Department } from "./department";
 import { User } from "./user";
@@ -11,10 +11,12 @@ export class Document {
     category!: Category;
     // =================
     // pode usar STRING também invez de Timestamp
-    createdAt!: Timestamp<T>; 
+    //createdAt!: Timestamp<T>;  OU
+    createdAt!: string;
     // const document = new Document();
     // document.createdAt = new Date().toISOString(); // Exemplo de atribuição de data
-    updatedAt!: Timestamp<T>;  // pode usar STRING também invez de Timestamp
+    // updatedAt!: Timestamp<T>;  // pode usar STRING também invez de Timestamp
+    updatedAt!: string;
     // document.updatedAt = new Date().toISOString(); // Exemplo de atribuição de data
     // =================
     // Formato de Data: Se você for armazenar datas como strings,
@@ -25,7 +27,7 @@ export class Document {
 
     constructor(id: number, title: string, content: string,
         department: Department, category: Category,
-        createdAt: Timestamp<T>, updatedAt: Timestamp<T>, user: User
+        createdAt: string, updatedAt: string, user: User
     ){
         this.id = id;
         this.title = title;

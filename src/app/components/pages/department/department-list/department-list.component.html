@@ -1,0 +1,43 @@
+<app-side-bar></app-side-bar>
+<app-search-bar></app-search-bar>
+
+<!-- Tabela de depart existentes -->
+<div class="container-fluid mt-2">
+  <div class="bg-light p-4 rounded shadow-sm">
+    <h4>Lista de Departamentos</h4>
+    <table class="table">
+      <thead>
+        <a href="admin/departamentos/add" class="btn btn-success mb-2"
+        >Adicionar Departamento</a
+      >
+        <tr class="table-warning">
+          <!-- th scope="col">#ID</th -->
+          <th scope="col">Nome</th>
+          <th scope="col">Documentos</th>
+          <th scope="col">Usuarios</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="mb-6">
+        @for (departamento of departments; track $index) {
+        <tr class="table-light">
+          <!-- th scope="row">{{ eleitor.id }}</th -->
+          <td>{{ newDepartment.name }}</td>
+          <td>{{ newDepartment.documents }}</td>
+          <td>{{ newDepartment.users }}</td>
+          <td class="alinharDireita">
+            <a
+              class="btn btn-primary"
+              href="admin/departamentos/edit/{{ newDepartment.id }}"
+              >Editar</a
+            >
+            <a class="btn btn-danger" (click)="deletar(newDepartment.id)"
+              >Deletar</a
+            >
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

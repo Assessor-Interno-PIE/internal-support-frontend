@@ -1,0 +1,18 @@
+<app-side-bar></app-side-bar>
+
+<div class="container">
+    <h2>Gestão de Departamentos</h2>
+  
+    <!-- Formulário para adicionar novo depart -->
+    <div class="mb-3 bg-light p-6 rounded shadow-sm">
+      <h4>Adicionar Departamento</h4>
+      <form (ngSubmit)="save()">
+        <div class="form-group">
+          <label for="title">Nome:</label>
+          <input type="text" class="form-control" [(ngModel)]="newDepartment.name" name="title" required />
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Adicionar Departamento</button>
+      </form>
+    </div>
+  
+</div>

@@ -1,5 +1,6 @@
 import { Accesslevel } from "./accesslevel";
 import { Department } from "./department";
+import { Document } from './document';
 
 export class User {
     id!: number;

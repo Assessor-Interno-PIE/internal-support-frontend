@@ -1,0 +1,52 @@
+<app-side-bar></app-side-bar>
+<app-search-bar></app-search-bar>
+
+<!-- Tabela de documentos existentes -->
+<div class="container-fluid mt-2">
+  <div class="bg-light p-4 rounded shadow-sm">
+    <h4>Lista de Documentos</h4>
+    <table class="table">
+      <thead>
+        <a href="admin/documentos/add" class="btn btn-success mb-2"
+        >Adicionar Documentos</a
+      >
+        <tr class="table-warning">
+          <!-- th scope="col">#ID</th -->
+          <th scope="col">Titulo</th>
+          <th scope="col">Conteudo</th>
+          <th scope="col">Departamento</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Criado em</th>
+          <th scope="col">Atualizado em</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="mb-6">
+        @for (documento of documents; track $index) {
+        <tr class="table-light">
+          <!-- th scope="row">{{ eleitor.id }}</th -->
+          <td>{{ documento.title }}</td>
+          <td>{{ documento.content }}</td>
+          <td>{{ documento.department }}</td>
+          <td>{{ documento.category }}</td>
+          <td>{{ documento.createdAt }}</td>
+          <td>{{ documento.updatedAt }}</td>
+          <td class="alinharDireita">
+            <a
+              class="btn btn-primary"
+              href="admin/documentos/edit/{{ newDocument.id }}"
+              >Editar</a
+            >
+            <a class="btn btn-danger" (click)="deletar(newDocument.id)"
+              >Deletar</a
+            >
+          </td>
+        </tr>
+        }
+      </tbody>
+      <div *ngIf="documents.length === 0">
+        <p>Nenhum documento encontrado.</p>
+      </div>
+    </table>
+  </div>
+</div>

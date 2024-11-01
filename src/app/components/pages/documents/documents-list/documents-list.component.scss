@@ -1,0 +1,30 @@
+.container-fluid {
+    max-width: 50%; /* Ajuste o valor conforme necessário para largura menor */
+    margin: 0 auto;
+  }
+  
+  .table {
+    width: 100%; /* Deixa a tabela responsiva dentro do container */
+    font-size: 0.9rem; /* Tamanho de fonte menor */
+  }
+  
+  .table th,
+  .table td {
+    padding: 8px; /* Reduz o espaçamento entre células */
+    text-align: center;
+  }
+  
+  .table thead th {
+    background-color: #f8f9fa; /* Cor mais leve para o cabeçalho */
+  }
+  
+  .bg-light {
+    padding: 1rem; /* Ajusta o padding para deixar mais compacto */
+    max-width: 90%;
+  }
+  
+  .btn {
+    font-size: 0.85rem; /* Diminui o tamanho dos botões */
+    padding: 4px 8px;
+  }
+  

@@ -1,3 +1,5 @@
+import { Document } from './document';
+
 export class Category {
     id!: number;
     name!: string;
