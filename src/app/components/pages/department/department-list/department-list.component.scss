@@ -1,8 +1,10 @@
-.container-fluid {
-    max-width: 50%; /* Ajuste o valor conforme necessário para largura menor */
-    margin: 0 auto;
-  }
-  
+section {
+  max-height: 1080px;
+  padding-bottom: var(--space-l);
+  padding-left: calc(var(--space-6xl) * 2);
+  padding-right: var(--space-2xl);
+}
+
   .table {
     width: 100%; /* Deixa a tabela responsiva dentro do container */
     font-size: 0.9rem; /* Tamanho de fonte menor */
