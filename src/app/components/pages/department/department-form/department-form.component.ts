@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { SideBarComponent } from '../../../side-bar/side-bar.component';
 import { DepartmentService } from '../../../../services/department.service';
 import { Department } from '../../../../models/department';
 import { Router } from '@angular/router';
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-department-form',
   standalone: true,
-  imports: [FormsModule, CommonModule, SideBarComponent],
+  imports: [FormsModule, CommonModule],
   templateUrl: './department-form.component.html',
   styleUrls: ['./department-form.component.scss'], 
 })

@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
-import { SideBarComponent } from '../../side-bar/side-bar.component';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [SideBarComponent],
+  imports: [],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.scss'
 })
 export class PerfilComponent {
   usuario = {
-    nome: 'João Silva',
-    email: 'joao.silva@example.com',
+    nome: 'João Graciotim',
+    email: 'joaograciotim.profissional@gmail.com',
     biografia: 'Desenvolvedor de software com interesse em Angular e tecnologias web.',
-    foto: 'https://via.placeholder.com/100'
+    foto: 'https://avatars.githubusercontent.com/u/115734698?v=4'
   };
 }
