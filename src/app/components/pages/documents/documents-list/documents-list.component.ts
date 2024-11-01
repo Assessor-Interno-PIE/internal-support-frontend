@@ -6,14 +6,13 @@ import { User } from '../../../../models/user';
 import { Accesslevel } from '../../../../models/accesslevel';
 import { Document } from '../../../../models/document';
 import Swal from 'sweetalert2';
-import { SideBarComponent } from '../../../side-bar/side-bar.component';
 import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-documents-list',
   standalone: true,
-  imports: [SideBarComponent, SearchBarComponent, CommonModule],
+  imports: [SearchBarComponent, CommonModule],
   templateUrl: './documents-list.component.html',
   styleUrl: './documents-list.component.scss'
 })

@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { SideBarComponent } from '../../../side-bar/side-bar.component';
 import { DocumentService } from '../../../../services/document.service';
 import { Department } from '../../../../models/department';
 import { Category } from '../../../../models/category';
@@ -14,7 +13,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-documents-form',
   standalone: true,
-  imports: [FormsModule, CommonModule, SideBarComponent],
+  imports: [FormsModule, CommonModule],
   templateUrl: './documents-form.component.html',
   styleUrl: './documents-form.component.scss',
 })

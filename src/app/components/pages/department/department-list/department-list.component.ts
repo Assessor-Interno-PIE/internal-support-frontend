@@ -2,14 +2,13 @@ import { Component, inject } from '@angular/core';
 import { DepartmentService } from '../../../../services/department.service'; // Certifique-se de que o serviço de departamento existe
 import { Department } from '../../../../models/department';
 import Swal from 'sweetalert2';
-import { SideBarComponent } from '../../../side-bar/side-bar.component';
 import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-department-list',
   standalone: true,
-  imports: [SideBarComponent, SearchBarComponent, CommonModule],
+  imports: [SearchBarComponent, CommonModule],
   templateUrl: './department-list.component.html', // Mude para o HTML correspondente
   styleUrls: ['./department-list.component.scss'], // Corrija para styleUrls
 })
