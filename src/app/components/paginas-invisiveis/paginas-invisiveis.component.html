@@ -4,14 +4,14 @@
     <!-- Formulário para adicionar novo documento -->
     <div class="mb-3 bg-light p-6 rounded shadow-sm">
       <h4>Adicionar Documento</h4>
-      <form (ngSubmit)="save()">
+      <form>
         <div class="form-group">
           <label for="title">Título:</label>
-          <input type="text" class="form-control" [(ngModel)]="newDocument.title" name="title" required />
+          <input type="text" class="form-control" name="title" required />
         </div>
         <div class="form-group">
           <label for="content">Conteúdo:</label>
-          <textarea class="form-control" [(ngModel)]="newDocument.content" name="content" required rows="5"></textarea>
+          <textarea class="form-control"  name="content" required rows="5"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Adicionar Documento</button>
       </form>
