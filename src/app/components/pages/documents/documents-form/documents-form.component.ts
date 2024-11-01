@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './documents-form.component.html',
-  styleUrl: './documents-form.component.scss',
+  styleUrls: ['./documents-form.component.scss'],
 })
 export class DocumentsFormComponent {
   documents: Document[] = [];
@@ -23,10 +23,11 @@ export class DocumentsFormComponent {
 
   router = inject(Router);
   documentService = inject(DocumentService);
+  
   constructor() {
     // instâncias vazias de Department, Category e User
-    const department = new Department(0, '', [], []);
-    const category = new Category(0, '', []);
+    const department = new Department(0, '', [], []); 
+    const category = new Category(0, '', []); 
     const userDepartment = new Department(0, '', [], []); 
     const user = new User(
       0,
@@ -76,11 +77,10 @@ export class DocumentsFormComponent {
     if (this.newDocument.department.id === 0) {
       alert('O departamento associado deve ser válido.');
       return;
-  }
+    }
     if (this.newDocument.id == 0) {
       this.documentService.save(this.newDocument).subscribe({
         next: (response: string) => {
-          //this.findAll();
           console.log('Resposta do servidor:', response);
           Swal.fire({
             title: 'Perfeito!',
@@ -109,5 +109,10 @@ export class DocumentsFormComponent {
         },
       });
     }
+  }
+
+  closeForm() {
+    // Redirecionar ou fechar o formulário
+    this.router.navigate(['admin/documentos']); // exemplo de redirecionamento
   }
 }
