@@ -100,10 +100,14 @@ html,
 body {
   font-family: var(--font-stack);
   //background-color: #3e4449; /* Ou a cor que você desejar */
-  background: linear-gradient(90deg, rgb(118, 118, 118) 0%, rgb(216, 216, 216) 100%) !important;
+  background-image: url('/assets/images/background.jpeg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;  
   transition: var(--duration-m) ease;
   color: var(--text-body);
   width: 100vw;
+  height: 100vh !important;
   overflow-x: hidden !important;
 }
 

@@ -1,8 +1,17 @@
 section {
   max-height: 1080px;
-  padding-bottom: var(--space-l);
+  padding-bottom: var(--space-xs);
   padding-left: calc(var(--space-6xl) * 2);
   padding-right: var(--space-m);
+}
+
+.titulo-header{
+  background:color-mix(in lab, #000000 26%, transparent);
+  --backdrop: blur(25px) saturate(120%);
+  backdrop-filter: var(--backdrop);
+  background: linear-gradient(to bottom, #12509bc6 10%, #12509b49 100%);
+  border-bottom: 2px solid #ffffff;
+  
 }
 
 .table {

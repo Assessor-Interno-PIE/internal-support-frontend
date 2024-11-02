@@ -20,11 +20,11 @@ section {
 .icon {
     position: absolute;
     padding: 10px;
-    color: black;
+    color: #124f9b;
 }
 
 h2 {
-    color: #000000;
+    color: #124f9b;
 }
 
 h5 {
@@ -73,7 +73,7 @@ input {
     padding: 0 20px;
     line-height: 60px; /* Ajustado para coincidir com a altura do input */
     border-radius: 6px;
-    border: 2px solid #000000;
+    border: 2px solid #828282;
     background: transparent;
     transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease; /* Transições suaves */
     z-index: 1; /* Mudado para um valor mais adequado */
@@ -87,7 +87,7 @@ textarea {
     font-size: 1.2em; /* Ajustado para tamanhos adequados */
     padding: 0 20px;
     border-radius: 6px;
-    border: 2px solid #000000;
+    border: 2px solid #828282;
     background: transparent;
     transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease; /* Transições suaves */
     z-index: 1; /* Mudado para um valor mais adequado */
@@ -98,7 +98,7 @@ textarea {
 
 .labelline {
     font-size: 1.5em; /* Ajustado para o tamanho do texto */
-    color: #000000;
+    color: #828282;
     padding: 0 10px;
     margin: 0 15px;
     margin-top: 1px;

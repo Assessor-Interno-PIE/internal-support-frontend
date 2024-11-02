@@ -1,56 +1,59 @@
-<div class="position-fixed d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 280px; height: 100vh; top: 0;left: 0;right: 0;">
-  <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+<div class="position-fixed d-flex flex-column flex-shrink-0 p-3 text-white bg-white" style="width: 280px; height: 100vh; top: 0;left: 0;right: 0; z-index:1111;">
+  <a href="" class="d-flex align-items-center mb-3 text-decoration-none">
     <a class="nav-link-logo" href="">
       <img src="assets/images/enerluz.png" class="enerluzLogo" alt="enerluzLogo">
     </a>
     <span class="enerluz-header">enerluz</span>
   </a>
-  <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li>
-      <a href="admin/dashboard" class="nav-link text-black">
-        <i class="fas fa-rocket"></i>
-        Dashboard
-      </a>
-    </li>
-   <!--<li>
-      <a href="admin/pagInv" class="nav-link text-black">
-        <i class="fas fa-rocket"></i>
-        pagin pra testes
-      </a>
-    </li> -->
-    <li>
-      <a href="admin/departamentos" class="nav-link text-black">
-<i class="fas fa-address-card"></i>
-        Departamentos
-      </a>
-    </li>
-    <li>
-      <a href="admin/documentos" class="nav-link text-black">
-        <i class="fas fa-file-text"></i>
-        Documentos
-      </a>
-    </li>
-    <li>
-      <a href="admin/configuracoes" class="nav-link text-black">
-        <i class="fas fa-cog"></i>
-        Configurações
-      </a>
-    </li>
-  </ul>
-  <hr>
-  <div class="dropdown">
-    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
-      data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://avatars.githubusercontent.com/u/115734698?v=4" alt="" width="50" height="50" class="rounded-circle me-2">
-      <strong>Graciota</strong>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-white text-small shadow" aria-labelledby="dropdownUser1">
-      <li> <a class="dropdown-item" href="admin/perfil">Perfil</a></li>
-      <li>
-        <hr class="dropdown-divider">
+  <div class="d-flex rounded-3 flex-column flex-column" id="div-content-dashboard" style="background-color: #124f9b;">
+    <ul class="nav p-1  d-flex justify-content-center flex-column mb-auto">
+      <li class="p-1">
+        <a href="admin/dashboard" class="nav-link d-flex d-flex align-items-center rounded-2">
+          <i class="fas fa-rocket"></i>
+          Dashboard
+        </a>
       </li>
-      <li><a class="dropdown-item" href="">Sair da conta</a></li>
+     <!--<li>
+        <a href="admin/pagInv" class="nav-link text-black">
+          <i class="fas fa-rocket"></i>
+          pagin pra testes
+        </a>
+      </li> -->
+      <li class="p-1">
+        <a href="admin/departamentos" class="nav-link d-flex  d-flex align-items-center rounded-2">
+  <i class="fas fa-address-card"></i>
+          Departamentos
+        </a>
+      </li>
+      <li class="p-1">
+        <a href="admin/documentos" class="nav-link d-flex  d-flex align-items-center rounded-2">
+          <i class="fas fa-file-text"></i>
+          Documentos
+        </a>
+      </li>
+      <li class="p-1">
+        <a href="admin/configuracoes" class="nav-link d-flex align-items-center rounded-2">
+          <i class="fas fa-cog"></i>
+          Configurações
+        </a>
+      </li>
     </ul>
+    <div class="dropdown" style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);">
+      <a href="#" class="p-2 d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+        data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="https://avatars.githubusercontent.com/u/115734698?v=4" alt="" width="50" height="50" class="rounded-circle me-2" style="border: 1px solid #333;">
+        <strong>Graciota</strong>
+      </a>
+      <ul class="p-2 dropdown-menu dropdown-menu-white text-small shadow" aria-labelledby="dropdownUser1">
+        <li> <a class="dropdown-item rounded-0" href="admin/perfil">
+          <i class="fas fa-user me-2"></i>Perfil</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item rounded-0" href="">
+          <i class="fas fa-right-from-bracket me-2"></i>Sair da conta</a></li>
+      </ul>
+    </div>
+        <!--<hr> -->
   </div>
 </div>

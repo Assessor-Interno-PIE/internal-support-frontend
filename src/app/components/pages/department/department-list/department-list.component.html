@@ -1,14 +1,20 @@
-<app-search-bar></app-search-bar>
+<div class="section-header titulo-header d-flex flex-row">
+  <h1 class="d-flex align-items-center" style="font-family:'Gotham'; color:#ffffff; margin-top: 15px; text-shadow: 2px 2px 5px #00000049">
+    <i class="fas fa-address-card me-2"></i>
+    Departamentos</h1>
+  <app-search-bar style="margin-top: -5px !important;"></app-search-bar>
+</div>
 
 <!-- Tabela de depart existentes -->
 <section class="mt-3">
   <div class="bg-light p-4 rounded shadow-sm">
-    <h4>Lista de Departamentos</h4>
+    <div class="d-flex justify-content-between">
+      <h4>Lista de Departamentos</h4>
+      <a href="admin/departamentos/add" class="btn mb-2 p-2" style="background-color: #ec7324; color: white; font-weight:500;"><i
+          class="fa-solid fa-circle-plus me-2"></i>Adicionar Departamento</a>
+    </div>
     <table class="table">
       <thead>
-        <a href="admin/departamentos/add" class="btn mb-2" style="background-color: #ec7324; color: white"
-        >Adicionar Departamento</a
-      >
         <tr class="table-warning">
           <!-- th scope="col">#ID</th -->
           <th scope="col">Nome</th>
@@ -25,14 +31,8 @@
           <td>{{ newDepartment.documents }}</td>
           <td>{{ newDepartment.users }}</td>
           <td class="alinharDireita">
-            <a
-              class="btn btn-primary"
-              href="admin/departamentos/edit/{{ newDepartment.id }}"
-              >Editar</a
-            >
-            <a class="btn btn-danger" (click)="deletar(newDepartment.id)"
-              >Deletar</a
-            >
+            <a class="btn btn-primary" href="admin/departamentos/edit/{{ newDepartment.id }}">Editar</a>
+            <a class="btn btn-danger" (click)="deletar(newDepartment.id)">Deletar</a>
           </td>
         </tr>
         }
