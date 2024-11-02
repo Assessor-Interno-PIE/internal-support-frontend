@@ -1,31 +1,54 @@
-<div class="container">
-    <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4">
-        <form (ngSubmit)="onSubmit()">
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">LOGIN</h5>
-              <p class="card-text">Faça Login aí</p>
-                <input [(ngModel)]="username" mdbInput type="text" name="username" id="username" class="form-control" />
-                <label mdbLabel class="form-label" for="username">Usuário</label>
-              
-              <br>
-                <input [(ngModel)]="password" mdbInput type="password" name="senha" id="senha" class="form-control" />
-                <label mdbLabel class="form-label" for="senha">Senha</label>
-              
-              <br>
-              <button type="submit" class="btn btn-primary">Login</button>
-              <a href="cadastro" class="alinharDireita">
-              <a type="button" class="btn btn-white" href="cadastro">
-                Cadastre-se
-              </a>
-            </a>
-            </div>
-
+<section>
+  <div class="logo position-absolute" style="top: -5px; right:0; left:-20px;">
+    <img src="assets/images/logo.png" style="width:100%; max-width: 290px;" alt="Logo"/>
+  </div>
+  <div class="container bg-white" id="container" #container>
+    <div class="form-container sign-up">
+      <form>
+        <h1>Criar Conta</h1>
+        <div class="social-icons">
+          <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
+        <span> ou use seu e-mail para registro</span>
+        <input type="text" placeholder="Nome" name="name" required>
+        <input type="email" placeholder="Email" name="email" required>
+        <input type="password" placeholder="Senha" name="password" required>
+        <button type="submit">Cadastrar</button>
       </form>
-      </div>
-      <div class="col-4"></div>
     </div>
-  </div>  
+
+    <div class="form-container sign-in">
+      <form (ngSubmit)="onSubmit()">
+        <h1>Entrar</h1>
+        <div class="social-icons">
+          <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <span> ou use seu e-mail e senha</span>
+        <input [(ngModel)]="email" type="email" placeholder="Email" name="email" required>
+        <input [(ngModel)]="password" type="password" placeholder="Senha" name="password" required>
+        <a href="#">Esqueceu Sua Senha? </a>
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+    <div class="toggle-container">
+      <div class="toggle">
+        <div class="toggle-panel toggle-left">
+          <h2>Já tem uma conta?</h2>
+          <p>Clique no botão e insira seus dados para entrar</p>
+          <button class="hidden" id="login" (click)="toggleContainer('login')">Entrar</button>
+        </div>
+        <div class="toggle-panel toggle-right">
+          <h2>Não tem uma conta?</h2>
+          <p>Clique no botão e cadastre seus dados para poder entrar</p>
+          <button class="hidden" id="register" (click)="toggleContainer('register')">Cadastro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
