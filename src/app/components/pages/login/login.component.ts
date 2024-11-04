@@ -17,7 +17,7 @@ export class LoginComponent {
 
   constructor(private renderer: Renderer2, private router: Router) {}
 
-  toggleContainer(action: 'register' | 'login') {
+  toggleContainer(action: 'register' | 'login') { 
     // Verifica se o container está definido antes de acessar seu nativeElement
     if (this.container) {
       const containerElement = this.container.nativeElement;

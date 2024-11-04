@@ -1,0 +1,103 @@
+<div class="section-header titulo-header d-flex flex-row">
+    <h2 class="d-flex align-items-center"
+        style="font-family:'Gotham'; color:#ffffff; margin-top: 6px; text-shadow: 2px 2px 5px #00000049">
+        <i class="fas fa-cog me-2"></i> Configurações
+    </h2>
+</div>
+
+<section class="section m-5">
+    <div class=" container bg-light rounded-3 p-3 shadow-sm">
+
+        <div class="separator-container" aria-hidden="true">
+            <div class="separator">
+                <div class="line">
+                    <div class="notch"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="div-perfil-options">
+            <!-- Botão de Ver perfil -->
+            <div class="config-item mb-4">
+                <button class="button btn" style="color: #ffffff; border: 2px solid #ffffff;">
+                    <i class="fas fa-user me-2"></i> Ver Perfil
+                </button>
+            </div>
+
+           
+        <div class="separator-container" aria-hidden="true">
+            <div class="separator2">
+                <div class="line2">
+                    <div class="notch2"></div>
+                </div>
+            </div>
+        </div> 
+
+        <div class="d-flex">
+            <!-- Botão de Mudar Email -->
+            <div class="config-item mb-3 me-4">
+                <button class="button btn" style="color: #ffffff; border: 2px solid #ffffff;">
+                    <i class="fas fa-envelope me-2"></i> Mudar Email
+                </button>
+            </div>
+    
+            <!-- Botão de Mudar Senha -->
+            <div class="config-item mb-3 ms-5">
+                <button class="button btn" style="color: #ffffff; border: 2px solid #ffffff;">
+                    <i class="fas fa-key me-2"></i> Mudar Senha
+                </button>
+            </div>
+            
+        </div>
+        <!-- Botão de Logout -->
+        <div class="config-item" style="margin-top: 17%; margin-left: 25.5%;">
+            <button (click)="logout()" class="btn btn-danger">
+                <i class="fas fa-sign-out-alt me-2"></i> Sair da Conta
+            </button>
+        </div>
+    
+
+        </div>
+
+
+        <div class="div-change-background mb-3">
+            <div class="custom-dropdown">
+              <button class="custom-dropdown-toggle" (click)="toggleDropdown()" style="background-color: #124f9b;">
+                <i class="fas fa-palette me-2"></i>
+                Mudar Plano de Fundo
+                <i class="fas fa-chevron-down ms-2" [ngClass]="isDropdownOpen ? 'rotate-icon' : 'no-rotate'"></i>
+              </button>
+              <div class="custom-dropdown-menu" [ngClass]="{'show': isDropdownOpen}">
+                <ul>
+                  <li *ngFor="let option of backgroundOptions">
+                    <a class="custom-dropdown-item" (click)="onBackgroundChange(option)">
+                      <div class="background-preview"
+                           [ngStyle]="{'background-image': 'url(' + option.value + ')'}"></div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+
+
+
+        
+        <div class="form-container">
+            
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+            </div>
+        </div>
+        <!-- Logo de fundo -->
+        <div class="background-logo position-absolute" style="bottom: -6%; left:-6%; padding:0; opacity: 20%; filter:blur(4px) saturate(100%);">
+            <img src="assets/images/logo.png" alt="Logo" style="width: 55%;">
+        </div>
+    </div>
+
+
+
+
+</section>
