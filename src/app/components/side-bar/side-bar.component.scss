@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+.enerluz-header{
+    font-family: "Roboto", sans-serif;
+    font-size: 2.5rem;
+    font-style: italic;
+    color: #124f9b;
+    font-weight: 500;
+}
+
+#div-content-dashboard{
+    display: flex;
+    justify-content: center;
+    background-color: #f5f5f5;
+
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #124f9b;
+    border-radius: 15px;
+    row-gap: 8px;
+}
+
+
+.nav-link {
+    font-family: 'Gotham';
+    display: flex;
+    color: #124f9b;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.nav-link:hover {
+    background-color: #ec7324 !important;
+    color: #ffffff !important;
+}
+
+.nav-link i {
+    margin-right: 10px;
+}
+
+.enerluzLogo{
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.nav li a {
+    background-color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.separator-container {
+    gap: var(--space-m);
+    align-items: center;
+    margin-bottom: 225px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.separator {
+    position: relative;
+    height: 3px;
+    border-right: 1px solid #ffffff;
+    border-bottom: 4px solid #ffffff;
+}
+
+.line {
+    width: 90%;
+    height: 3px;
+    background-color: #ec7324;
+    opacity: 1;
+}
+
+.notch {
+    background-color: #ec7324;
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%,  10px 100%);
+    width: 64px;
+    height: 8px;
+    top: 0%;
+    left: -6px; 
+    transition: all 0.3s;
+    z-index: 2;
+}
+
+.notch2{
+    background-color: #ffffff;
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -10px, 90% -1px, calc(92% - 10px) 100%,  5px 80%);
+    width: 64px;
+    height: 6px;
+    top: 3.5px;
+    left: -1px; 
+    transition: all 0.3s;
+    z-index:  1;
+}
+
+.notch3{
+    background-color: #ec7324;
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%,  10px 100%);
+    width: 59px;
+    height: 3.345px;
+    top: 0px;
+    right: 0;
+    left: 176px; 
+    transition: all 0.3s;
+    z-index:  1;
+}
+
+.notch4{
+    background-color: #fff;
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%,  10px 100%);
+    width: 54px;
+    height: 4px;
+    top: 0px;
+    right: 0;
+    left: 182px; 
+    transition: all 0.3s;
+    z-index:  0;
+}
+
+
+
+
+.dropdown {
+    position: absolute !important;
+    width: 264px;
+    top: 612px;
+    left: 0;
+    background-color: #ec7324;
+    border-radius: 0px 6px 6px 0px;
+    padding: 6px 6px 6px 0;
+}
+
+#dropdownUser1{
+    background-color: #ffffff ;
+    border-radius: 0px 5px 5px 0px;
+    color: 
+    #333 !important;
+    padding: 5px 15px 5px 25px!important;
+}
+
+.dropdown-item{
+    display: flex;
+    color: #124f9b;
+    font-weight: 500;
+    transition: all 0.3s;
+    border-radius: 3px !important;
+}
+
+.dropdown-item:hover{
+    background-color: #ec7324 !important;
+    color: #ffffff !important;
+}
+
+
+
+.dropdown-menu {
+    margin: 0 80px !important;
+}
+
+/* Estilo e animação do ícone de dropdown */
+#dropdownUser1 .fa-chevron-down {
+    transition: transform 0.3s ease; /* Animação suave */
+}
+
+/* Gira o ícone quando o dropdown estiver aberto */
+#dropdownUser1[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg); /* Roda o ícone para cima */
+}

@@ -1,0 +1,77 @@
+<section class="titulo-header d-flex justify-content-between w-100">
+  <h2 class="d-flex align-items-center"
+    style="font-family:'Gotham'; color:#ffffff; margin-top: 15px; text-shadow: 2px 2px 5px #00000049">
+    <i class="fas fa-address-card me-2"></i>
+    Departamentos
+  </h2>
+  <app-search-bar style="margin-top: -5px !important;"></app-search-bar>
+</section>
+
+
+<!-- Lista de Departamentos com botões para visualizar usuários e documentos -->
+<section class="mt-4 container">
+  <div class=" bg-light p-4 rounded shadow-sm">
+    <div class="d-flex justify-content-between">
+      <h4>Lista de Departamentos</h4>
+      <a href="admin/departamentos/add" class="btn mb-2 p-2"
+        style="background-color: #ec7324; color: white; font-weight:500;">
+        <i class="fa-solid fa-circle-plus me-2"></i>Adicionar Departamento
+      </a>
+    </div>
+    <table class="table ">
+      <thead>
+        <tr class="table-primary">
+          <th  class="col-3" scope="col">Nome</th>
+          <th  class="col-5" scope="col"><i class="fas fa-search"></i></th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-light" *ngFor="let department of departments; trackBy: trackById">
+          <td > <p class="d-flex align-items-center justify-content-center my-2"> {{ department.name }} </p></td>
+          <td class="center">
+            <button class="btn btn-primary my-1"
+              style="background-color: #124f9b; font-weight:500;letter-spacing:1px;  text-transform:none;"
+              (click)="openUserPopup(department)">
+              <i class="fas fa-user"></i>
+              Usuários</button>
+            <button class="btn btn-warning ms-2" (click)="openDocumentPopup(department)"
+              style="background-color: #e0b400; color:#fff; font-weight:500;letter-spacing:1px;  text-transform:none;">
+              <i class="fas fa-file-text"></i>
+              Documentos</button>
+          </td>
+          <td class="right">
+            <!-- [routerLink]="['/admin/departamentos/edit', department.id]"-->
+            <a class="btn btn-primary me-2 my-1" style="font-weight:500;letter-spacing:1px;">
+              <i class="fas fa-pen"></i>
+              Editar</a>
+            <button class="btn btn-danger" (click)="deletar(department.id)" style="font-weight:500;letter-spacing:1px;">
+              <i class="fas fa-trash me-1"></i>Deletar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Pop-up de Usuários -->
+<div class="modal" *ngIf="isUsersPopupOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <h2>Usuários do Departamento</h2>
+    <ul>
+      <li *ngFor="let user of selectedDepartment?.users">{{ user.name }}</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Pop-up de Documentos -->
+<div class="modal" *ngIf="isDocumentsPopupOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closePopup()">&times;</span>
+    <h2>Documentos do Departamento</h2>
+    <ul>
+      <li *ngFor="let document of selectedDepartment?.documents">{{ document.title }}</li>
+    </ul>
+  </div>
+</div>
