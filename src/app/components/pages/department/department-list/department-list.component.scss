@@ -17,8 +17,7 @@ section {
   --backdrop: blur(25px) saturate(120%);
   backdrop-filter: var(--backdrop);
   background: linear-gradient(to bottom, #12509bc6 10%, #12509b49 100%);
-  border-bottom: 2px solid #ffffff;
-  
+  border-bottom: 2px solid #ffffff; 
 }
 
 
@@ -36,7 +35,8 @@ section {
   .table thead th {
     background-color: #f8f9fa; /* Cor mais leve para o cabeçalho */
   }
-  
+
+
   .bg-light {
     padding: 1rem; /* Ajusta o padding para deixar mais compacto */
     max-width: 98%;
@@ -47,3 +47,32 @@ section {
     padding: 4px 8px;
   }
   
+
+
+  /* department-list.component.scss */
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+}

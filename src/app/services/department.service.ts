@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Department } from '../models/department';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +27,22 @@ export class DepartmentService {
     return this.http.post<string>(this.API+"/save", department, {responseType: 'text' as 'json'});
   }
 
-  update(department: Department): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+department.id, department, {responseType: 'text' as 'json'});
+  // byId
+  update(id:number, department: Department): Observable<string>{
+    return this.http.put<string>(this.API+"/update/"+id, department, {responseType: 'text' as 'json'});
   }
 
-  delete(department: Department): Observable<string>{
-    return this.http.delete<string>(this.API+"/delete-by-id/"+department.id, {responseType: 'text' as 'json'});
+  // byId
+  delete(id:number): Observable<string>{
+    return this.http.delete<string>(this.API+"/delete-by-id/"+id, {responseType: 'text' as 'json'});
+  }
+
+  findUsersByDepartment(departmentId: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API}/${departmentId}/users`);
+  }
+
+  // Método para buscar documentos de um departamento
+  findDocumentsByDepartment(departmentId: number): Observable<Document[]> {
+    return this.http.get<Document[]>(`${this.API}/${departmentId}/documents`);
   }
 }

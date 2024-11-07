@@ -33,4 +33,9 @@ export class UserService {
   delete(user: User): Observable<string>{
     return this.http.delete<string>(this.API+"/delete-by-id/"+user.id, {responseType: 'text' as 'json'});
   }
+
+  findByDepartment(departmentId: number): Observable<User[]> {
+    return this.http.get<User[]>(`${this.API}/department/${departmentId}`);
+  }
+
 }

@@ -19,7 +19,7 @@
         <div class="div-perfil-options">
             <!-- Botão de Ver perfil -->
             <div class="config-item mb-4">
-                <button class="button btn" style="color: #ffffff; border: 2px solid #ffffff;">
+                <button (click)="profileView()" class="button btn" style="color: #ffffff; border: 2px solid #ffffff;">
                     <i class="fas fa-user me-2"></i> Ver Perfil
                 </button>
             </div>
@@ -36,7 +36,7 @@
         <div class="d-flex">
             <!-- Botão de Mudar Email -->
             <div class="config-item mb-3 me-4">
-                <button class="button btn" style="color: #ffffff; border: 2px solid #ffffff;">
+                <button  class="button btn" style="color: #ffffff; border: 2px solid #ffffff;">
                     <i class="fas fa-envelope me-2"></i> Mudar Email
                 </button>
             </div>
@@ -96,8 +96,5 @@
             <img src="assets/images/logo.png" alt="Logo" style="width: 55%;">
         </div>
     </div>
-
-
-
-
 </section>
+

@@ -26,11 +26,11 @@ export class AccesslevelService {
     return this.http.post<string>(this.API+"/save", accesslevel, {responseType: 'text' as 'json'});
   }
 
-  update(accesslevel: Accesslevel): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+accesslevel.id, accesslevel, {responseType: 'text' as 'json'});
+  update(id:number, accesslevel: Accesslevel): Observable<string>{
+    return this.http.put<string>(this.API+"/update/"+id, accesslevel, {responseType: 'text' as 'json'});
   }
 
-  delete(accesslevel: Accesslevel): Observable<string>{
-    return this.http.delete<string>(this.API+"/delete-by-id/"+accesslevel.id, {responseType: 'text' as 'json'});
+  delete(id: number): Observable<string>{
+    return this.http.delete<string>(this.API+"/delete-by-id/"+id, {responseType: 'text' as 'json'});
   }
 }

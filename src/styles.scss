@@ -99,8 +99,6 @@
 html,
 body {
   font-family: var(--font-stack);
-  //background-color: #3e4449; /* Ou a cor que você desejar */
-  background-image: url('/assets/images/background.jpeg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;  
@@ -115,3 +113,5 @@ body {
 
 @import '@fortawesome/fontawesome-free/css/all.css';
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

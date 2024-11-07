@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Document } from '../models/document';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +34,9 @@ export class DocumentService {
   delete(document: Document): Observable<string>{
     return this.http.delete<string>(this.API+"/delete-by-id/"+document.id, {responseType: 'text' as 'json'});
   }
+
+  findByDepartment(departmentId: number): Observable<Document[]> {
+    return this.http.get<Document[]>(`${this.API}/department/${departmentId}`);
+  }
+
 }

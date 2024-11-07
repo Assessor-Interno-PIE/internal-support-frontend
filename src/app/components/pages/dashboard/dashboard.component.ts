@@ -10,5 +10,7 @@ import { CardComponent } from "../../card/card.component";
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-
+  usuario = {
+    nome: 'João Pedro Canhete',
+  };
 }

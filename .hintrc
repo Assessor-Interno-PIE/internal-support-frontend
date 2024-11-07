@@ -31,6 +31,12 @@
           "backdrop-filter"
         ]
       }
+    ],
+    "axe/structure": [
+      "default",
+      {
+        "list": "off"
+      }
     ]
   }
 }

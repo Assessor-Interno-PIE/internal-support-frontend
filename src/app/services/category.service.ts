@@ -26,11 +26,11 @@ export class CategoryService {
     return this.http.post<string>(this.API+"/save", category, {responseType: 'text' as 'json'});
   }
 
-  update(category: Category): Observable<string>{
+  update(id:number, category: Category): Observable<string>{
     return this.http.put<string>(this.API+"/update/"+category.id, category, {responseType: 'text' as 'json'});
   }
 
-  delete(category: Category): Observable<string>{
-    return this.http.delete<string>(this.API+"/delete-by-id/"+category.id, {responseType: 'text' as 'json'});
+  delete(id:number): Observable<string>{
+    return this.http.delete<string>(this.API+"/delete-by-id/"+id, {responseType: 'text' as 'json'});
   }
 }

@@ -1,14 +1,16 @@
 <div class="position-fixed d-flex flex-column flex-shrink-0 p-3 text-white bg-white shadow-sm"
   style="width: 280px; height: 100vh; top: 0;left: 0;right: 0; z-index:1111;">
-  <a href="admin/dashboard" class="d-flex align-items-center mb-3 text-decoration-none">
-    <a class="nav-link-logo" href="admin/dashboard">
-      <img src="assets/images/enerluz.png" class="enerluzLogo" alt="enerluzLogo">
+  <div class="d-flex flex-column justify-content-around align-items-start p-1">
+    <a href="admin/dashboard" class="d-flex align-items-center mb-3 text-decoration-none">
+      <a class="nav-link-logo" href="admin/dashboard">
+        <img src="assets/images/enerluz.png" class="enerluzLogo" alt="enerluzLogo">
+      </a>
+      <span class="enerluz-header">enerluz</span>
     </a>
-    <span class="enerluz-header">enerluz</span>
-  </a>
+  </div>
   <div class="d-flex rounded-3 flex-column flex-column" id="div-content-dashboard" style="background-color: #124f9b;">
-    <ul class="nav p-1  d-flex justify-content-center flex-column mb-auto">
-      <li class="p-1">
+    <ul class="nav p-2  d-flex justify-content-center flex-column mb-auto">
+      <li class="">
         <a href="admin/dashboard" class="nav-link d-flex d-flex align-items-center rounded-2">
           <i class="fas fa-rocket"></i>
           Dashboard
@@ -20,26 +22,25 @@
           pagin pra testes
         </a>
       </li> -->
-      <li class="p-1">
+      <li class="">
         <a href="admin/departamentos" class="nav-link d-flex  d-flex align-items-center rounded-2">
           <i class="fas fa-address-card"></i>
           Departamentos
         </a>
       </li>
-      <li class="p-1">
+      <li class="">
         <a href="admin/documentos" class="nav-link d-flex  d-flex align-items-center rounded-2">
           <i class="fas fa-file-text"></i>
           Documentos
         </a>
       </li>
-      <li class="p-1">
+      <li class="">
         <a href="admin/configuracoes" class="nav-link d-flex align-items-center rounded-2">
           <i class="fas fa-cog"></i>
           Configurações
         </a>
       </li>
     </ul>
-
     <div class="separator-container" aria-hidden="true">
       <div class="separator">
         <div class="line">
@@ -51,11 +52,19 @@
       </div>
     </div>
 
+    <ul class="nav p-2  d-flex justify-content-center flex-column mt-0">
+      <li class="">
+        <a href="admin/" class="nav-link d-flex align-items-center rounded-2">
+          <i class="fa-solid fa-unlock"></i> Admin
+        </a>
+      </li>
+    </ul>
+
+
     <div class="dropdown" style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);">
       <a href="#" class="p-2 d-flex align-items-center text-white text-decoration-none" id="dropdownUser1"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="{{usuario.foto}}" alt="Foto do Usuario" width="50" height="50"
-          class="rounded-circle me-2 shadow-sm">
+        <img src="{{usuario.foto}}" alt="Foto do Usuario" width="50" height="50" class="rounded-circle me-2 shadow-sm">
         <p class="d-flex align-items-center justify-content-center m-0"
           style="font-weight: 500;font-size:large; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
           {{usuario.nome}}
@@ -72,6 +81,6 @@
             <i class="fas fa-right-from-bracket me-2 p-1"></i>Sair da conta</a></li>
       </ul>
     </div>
-    <!--<hr> -->
   </div>
+  <!--<hr> -->
 </div>

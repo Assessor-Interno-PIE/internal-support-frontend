@@ -1,16 +1,54 @@
-<div class="container">
-    <h2>Gestão de Departamentos</h2>
-  
-    <!-- Formulário para adicionar novo depart -->
-    <div class="mb-3 bg-light p-6 rounded shadow-sm">
-      <h4>Adicionar Departamento</h4>
-      <form (ngSubmit)="save()">
-        <div class="form-group">
-          <label for="title">Nome:</label>
-          <input type="text" class="form-control" [(ngModel)]="newDepartment.name" name="title" required />
-        </div>
-        <button type="submit" class="btn btn-primary mt-2">Adicionar Departamento</button>
-      </form>
+<!--div class="mb-3 bg-light p-6 rounded shadow-sm">
+  <h4>Adicionar Departamento</h4>
+  <form #formDepartment="ngForm" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="name">Nome:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="department.name" required />
     </div>
-  
-</div>
+
+    <div class="form-group">
+      <label for="documents">Documentos:</label>
+      <select id="documents" class="form-control" [(ngModel)]="department.documents" name="documents" multiple>
+        <option *ngFor="let document of documents" [ngValue]="document">{{ document.title }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="users">Usuários:</label>
+      <select id="users" class="form-control" [(ngModel)]="department.users" name="users" multiple>
+        <option *ngFor="let user of users" [ngValue]="user">{{ user.name }}</option>
+      </select>
+    </div>
+
+    <button [disabled]="!formDepartment.valid" type="submit" class="btn btn-primary mt-2">
+      {{ isEditMode ? 'Atualizar Departamento' : 'Adicionar Departamento' }}
+    </button>
+    <a href="admin/cadastro/departamentos" class="btn btn-danger">Voltar</a>
+  </form>
+</div-->
+
+<section class="d-flex mx-auto">
+  <div class="container-fluid div-form bg-light">
+    <div class="container-fluid p-1">
+      <h2 class="text-center mb-2">Gestão de Departamentos</h2>
+      <hr>
+      <div class="p-1 pb-1">
+        <h5 class="p-2 text-center">Adicionar Departamento</h5>
+        <form class="mt-3" #formDepartment="ngForm" (ngSubmit)="save()">
+          <!-- Nome -->
+          <div class="form-group">
+            <div class="entryarea mt-2">
+              <input type="text" [(ngModel)]="department.name" name="name" required style="width: 100%; max-width: 900px; height: 40px;">
+              <div class="labelline">Nome</div>
+            </div>
+          </div>
+
+          <div class="btns d-flex mb-3">
+            <button type="submit" class="btn btn-primary" id="submit">Adicionar Departamento </button>
+            <button type="button" class="btn btn-danger" (click)="closeForm()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BackgroundService } from '../../../services/background.service';
 import { CommonModule } from '@angular/common';
 import { debounceTime, Subject } from 'rxjs';
+import { BackgroundService } from '../../../services/background.service';
 
 interface BackgroundOption {
   type: 'image';
@@ -21,10 +21,10 @@ export class ConfiguracoesComponent implements OnInit {
     { type: 'image', value: '/assets/images/background.jpeg', label: 'Imagem 1' },
     { type: 'image', value: 'assets/images/background2.jpg', label: 'Imagem 2' },
     { type: 'image', value: 'assets/images/background3.jpg', label: 'Imagem 3' },
-    { type: 'image', value: 'assets/images/background4.jpeg', label: 'Imagem 4' },
+    { type: 'image', value: 'assets/images/background4.jpg', label: 'Imagem 4' },
     { type: 'image', value: 'assets/images/background5.jpg', label: 'Imagem 5' },
     { type: 'image', value: 'assets/images/background6.jpeg', label: 'Imagem 6' },
-    { type: 'image', value: 'assets/images/background7.jpg', label: 'Imagem 7' },
+    { type: 'image', value: 'assets/images/background7.jpeg', label: 'Imagem 7' },
   ];
 
   private changeBackgroundSubject = new Subject<string>();
@@ -65,5 +65,9 @@ export class ConfiguracoesComponent implements OnInit {
   logout(): void {
     window.location.href = '/login';
     localStorage.removeItem('backgroundImage');
+  }
+
+  profileView(): void {
+    window.location.href = 'admin/perfil';
   }
 }

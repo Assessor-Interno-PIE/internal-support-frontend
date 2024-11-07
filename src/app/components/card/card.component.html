@@ -1,56 +1,20 @@
-<section class="mt-3">
-  <div class="d-flex flex-row justify-content-space-around flex-wrap"
-    style="column-gap: var(--space-l); row-gap: var(--space-l)">
-
-    <!-- Card para Adicionar Documento -->
-    <div class="card text-center" style="width: 270px; height: 290px">
-      <div class="card-header">ARQUIVOS</div>
-      <div class="card-body">
-        <h5 class="card-title">ARQUIVOS TITULO</h5>
-        <p class="card-text">
-          ARQUIVO BODY CARTÃO TEXTO
-        </p>
-        <a href="#" class="btn btn-primary" data-mdb-ripple-init>Botão</a>
-      </div>
-      <div class="card-footer text-muted">Há 2 dias</div>
+<ul class="nav p-1 d-flex justify-content-center flex-column mb-auto">
+  <section class="mt-3">
+    <div class="d-flex flex-row justify-content-start flex-wrap" style="column-gap: 30px; row-gap: 20px">
+      <ng-container *ngFor="let document of documents">
+        <div class="card document-card text-center shadow-sm border-light">
+          <div class="card-header bg-secondary p-3">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ document.title }}</h5>
+            <p class="card-text">{{ document.content }}</p>
+            <a href="admin/cadastro/documentos" class="btn" style="background-color: #124f9b; color:white" data-mdb-ripple-init>Ver Detalhes</a>
+          </div>
+          <div class="card-footer text-muted">
+            Criado em: {{ document.createdAt | date: 'short' }} | Usuário: {{ document.user.name }}
+          </div>
+        </div>
+      </ng-container>
     </div>
-    
-    <div class="card text-center" style="width: 270px; height: 290px">
-      <div class="card-header">ARQUIVOS</div>
-      <div class="card-body">
-        <h5 class="card-title">ARQUIVOS TITULO</h5>
-        <p class="card-text">
-          ARQUIVO BODY CARTÃO TEXTO
-        </p>
-        <a href="#" class="btn btn-primary" data-mdb-ripple-init>Botão</a>
-      </div>
-      <div class="card-footer text-muted">Há 2 dias</div>
-    </div>
-
-    <div class="card text-center" style="width: 270px; height: 290px">
-      <div class="card-header">ARQUIVOS</div>
-      <div class="card-body">
-        <h5 class="card-title">ARQUIVOS TITULO</h5>
-        <p class="card-text">
-          ARQUIVO BODY CARTÃO TEXTO
-        </p>
-        <a href="#" class="btn btn-primary" data-mdb-ripple-init>Botão</a>
-      </div>
-      <div class="card-footer text-muted">Há 2 dias</div>
-    </div>
-
-    <div class="card text-center" style="width: 270px; height: 290px">
-      <div class="card-header">ARQUIVOS</div>
-      <div class="card-body">
-        <h5 class="card-title">ARQUIVOS TITULO</h5>
-        <p class="card-text">
-          ARQUIVO BODY CARTÃO TEXTO
-        </p>
-        <a href="#" class="btn btn-primary" data-mdb-ripple-init>Botão</a>
-      </div>
-      <div class="card-footer text-muted">Há 2 dias</div>
-    </div>
-
-
-  </div>
-</section>
+  </section>
+</ul>

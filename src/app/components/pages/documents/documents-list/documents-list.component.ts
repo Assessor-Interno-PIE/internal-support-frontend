@@ -1,66 +1,58 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DocumentService } from '../../../../services/document.service';
-import { Department } from '../../../../models/department';
-import { Category } from '../../../../models/category';
-import { User } from '../../../../models/user';
-import { Accesslevel } from '../../../../models/accesslevel';
 import { Document } from '../../../../models/document';
 import Swal from 'sweetalert2';
-import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
+import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-documents-list',
   standalone: true,
   imports: [SearchBarComponent, CommonModule],
   templateUrl: './documents-list.component.html',
-  styleUrl: './documents-list.component.scss'
+  styleUrls: ['./documents-list.component.scss']
 })
-export class DocumentsListComponent {
+export class DocumentsListComponent implements OnInit {
   documents: Document[] = [];
-  newDocument: Document;
 
-  documentService = inject(DocumentService);
+  constructor(private documentService: DocumentService) {}
 
-  constructor() {
-     // instâncias vazias de Department, Category e User
-     const department = new Department(0, '', [], []); 
-     const category = new Category(0, '', []);
-     const userDepartment = new Department(0, '', [], []); // Crie um departamento para o usuário
-     const user = new User(0, '', '', '', userDepartment, [], new Accesslevel(0,'',[]));
- 
-     // Passando as instâncias para o novo documento
-     this.newDocument = new Document(0, '', '', department, category, new Date().toISOString(), new Date().toISOString(), user);
-     
-    this.findAll();
+  ngOnInit(): void {
+    this.loadDocuments();
   }
 
-  // Método para buscar todos os documentos
-  findAll(): void {
+  loadDocuments(): void {
     this.documentService.findAll().subscribe({
-      next: lista => {
-        this.documents = lista;
-        console.log('Sucesso', 'Documentos carregados com sucesso!', 'success');
-      },
-      error: () => {
-        console.log('Erro', 'Não foi possível carregar os documentos.', 'error');
-      },
-      complete: () => console.log('Busca de documentos completa.')
+      next: (data: Document[]) => this.documents = this.initializeDocuments(data),
+      error: this.handleError('Erro ao carregar documentos')
     });
   }
 
-   // Método para deletar um documento pelo ID
-deletar(id:number): void {
-  this.documentService.delete(this.newDocument).subscribe({
-    next: () => {
-      this.findAll();
-      Swal.fire('Sucesso', 'Documento deletado com sucesso!', 'success');
-    },
-    error: () => {
-      Swal.fire('Erro', 'Erro ao deletar o documento. Tente novamente.', 'error');
-    },
-    complete: () => console.log('Exclusão de documento completa.')
-  });
-}
+  initializeDocuments(data: Document[]): Document[] {
+    return data.map(doc => ({ ...doc, showDetails: false }));
+  }
 
+  toggleDetails(documentId: number): void {
+    const document = this.documents.find(doc => doc.id === documentId);
+    if (document) {
+      document.showDetails = !document.showDetails;
+    }
+  }
+
+  deletar(documentId: number): void {
+    this.documentService.delete({ id: documentId } as Document).subscribe({
+      next: () => {
+        this.documents = this.documents.filter(doc => doc.id !== documentId);
+        Swal.fire('Deletado!', 'O documento foi deletado com sucesso.', 'success');
+      },
+      error: this.handleError('Erro ao deletar documento')
+    });
+  }
+
+  private handleError(message: string) {
+    return (error: any) => {
+      console.error(message, error);
+      Swal.fire('Erro!', message, 'error');
+    };
+  }
 }

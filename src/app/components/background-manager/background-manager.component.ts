@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { BackgroundService } from '../../services/background.service';
 import { Subscription } from 'rxjs';
+import { BackgroundService } from '../../services/background.service';
 
 @Component({
   selector: 'app-background-manager',
