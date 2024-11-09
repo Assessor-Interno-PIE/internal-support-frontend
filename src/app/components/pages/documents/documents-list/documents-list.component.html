@@ -42,28 +42,26 @@
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-sm" style="background-color:#ffffff; cursor: pointer;">
           <div class="card-body">
-            <h5 class="card-title d-flex align-items-center justify-content-between"
+            <!--h5 class="card-title d-flex align-items-center justify-content-between"
               (click)="toggleDetails(documento.id)">
               {{ documento.title }}
               <i class="fas" [ngClass]="documento.showDetails ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
-            </h5>
-            <div class="card-details" [ngClass]="{ 'show': documento.showDetails }">
+            </h5-->
+            <div class="card-details">
               <hr>
-              <p class="card-text"><strong class="text-strong">Conteúdo:</strong>{{ documento.content }}</p>
+              <p class="card-text"><strong class="text-strong">Titulo:</strong>{{ documento.title }}</p>
+              <p class="card-text"><strong class="text-strong">File Path:</strong>{{ documento.filePath }}</p>
+              <p class="card-text"><strong class="text-strong">Descrição:</strong>{{ documento.description }}</p>
               <p class="mb-1"><strong class="text-strong">Departamento:</strong> {{ documento.department.name }}</p>
-              <p class="mb-1"><strong class="text-strong">Categoria:</strong> {{ documento.category.name }}</p>
-              <p class="mb-1"><strong class="text-strong">Criado em:</strong> {{ documento.createdAt | date:
+              <!--p class="mb-1"><strong class="text-strong">Criado em:</strong> {{ documento.createdAt | date:
                 'dd/MM/yyyy' }}</p>
               <p class="mb-1"><strong class="text-strong">Atualizado em:</strong> {{ documento.updatedAt | date:
-                'dd/MM/yyyy' }}</p>
+                'dd/MM/yyyy' }}</p-->
               <hr>
               <div class="d-flex justify-content-between mt-3 rounded-2 p-2">
                 <a href="admin/documentos/edit/{{ documento.id }}" class="btn btn-outline-primary"
                   style=" font-weight:500;">
                   <i class="fas fa-pen me-1"></i>Editar
-                </a>
-                <a (click)="deletar(documento.id)" class="btn btn-outline-danger" style=" font-weight:500;">
-                  <i class="fas fa-trash me-1"></i>Deletar
                 </a>
               </div>
             </div>

@@ -4,6 +4,7 @@ import { Department } from '../../../../models/department';
 import Swal from 'sweetalert2';
 import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
+import { DepartmentStatsDTO } from '../../../../models/DTO/department-stats-dto';
 
 @Component({
   selector: 'app-department-list',
@@ -14,6 +15,8 @@ import { CommonModule } from '@angular/common';
 })
 export class DepartmentListComponent {
   departments: Department[] = [];
+  department: Department = new Department(0,'',[],[]);
+  departmentStatsDTO: DepartmentStatsDTO = new DepartmentStatsDTO(0,0);
   selectedDepartment?: Department;
   isUsersPopupOpen = false;
   isDocumentsPopupOpen = false;
@@ -52,7 +55,7 @@ export class DepartmentListComponent {
   }
 
   deletar(id: number): void {
-    this.departmentService.delete(id).subscribe({
+    this.departmentService.deleteById(id).subscribe({
       next: () => {
         this.findAll();
         Swal.fire('Sucesso', 'Departamento deletado com sucesso!', 'success');

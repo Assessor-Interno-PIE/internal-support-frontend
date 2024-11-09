@@ -150,7 +150,7 @@ export class DepartmentFormComponent {
         },
       });
     } else {
-      this.departmentService.update(this.department.id, this.department).subscribe({
+      this.departmentService.updateById(this.department.id, this.department).subscribe({
         next: (response: string) => {
           console.log('Resposta do servidor:', response);
           Swal.fire({

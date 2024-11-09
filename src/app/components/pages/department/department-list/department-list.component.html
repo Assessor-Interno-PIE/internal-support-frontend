@@ -22,14 +22,20 @@
       <thead>
         <tr class="table-primary">
           <th  class="col-3" scope="col">Nome</th>
+          <th  class="col-3" scope="col">Documentos</th>
+          <th  class="col-3" scope="col">Usuarios</th>
           <th  class="col-5" scope="col"><i class="fas fa-search"></i></th>
           <th scope="col">Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr class="table-light" *ngFor="let department of departments; trackBy: trackById">
-          <td > <p class="d-flex align-items-center justify-content-center my-2"> {{ department.name }} </p></td>
-          <td class="center">
+          <td >
+             <p class="d-flex align-items-center justify-content-center my-2"> {{ department.name }} </p>
+             <p class="d-flex align-items-center justify-content-center my-2"> {{ department.documents }} </p>
+             <p class="d-flex align-items-center justify-content-center my-2"> {{ department.users }} </p>
+          </td>
+          <!--td class="center">
             <button class="btn btn-primary my-1"
               style="background-color: #124f9b; font-weight:500;letter-spacing:1px;  text-transform:none;"
               (click)="openUserPopup(department)">
@@ -39,16 +45,17 @@
               style="background-color: #e0b400; color:#fff; font-weight:500;letter-spacing:1px;  text-transform:none;">
               <i class="fas fa-file-text"></i>
               Documentos</button>
-          </td>
+          </td -->
           <td class="right">
             <!-- [routerLink]="['/admin/departamentos/edit', department.id]"-->
-            <a class="btn btn-primary me-2 my-1" style="font-weight:500;letter-spacing:1px;">
+            <a class="btn btn-primary me-2 my-1" style="font-weight:500;letter-spacing:1px;" 
+            href="admin/departamentos/edit/{{department.id}}">
               <i class="fas fa-pen"></i>
               Editar</a>
             <button class="btn btn-danger" (click)="deletar(department.id)" style="font-weight:500;letter-spacing:1px;">
               <i class="fas fa-trash me-1"></i>Deletar</button>
           </td>
-        </tr>
+        <!--/tr-->
       </tbody>
     </table>
   </div>

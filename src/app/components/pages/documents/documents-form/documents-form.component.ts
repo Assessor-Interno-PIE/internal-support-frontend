@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { DocumentService } from '../../../../services/document.service';
 import { Department } from '../../../../models/department';
-import { Category } from '../../../../models/category';
 import { User } from '../../../../models/user';
-import { Accesslevel } from '../../../../models/accesslevel';
 import { Document } from '../../../../models/document';
 import { Router } from '@angular/router';
+import { Category } from '../../../../../../internal-support-frontend/src/app/models/category';
 
 @Component({
   selector: 'app-documents-form',
@@ -19,7 +18,8 @@ import { Router } from '@angular/router';
 })
 export class DocumentsFormComponent {
   documents: Document[] = [];
-  newDocument: Document;
+  document: Document;
+  departments: Department[] = [];
 
   router = inject(Router);
   documentService = inject(DocumentService);
@@ -29,32 +29,14 @@ export class DocumentsFormComponent {
     const department = new Department(0, '', [], []); 
     const category = new Category(0, '', []); 
     const userDepartment = new Department(0, '', [], []); 
-    const user = new User(
-      0,
-      '',
-      '',
-      '',
-      userDepartment,
-      [],
-      new Accesslevel(0, '', [])
-    );
+    const user = new User(0,'','','',new Department(0,'',[],[]),0);
 
     // Passando as instâncias para o novo documento
-    this.newDocument = new Document(
-      0,
-      '',
-      '',
-      department,
-      category,
-      new Date().toISOString(),
-      new Date().toISOString(),
-      user
-    );
+    this.document = new Document(0,'',new Department(0,'',[],[]),'','');
 
     this.findAll();
   }
 
-  // Método para buscar todos os documentos
   findAll(): void {
     this.documentService.findAll().subscribe({
       next: (lista) => {
@@ -73,13 +55,18 @@ export class DocumentsFormComponent {
   }
 
   save() {
-    console.log('Dados enviados para salvar:', this.newDocument);
-    if (this.newDocument.department.id === 0) {
+    console.log('Dados enviados para salvar:', this.document);
+    if (this.document.department.id === 0) {
       alert('O departamento associado deve ser válido.');
       return;
     }
-    if (this.newDocument.id == 0) {
-      this.documentService.save(this.newDocument).subscribe({
+      // Atribua valores aos parâmetros necessários
+      const file = this.selectedFile;  // Supondo que você tenha uma propriedade `selectedFile` no componente
+      const department = this.document.department;
+      const title = this.document.title;
+      const description = this.document.description;
+
+      this.documentService.saveDocument(file, department, title, description).subscribe({
         next: (response: string) => {
           console.log('Resposta do servidor:', response);
           Swal.fire({
@@ -93,23 +80,17 @@ export class DocumentsFormComponent {
           alert('Ocorreu algum erro ao cadastrar!');
         },
       });
-    } else {
-      this.documentService.update(this.newDocument).subscribe({
-        next: (response: string) => {
-          console.log('Resposta do servidor:', response);
-          Swal.fire({
-            title: 'Perfeito!',
-            text: 'Documento atualizado com sucesso!',
-            icon: 'success',
-          });
-          this.router.navigate(['admin/documentos']);
-        },
-        error: (erro) => {
-          alert('Ocorreu algum erro ao atualizar!');
-        },
-      });
-    }
   }
+
+  selectedFile!: File;
+
+  onFileSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+  if (input.files && input.files.length > 0) {
+    this.selectedFile = input.files[0];
+  }
+}
+
 
   closeForm() {
     // Redirecionar ou fechar o formulário

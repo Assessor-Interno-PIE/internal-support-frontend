@@ -149,3 +149,7 @@ textarea:valid + .labelline {
     cursor: pointer;
     transition: background-color 0.2s ease, color
 }
+
+.department-select {
+    margin-top: 30px; /* Adiciona espaçamento superior para afastar do campo acima */
+}
