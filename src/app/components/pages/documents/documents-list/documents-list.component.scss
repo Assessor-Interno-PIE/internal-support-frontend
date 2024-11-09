@@ -1,8 +1,8 @@
 section {
   max-height: 1080px;
-  padding-bottom: var(--space-xs);
-  padding-left: calc(var(--space-5xl) * 2.4);
-  padding-right: var(--space-xl);
+  padding-bottom: var(--space-xs) !important;
+  padding-left: calc(var(--space-6xl) * 2) !important;
+  padding-right: var(--space-2xl) !important;
 }
 
 .titulo-header{
