@@ -12,7 +12,7 @@ export class DocumentService {
 
   http = inject(HttpClient);
 
-  API = ("http://localhost:8080/api/documents");
+  API = ("http://localhost:5000/api/documents"); //alterei pra porta 5000, estava 8080
 
   constructor() { }
   

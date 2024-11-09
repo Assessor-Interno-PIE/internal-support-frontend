@@ -7,7 +7,8 @@ import { Department } from '../../../../models/department';
 import { User } from '../../../../models/user';
 import { Document } from '../../../../models/document';
 import { Router } from '@angular/router';
-import { Category } from '../../../../../../internal-support-frontend/src/app/models/category';
+
+
 
 @Component({
   selector: 'app-documents-form',
@@ -27,7 +28,7 @@ export class DocumentsFormComponent {
   constructor() {
     // instâncias vazias de Department, Category e User
     const department = new Department(0, '', [], []); 
-    const category = new Category(0, '', []); 
+   // const category = new Category(0, '', []); 
     const userDepartment = new Department(0, '', [], []); 
     const user = new User(0,'','','',new Department(0,'',[],[]),0);
 
