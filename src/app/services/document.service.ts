@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Document } from '../models/document';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import { Department } from '../models/department';
 
 @Injectable({
   providedIn: 'root'
@@ -23,20 +24,20 @@ export class DocumentService {
     return this.http.get<Document>(this.API+"/find-by-id/"+id);
   }
 
-  save(document: Document): Observable<string>{
-    return this.http.post<string>(this.API+"/save", document, {responseType: 'text' as 'json'});
+  //save with upload archive
+  saveDocument(file: File, department: Department, title: string, description:string): Observable<string>{
+    const formData: FormData = new FormData();
+    // add new archives e other date to FormData
+    formData.append('file', file);
+    formData.append('departmentId', department.id.toString());
+    formData.append('title', title);
+    formData.append('description', description);
+    // return with request post to backend
+    return this.http.post<string>(this.API+"/save", formData, {responseType: 'text' as 'json'});
   }
 
-  update(document: Document): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+document.id, document, {responseType: 'text' as 'json'});
-  }
-
-  delete(document: Document): Observable<string>{
-    return this.http.delete<string>(this.API+"/delete-by-id/"+document.id, {responseType: 'text' as 'json'});
-  }
-
-  findByDepartment(departmentId: number): Observable<Document[]> {
-    return this.http.get<Document[]>(`${this.API}/department/${departmentId}`);
+  downloadDocument(id:number): Observable<Document>{
+    return this.http.get<Document>(this.API+"/download/"+id);
   }
 
 }

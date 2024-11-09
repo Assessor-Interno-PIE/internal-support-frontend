@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Department } from '../models/department';
 import { User } from '../models/user';
+import { DepartmentStatsDTO } from '../models/DTO/department-stats-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,21 +29,19 @@ export class DepartmentService {
   }
 
   // byId
-  update(id:number, department: Department): Observable<string>{
-    return this.http.put<string>(this.API+"/update/"+id, department, {responseType: 'text' as 'json'});
+  updateById(id:number, department: Department): Observable<string>{
+    return this.http.put<string>(this.API+"/update-by-id/"+id, department, {responseType: 'text' as 'json'});
   }
 
   // byId
-  delete(id:number): Observable<string>{
+  deleteById(id:number): Observable<string>{
     return this.http.delete<string>(this.API+"/delete-by-id/"+id, {responseType: 'text' as 'json'});
   }
 
-  findUsersByDepartment(departmentId: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.API}/${departmentId}/users`);
+  // coloquei o objeto department entre primeiro parameto
+  // porque só id:number, vai pegar do DTO que não tem no back o ID
+  departmentStatsById(department: Department, departmentStatsDTO: DepartmentStatsDTO): Observable<DepartmentStatsDTO>{
+    return this.http.get<DepartmentStatsDTO>(this.API+"/department-stats/"+department.id)
   }
 
-  // Método para buscar documentos de um departamento
-  findDocumentsByDepartment(departmentId: number): Observable<Document[]> {
-    return this.http.get<Document[]>(`${this.API}/${departmentId}/documents`);
-  }
 }
