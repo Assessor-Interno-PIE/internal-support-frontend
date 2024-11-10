@@ -1,5 +1,6 @@
 <section class="titulo-header d-flex justify-content-between w-100">
-  <h2 class="d-flex align-items-center" style="font-family:'Gotham'; color:#ffffff; margin-top: 15px; text-shadow: 2px 2px 5px #00000049">
+  <h2 class="d-flex align-items-center"
+    style="font-family:'Gotham'; color:#ffffff; margin-top: 15px; text-shadow: 2px 2px 5px #00000049">
     <i class="fas fa-file-alt me-2"></i>
     Documentos
   </h2>
@@ -7,11 +8,12 @@
 </section>
 
 <!-- Lista de Documentos -->
-<section class="mt-4 mb-4 container">
+<section class="mt-4 mb-4 containe-fluid">
   <div class="bg-light p-4 rounded shadow-sm">
     <div class="d-flex justify-content-between">
       <h4 style="color: #12509b;">Lista de Documentos</h4>
-      <a href="admin/documentos/add" class="btn mb-2 p-2" style="background-color: #ec7324; color: white; font-weight:500;">
+      <a href="admin/documentos/add" class="btn mb-2 p-2"
+        style="background-color: #ec7324; color: white; font-weight:500;">
         <i class="fa-solid fa-circle-plus me-2"></i>Adicionar Documento
       </a>
     </div>
@@ -20,41 +22,41 @@
       <thead>
         <tr>
           <th scope="col" class="text-start">Nome</th>
-          <th scope="col" class="text-start">Descrição</th>
-          <th scope="col" class="text-start">Departamento</th>
-          <th scope="col" class="text-start">Arquivo</th>
-          <th scope="col" class="acoes text-end">Ações</th>
+          <th scope="col" class="text-center">Descrição</th>
+          <th scope="col" class="text-center">Departamento</th>
+          <th scope="col" class="text-center">Arquivo</th>
+          <th scope="col" class="acoes text-center">Ações</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
         <ng-container *ngIf="paginatedDocuments.length > 0; else noDocuments">
           <tr *ngFor="let document of paginatedDocuments; trackBy: trackById">
-            <td class="text-start text-truncate" style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <td class="text-start text-truncate"
+              style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
               {{ document.title }}
             </td>
-            <td class="text-start text-truncate" style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            <td class="text-center text-truncate"
+              style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
               {{ document.description }}
             </td>
-            <td class="text-start">{{ document.department.name }}</td>
-            <td class="text-start">
+            <td class="text-center">{{ document.department.name }}</td>
+            <td class="text-center">
               <!-- Botão para visualizar o PDF -->
               <button (click)="visualizarPdf(document.filePath)" class="btn btn-link p-0">
                 <i class="fas fa-file-pdf"></i> Visualizar PDF
               </button>
             </td>
 
-            <td class="text-end">
+            <td class="text-center">
               <a class="btn btn-success me-2" [href]="document.filePath" target="_blank">
-                <i class="fas fa-download"></i> Baixar PDF
+                <i class="fas fa-download"></i>
               </a>
-            </td>
 
-            <td class="text-end"> 
               <a class="btn btn-primary me-2" href="admin/documentos/edit/{{document.id}}">
-                <i class="fas fa-pen"></i> Editar
+                <i class="fas fa-pen"></i>
               </a>
               <button class="btn btn-danger" (click)="deletar(document.id)">
-                <i class="fas fa-trash me-1"></i> Deletar
+                <i class="fas fa-trash"></i>
               </button>
             </td>
           </tr>
@@ -73,32 +75,36 @@
     <div *ngIf="documents.length > 5" class="d-flex justify-content-between mt-3">
       <div>
         <label for="itemsPerPage" class="custom-label">Itens por página:</label>
-        <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="changePageSize()">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
+        <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage"
+          (change)="changePageSize()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
         </select>
       </div>
 
       <!-- Controles de Paginação -->
       <ul class="pagination align-items-center mt-3 mb-0">
         <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
-          <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)" (click)="goToPage(currentPage - 1)">
-            Anterior
+          <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)"
+            (click)="goToPage(currentPage - 1)">
+            <i class="fas fa-angle-left"></i>
           </a>
         </li>
 
-        <li class="page-item disabled">
-          <span class="page-link">{{ currentPage }} de {{ totalPages }}</span>
+        <li class="p-2 text-secondary">
+          <span class="">{{ currentPage }} de {{ totalPages }}</span>
         </li>
 
         <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages}">
-          <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)" (click)="goToPage(currentPage + 1)">
-            Próxima
+          <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)"
+            (click)="goToPage(currentPage + 1)">
+            <i class="fas fa-angle-right"></i>
           </a>
         </li>
       </ul>
+
     </div>
   </div>
 </section>
