@@ -34,6 +34,9 @@ export class DocumentService {
     return this.http.put<string>(this.API + "/edit/" + id, formData, { responseType: 'text' as 'json' });
   }
 
+  viewDocument(id:number): Observable<Blob>{
+    return this.http.get(this.API+"/view/"+id, { responseType: 'blob' });
+  }
 
   //save with upload archive
   saveDocument(file: File, department: Department, title: string, description: string): Observable<string> {

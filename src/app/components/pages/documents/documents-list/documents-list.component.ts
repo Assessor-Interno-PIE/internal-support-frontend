@@ -36,21 +36,17 @@ export class DocumentsListComponent {
 
   sanitizer = inject(DomSanitizer);
 
-  showModal: boolean = false;
-  pdfUrl: SafeResourceUrl | null = null;
-  //  pdfUrl: string = '';
-
-  // Função para visualizar o PDF
-  visualizarPdf(filePath: string) {
-    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(filePath);  // Sanitiza a URL para uso seguro
-    this.showModal = true;
-  }
-
-  // Função para fechar o modal
-  closeModal() {
-    this.showModal = false;
-    this.pdfUrl = null;
-  }
+visualizarPdf(id: number) {
+    this.documentService.viewDocument(id).subscribe({
+        next: (blob) => {
+            const fileUrl = URL.createObjectURL(blob);
+            window.open(fileUrl, '_blank'); // Abre o PDF em uma nova aba
+        },
+        error: () => {
+            console.log('Erro', 'Erro ao carregar o arquivo.', 'error');
+        }
+    });
+}
 
   // Carregar todos os documentos
 findAll(): void {
