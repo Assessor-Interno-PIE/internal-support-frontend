@@ -27,6 +27,7 @@ export class UserService {
   }
 
   updateById(id:number, user: User): Observable<string>{
+    console.log("isAdmin:" + user.isAdmin);
     return this.http.put<string>(this.API+"/update-by-id/"+id, user, {responseType: 'text' as 'json'});
   }
 
