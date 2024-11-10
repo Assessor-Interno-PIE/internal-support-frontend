@@ -95,8 +95,6 @@ export class DocumentsFormComponent {
     }
   }
 
-
-
   selectDepartment(department: Department | null): void {
     if (department === null) {
       this.document.department = new Department(0, 'Selecione um Departamento', [], []); // Desmarcar
