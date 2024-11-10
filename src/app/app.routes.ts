@@ -27,6 +27,9 @@ export const routes: Routes = [
         {path: "documentos", component: DocumentsListComponent},
         {path: "documentos/add", component: DocumentsFormComponent},
         {path: "documentos/edit/{id}", component: DocumentsFormComponent},
+        {path: "documentos/edit/:id", component: DocumentsFormComponent},
+        {path: "configuracoes", component: ConfiguracoesComponent},
+
 
         {path: "users", component: UserListComponent},
         {path: "users/add", component: UserFormComponent},
