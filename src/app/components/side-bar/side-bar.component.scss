@@ -6,16 +6,15 @@
 .sidebar {
     background-color: #ffffff;
     color: #124f9b;
-  }
-  
-  .sidebar-content {
-    background-color: #124f9b;
-  }
-  
+}
 
 
 
-.enerluz-header{
+
+
+
+
+.enerluz-header {
     font-family: "Roboto", sans-serif;
     font-size: 2.5rem;
     font-style: italic;
@@ -26,53 +25,64 @@
 #div-content-dashboard {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Permite que o div-content preencha o restante do espaço */
-    background-color: #f5f5f5;
+    flex-grow: 1;
+
 }
 
 .nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #124f9b;
-    border-radius: 15px;
+
     row-gap: 8px;
 }
-
 
 .nav-link {
     font-family: 'Gotham';
     display: flex;
-    color: #124f9b;
+    color: #707EAE;
     font-size: 1rem;
     text-align: center;
     text-decoration: none;
+    position: relative;
+    /* Necessário para o pseudo-elemento */
+    padding: 10px 15px;
+    background-color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
     transition: all 0.3s;
 }
 
-.nav-link:hover {
-    background-color: #ec7324 !important;
-    color: #ffffff !important;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    /* Tamanho da linha */
+    height: 0%;
+    /* Inicialmente a linha está invisível */
+    background-color: #124f9b;
+    transition: height 0.3s ease-in-out;
+
 }
+
+.nav-link:hover {
+    color: #124f9b;
+}
+
+.nav-link:hover::after {
+    height: 100%;
+    /* A linha cresce para 100% do tamanho vertical */
+}
+
+
 
 .nav-link i {
     margin-right: 10px;
 }
 
-.enerluzLogo{
+.enerluzLogo {
     width: 80%;
     margin: 0 auto;
     display: block;
-}
-
-.nav li a {
-    background-color: #fff;
-    font-weight: 500;
-    text-transform: uppercase;
-    padding: 10px 15px;
-    display: block;
-    text-align: center;
-    text-decoration: none;
 }
 
 
@@ -81,69 +91,77 @@
 
     justify-content: center;
     display: flex;
-  }
-  
-  .separator {
-    width: 100%;
+}
+
+.separator {
+    width: 40%;
     height: 5px;
-    background-color: #ec7324;
+    background-color: #124f9b;
     position: relative;
-    border-bottom: 2px solid #ffffff;
-    border-radius: 5px;
-  }
-  
+    border-bottom: 2px solid #ec7324;
+}
+
 
 .line {
     width: 80%;
     height: 3px;
-    background-color: #ec7324;
+    background-color: #124f9b;
     opacity: 1;
 }
 
 .notch {
-    background-color: #ec7324;
+    background-color: #124f9b;
     position: absolute;
     opacity: 1;
-    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%,  10px 100%);
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%, 10px 100%);
     width: 64px;
     height: 8px;
     top: 0%;
-    left: -6px; 
+    left: -6px;
     transition: all 0.3s;
     z-index: 2;
 }
 
-.notch2{
-    background-color: #ffffff;
+.notch2 {
+    background-color: #ec7324;
     position: absolute;
     opacity: 1;
-    clip-path: polygon(0 -10px, 90% -1px, calc(92% - 10px) 100%,  5px 80%);
+    clip-path: polygon(0 -10px, 90% -1px, calc(92% - 10px) 100%, 5px 80%);
     width: 64px;
     height: 6px;
     top: 3.5px;
-    left: -1px; 
+    left: -1px;
     transition: all 0.3s;
-    z-index:  1;
+    z-index: 1;
 }
 
 
 
 
 .dropdown {
-    background-color: #ec7324;
-    border-radius: 5px;
-    padding: 6px;
+    background-color: #707EAE;
+    transition: all 0.3s;
+    
+}
+.dropdown:hover {
+    background-color: #124f9b;
 }
 
-#dropdownUser1{
-    background-color: #ffffff ;
-    border-radius: 5px;
-    color: 
-    #333 !important;
-    padding: 5px 15px 5px 25px!important;
+#dropdownUser1 {
+    background-color: #ffffff;
+    border-radius: 15px 0 15px 0;
+    color: #707EAE!important;
+    transition: all 0.3s;
+
 }
 
-.dropdown-item{
+#dropdownUser1:hover {
+    background-color: #ffffff !important;
+    color: #124f9b !important;
+    border-radius: 0px 15px 0px 15px;
+}
+
+.dropdown-item {
     display: flex;
     color: #124f9b;
     font-weight: 500;
@@ -151,7 +169,7 @@
     border-radius: 3px !important;
 }
 
-.dropdown-item:hover{
+.dropdown-item:hover {
     background-color: #ec7324 !important;
     color: #ffffff !important;
 }
@@ -164,10 +182,12 @@
 
 /* Estilo e animação do ícone de dropdown */
 #dropdownUser1 .fa-chevron-down {
-    transition: transform 0.3s ease; /* Animação suave */
+    transition: transform 0.3s ease;
+    /* Animação suave */
 }
 
 /* Gira o ícone quando o dropdown estiver aberto */
 #dropdownUser1[aria-expanded="true"] .fa-chevron-down {
-    transform: rotate(180deg); /* Roda o ícone para cima */
+    transform: rotate(180deg);
+    /* Roda o ícone para cima */
 }
