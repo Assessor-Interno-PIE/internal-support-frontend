@@ -30,8 +30,8 @@ export class UserService {
     return this.http.put<string>(this.API+"/update-by-id/"+id, user, {responseType: 'text' as 'json'});
   }
 
-  deleteById(user: User): Observable<string>{
-    return this.http.delete<string>(this.API+"/delete-by-id/"+user.id, {responseType: 'text' as 'json'});
+  deleteById(id: number): Observable<string>{
+    return this.http.delete<string>(this.API+"/delete-by-id/"+id, {responseType: 'text' as 'json'});
   }
 
 }
