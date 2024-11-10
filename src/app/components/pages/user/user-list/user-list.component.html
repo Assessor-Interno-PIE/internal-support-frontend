@@ -44,7 +44,7 @@
               <td class="text-start">{{ user.department.name }}</td>
 
                   <!-- Nível de Acesso com máscara para exibir "Admin" ou "Não Admin" -->
-                  <td>{{ user.isAdmin === 1 ? 'Admin' : 'Não Admin' }}</td>
+                  <td>{{ user.isAdmin == 1 ? 'Admin' : 'Não Admin' }}</td>
 
               <td class="text-end"> 
                 <a class="btn btn-primary me-2" href="admin/users/edit/{{user.id}}">
