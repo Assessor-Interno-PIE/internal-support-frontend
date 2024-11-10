@@ -7,6 +7,7 @@ import { Department } from '../../../models/department';
 import { DepartmentService } from '../../../services/department.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -38,7 +39,11 @@ export class LoginComponent {
   router = inject(Router);
   userService = inject(UserService);
   departmentService =inject(DepartmentService);
-  constructor(){this.findDepartments();}
+  authService = inject(AuthService);
+  
+  constructor(){
+    this.findDepartments();
+  }
 
 
   selectDepartment(department: Department | null): void {
@@ -83,13 +88,37 @@ export class LoginComponent {
   }
 
   onSubmitLogin() {
-    // Lógica de login (com base no que foi configurado)
-    if (this.username === 'admin' && this.password === 'admin') {
-      this.router.navigate(['admin/dashboard']);
-    } else {
-      alert('Login inválido.');
+    if (!this.username || !this.password) {
+      Swal.fire({
+        title: 'Erro!',
+        text: 'Por favor, preencha todos os campos obrigatórios!',
+        icon: 'error',
+      });
+      return;
     }
+
+    this.authService.login(this.username, this.password).subscribe({
+      next: (user) => {
+        // Se o login for bem-sucedido, redireciona para a dashboard
+        Swal.fire({
+          title: 'Bem-vindo!',
+          text: 'Login bem-sucedido!',
+          icon: 'success',
+        }).then(() => {
+          this.router.navigate(['admin/dashboard']);  // ou para qualquer outra página de sua escolha
+        });
+      },
+      error: () => {
+        // Se o login falhar, exibe uma mensagem de erro
+        Swal.fire({
+          title: 'Erro!',
+          text: 'Usuário ou senha inválidos!',
+          icon: 'error',
+        });
+      }
+    });
   }
+
 
   onSubmitRegister() {
     if (!this.user.name || !this.user.username || !this.user.password) {
