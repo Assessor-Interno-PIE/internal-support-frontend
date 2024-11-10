@@ -87,9 +87,9 @@ export class DocumentsListComponent {
     this.goToPage(1);  // Volta para a primeira página após alterar a quantidade de itens por página
   }
 
-  /* Função para deletar o documento
+   // Função para deletar o documento
   deletar(id: number): void {
-    this.documentService.deleteById(id).subscribe({
+    this.documentService.delete(id).subscribe({
       next: () => {
         this.findAll();  // Recarrega a lista de documentos após a exclusão
         Swal.fire('Sucesso', 'Documento deletado com sucesso!', 'success');
@@ -98,7 +98,7 @@ export class DocumentsListComponent {
         Swal.fire('Erro', 'Erro ao deletar o documento.', 'error');
       },
     });
-  } */
+  } 
 
   // Função para rastrear os documentos pelo ID (necessário para *ngFor)
   trackById(index: number, document: Document): number {
