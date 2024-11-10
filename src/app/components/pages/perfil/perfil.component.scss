@@ -1,18 +1,20 @@
 section {
   max-height: 1080px;
-  padding-left: calc(var(--space-5xl) * 2);
-  padding-right: var(--space-m);
-  padding-top: var(--space-4xl);
+  padding-left: calc(var(--space-6xl) * 2);
+  padding-right: var(--space-l);
+  padding-top: var(--space-3xl);
   padding-bottom: var(--space-3xl);
 }
 
 
 .section-header {
   max-height: 1080px;
+  padding-bottom: var(--space-xs) !important;
   padding-left: calc(var(--space-6xl) * 2) !important;
   padding-right: var(--space-2xl) !important;
-  padding: 15px;
+  padding-top: 0 ;
 }
+
 
 .titulo-header{
   background:color-mix(in lab, #000000 26%, transparent);
@@ -31,11 +33,10 @@ section {
   }
   
   .perfil-card {
-    background-color: #f9f9f9;
-    border-radius: 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 900px;
+    width: 90%;
     padding: 30px;
     display: flex;
   }
@@ -54,7 +55,7 @@ section {
   
   p {
     font-size: 1em;
-    color: #555;
+    color: #707EAE;
   }
   
 
@@ -107,7 +108,7 @@ h2 {
 
 p{
   font-size: 1.1em;
-  color: #555;
+  
 }
 
 .vertical-line {
