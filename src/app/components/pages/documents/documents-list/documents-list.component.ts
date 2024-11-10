@@ -28,26 +28,28 @@ export class DocumentsListComponent implements OnInit {
     });
   }
 
+  
   initializeDocuments(data: Document[]): Document[] {
     return data.map(doc => ({ ...doc, showDetails: false }));
   }
-
+ /*
   toggleDetails(documentId: number): void {
     const document = this.documents.find(doc => doc.id === documentId);
     if (document) {
       document.showDetails = !document.showDetails;
     }
-  }
+  } */
 
+  /*
   deletar(documentId: number): void {
-    this.documentService.delete({ id: documentId } as Document).subscribe({
+    this.documentService.deleteById({ id: documentId } as Document).subscribe({
       next: () => {
         this.documents = this.documents.filter(doc => doc.id !== documentId);
         Swal.fire('Deletado!', 'O documento foi deletado com sucesso.', 'success');
       },
       error: this.handleError('Erro ao deletar documento')
     });
-  }
+  } */
 
   private handleError(message: string) {
     return (error: any) => {

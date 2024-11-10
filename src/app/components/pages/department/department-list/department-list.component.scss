@@ -1,9 +1,15 @@
+.bg-warning {
+  background-color: #ec7324 !important;
+}
+
+
 section {
   max-height: 1080px;
-  padding-bottom: var(--space-xs);
-  padding-left: calc(var(--space-6xl) * 2);
-  padding-right: var(--space-m);
+  padding-bottom: var(--space-xs) !important;
+  padding-left: calc(var(--space-6xl) * 2) !important;
+  padding-right: var(--space-2xl) !important;
 }
+
 
 .section-header {
   max-height: 1080px;
@@ -12,44 +18,60 @@ section {
   padding-right: var(--space-2xl) !important;
 }
 
-.titulo-header{
-  background:color-mix(in lab, #000000 26%, transparent);
+.titulo-header {
+  background: color-mix(in lab, #000000 26%, transparent);
   --backdrop: blur(25px) saturate(120%);
   backdrop-filter: var(--backdrop);
   background: linear-gradient(to bottom, #12509bc6 10%, #12509b49 100%);
-  border-bottom: 2px solid #ffffff; 
+  border-bottom: 2px solid #ffffff;
 }
 
 
-  .table {
-    width: 100%; /* Deixa a tabela responsiva dentro do container */
-    font-size: 0.9rem; /* Tamanho de fonte menor */
-  }
-  
-  .table th,
-  .table td {
-    padding: 8px; /* Reduz o espaçamento entre células */
-    text-align: center;
-  }
-  
-  .table thead th {
-    background-color: #f8f9fa; /* Cor mais leve para o cabeçalho */
-  }
+.table {
+  width: 100%;
+  /* Deixa a tabela responsiva dentro do container */
+  font-size: 0.9rem;
+  color: rgb(248,249,250);
+}
 
 
-  .bg-light {
-    padding: 1rem; /* Ajusta o padding para deixar mais compacto */
-    max-width: 98%;
-  }
-  
-  .btn {
-    font-size: 0.85rem; /* Diminui o tamanho dos botões */
-    padding: 4px 8px;
-  }
-  
+
+.table td {
+  padding: 8px;
+  /* Reduz o espaçamento entre células */
+  text-align: center;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.table th {
+  background-color: #12509b;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 15px;
+
+}
+
+.acoes{
+  padding-right: 80px !important;
+}
 
 
-  /* department-list.component.scss */
+
+.bg-light {
+  padding: 1rem;
+}
+
+.btn {
+  font-size: 0.85rem;
+  /* Diminui o tamanho dos botões */
+  padding: 4px 8px;
+}
+
+
+
+
+/* department-list.component.scss */
 .modal {
   display: flex;
   position: fixed;
@@ -75,4 +97,103 @@ section {
   float: right;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+
+.pagination .page-item .page-link {
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #f4a261;
+  color: white;
+  border-color: #f4a261;
+  transform: scale(1.1);
+}
+
+.pagination .page-item.disabled .page-link {
+  background-color: #e0e0e0;
+  pointer-events: none;
+}
+
+.pagination .page-item.disabled .page-link i {
+  color: #a0a0a0;
+}
+
+.pagination .page-item .page-link i {
+  color: #a0a0a0;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.pagination .page-item .page-link:hover i {
+  transform: scale(1.2);
+  color: white;
+}
+
+.pagination .page-item .page-link {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pagination .page-item .page-link:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.custom-label {
+  color: #333;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+}
+
+.custom-select {
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: 2px solid #ddd;
+  background-color: #fafafa;
+  color: #5a5a5a;
+  font-size: 1rem;
+  appearance: none;
+  transition: all 0.3s ease;
+  width: 120px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-select:focus {
+  border-color: #5e5e5e;
+  outline: none;
+  box-shadow: 0 0 8px rgba(79, 79, 79, 0.3);
+
+}
+
+.custom-select:hover {
+  border-color: #000000;
+  background-color: #e7e7e7;
+}
+
+.custom-select option {
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+}
+
+.custom-select option:hover {
+  background-color: #646464;
+  color: white;
+}
+
+/* Adiciona uma animação suave para o select */
+.custom-select {
+  transition: all 0.3s ease;
+}
+
+
+/* Responsividade para telas pequenas */
+@media (max-width: 576px) {
+  .custom-select {
+    width: 100%;
+  }
 }
