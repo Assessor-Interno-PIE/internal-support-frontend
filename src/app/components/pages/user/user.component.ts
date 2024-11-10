@@ -3,13 +3,13 @@ import { SearchBarComponent } from '../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-admin',
+  selector: 'app-user',
   standalone: true,
   imports: [SearchBarComponent, CommonModule],
-  templateUrl: './admin.component.html',
-  styleUrl: './admin.component.scss'
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.scss'
 })
-export class AdminComponent {
-  pageTitle: string = 'Admin';
+export class UserComponent {
+  pageTitle: string = 'User';
 
 }

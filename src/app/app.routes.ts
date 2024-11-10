@@ -10,7 +10,7 @@ import { DocumentsListComponent } from './components/pages/documents/documents-l
 import { DocumentsFormComponent } from './components/pages/documents/documents-form/documents-form.component';
 import { DepartmentListComponent } from './components/pages/department/department-list/department-list.component';
 import { DepartmentFormComponent } from './components/pages/department/department-form/department-form.component';
-import { AdminComponent } from './components/pages/admin/admin.component';
+import { UserComponent } from './components/pages/user/user.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full'},
@@ -30,7 +30,7 @@ export const routes: Routes = [
 
         {path: "perfil", component: PerfilComponent},
 
-        {path: "admin-page", component: AdminComponent}
+        {path: "user-page", component: UserComponent}
 
     ] }
 ];
