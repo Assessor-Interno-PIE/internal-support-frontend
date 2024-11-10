@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DepartmentService } from '../../../../services/department.service';
 import { lastValueFrom } from 'rxjs';
 import { firstValueFrom } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-documents-form',
@@ -64,37 +65,51 @@ export class DocumentsFormComponent {
   }
 
   async save(): Promise<void> {
-    if (!this.selectedFile && !this.document.id) {
-      console.error("Todos os campos são obrigatórios.");
+    if (!this.document.title || !this.document.description || !this.document.department.id || !this.selectedFile) {
+      Swal.fire({
+        title: 'Erro de Validação!',
+        text: 'Todos os campos obrigatórios devem ser preenchidos!',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
       return;
     }
 
     try {
       if (this.document.id) {
-        // Atualização do documento existente
+        // Update doc
         await firstValueFrom(this.documentService.updateDocument(this.document.id, this.selectedFile, this.document));
         Swal.fire('Sucesso!', 'Documento atualizado com sucesso!', 'success');
       } else {
-        // Criação de novo documento
+        // Save doc
         await firstValueFrom(this.documentService.saveDocument(this.selectedFile, this.document.department, this.document.title, this.document.description));
         Swal.fire('Sucesso!', 'Documento adicionado com sucesso!', 'success');
       }
 
-      // Aguardar a confirmação do usuário antes de redirecionar
       Swal.fire({
         title: 'Operação concluída!',
         text: 'Você será redirecionado...',
         icon: 'success',
         showConfirmButton: false,
-        timer: 1500 // Aguarda 1.5 segundos antes de redirecionar
+        timer: 1500
       }).then(() => {
         this.router.navigate(['admin/documentos']);
       });
     } catch (error) {
-      console.error('Erro ao salvar o documento:', error);
+      if (error instanceof HttpErrorResponse && error.status === 400) {
+        const validationErrors = error.error;
+        this.showValidationErrors(validationErrors);
+      } else {
+        console.error('Erro ao salvar o documento:', error);
+      }
     }
   }
 
+
+  showValidationErrors(errors: { [key: string]: string }): void {
+    let errorMessages = Object.values(errors).join(', ');
+    Swal.fire('Erro de Validação!', errorMessages, 'error');
+  }
 
 
   selectDepartment(department: Department | null): void {
@@ -104,7 +119,7 @@ export class DocumentsFormComponent {
       this.document.department = department; // Selecionar o departamento
     }
   }
-  
+
 
 
   fileSelected = false;
@@ -113,12 +128,12 @@ export class DocumentsFormComponent {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.selectedFile = input.files[0];
-      this.fileSelected = true; 
+      this.fileSelected = true;
     } else {
-      this.fileSelected = false; 
+      this.fileSelected = false;
     }
   }
-  
+
 
 
   closeForm(): void {
