@@ -40,4 +40,9 @@ export class DocumentService {
     return this.http.get<Document>(this.API+"/download/"+id);
   }
 
+  //    @DeleteMapping("/{id}")
+  delete(id: number): Observable<string>{
+    return this.http.delete<string>(this.API+"/"+id, {responseType: 'text' as 'json'});
+  }
+
 }
