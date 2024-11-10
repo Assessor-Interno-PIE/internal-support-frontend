@@ -7,6 +7,7 @@ import { Department } from '../../../../models/department';
 import { User } from '../../../../models/user';
 import { Document } from '../../../../models/document';
 import { Router } from '@angular/router';
+import { DepartmentService } from '../../../../services/department.service';
 
 
 
@@ -21,13 +22,15 @@ export class DocumentsFormComponent {
   documents: Document[] = [];
   document: Document;
   departments: Department[] = [];
+  department: Department;
 
   router = inject(Router);
   documentService = inject(DocumentService);
+  departmentService = inject(DepartmentService);
   
   constructor() {
     // instâncias vazias de Department, Category e User
-    const department = new Department(0, '', [], []); 
+    this.department = new Department(0, '', [], []); 
    // const category = new Category(0, '', []); 
     const userDepartment = new Department(0, '', [], []); 
     const user = new User(0,'','','',new Department(0,'',[],[]),0);
@@ -36,6 +39,7 @@ export class DocumentsFormComponent {
     this.document = new Document(0,'',new Department(0,'',[],[]),'','');
 
     this.findAll();
+    this.findDepartments();
   }
 
   findAll(): void {
@@ -55,12 +59,24 @@ export class DocumentsFormComponent {
     });
   }
 
+  findDepartments(): void {
+    this.departmentService.findAll().subscribe({
+      next: (departments) => {
+        this.departments = departments;
+        console.log('Departamentos carregados com sucesso', departments);
+      },
+      error: () => {
+        console.error('Erro ao carregar departamentos.');
+      }
+    });
+  }
+
   save() {
-    console.log('Dados enviados para salvar:', this.document);
-    if (this.document.department.id === 0) {
-      alert('O departamento associado deve ser válido.');
+    console.log('Dados enviados para salvar:', this.document, this.department);
+    if (!this.selectedFile || !this.department || !this.document.title || !this.document.description) {
+      console.error("Todos os campos são obrigatórios.");
       return;
-    }
+  }
       // Atribua valores aos parâmetros necessários
       const file = this.selectedFile;  // Supondo que você tenha uma propriedade `selectedFile` no componente
       const department = this.document.department;
@@ -86,12 +102,12 @@ export class DocumentsFormComponent {
   selectedFile!: File;
 
   onFileSelected(event: Event) {
-  const input = event.target as HTMLInputElement;
-  if (input.files && input.files.length > 0) {
-    this.selectedFile = input.files[0];
-  }
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+        this.selectedFile = input.files[0]; // Atribua o arquivo ao atributo `selectedFile`
+        console.log("Arquivo selecionado:", this.selectedFile);
+    }
 }
-
 
   closeForm() {
     // Redirecionar ou fechar o formulário
