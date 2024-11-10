@@ -105,7 +105,6 @@ export class DocumentsFormComponent {
     }
   }
 
-
   showValidationErrors(errors: { [key: string]: string }): void {
     let errorMessages = Object.values(errors).join(', ');
     Swal.fire('Erro de Validação!', errorMessages, 'error');

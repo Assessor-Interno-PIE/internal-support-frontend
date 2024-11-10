@@ -2,9 +2,11 @@
   <div class="logo position-absolute" style="top: -5px; right:0; left:-20px;">
     <img src="assets/images/logo.png" style="width:100%; max-width: 290px;" alt="Logo"/>
   </div>
+  
   <div class="container bg-white" id="container" #container>
+    <!-- Formulário de Registro -->
     <div class="form-container sign-up">
-      <form>
+      <form (ngSubmit)="onSubmitRegister()">
         <h1>Criar Conta</h1>
         <div class="social-icons">
           <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
@@ -13,16 +15,43 @@
           <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
         <span> ou use seu e-mail para registro</span>
-        <input type="text" placeholder="Nome" name="name" required>
-        <input type="email" placeholder="Email" name="email" required>
-        <input type="password" placeholder="Senha" name="password" required>
+        <input [(ngModel)]="user.name" type="text" placeholder="Nome" name="name" required>
+        <input [(ngModel)]="user.username" type="text" placeholder="Username" name="username" required>
+        <input [(ngModel)]="user.password" type="password" placeholder="Senha" name="password" required>
+        
+        
+        <div class="d-flex justify-content-between" style="width:88%;">
+          <div class="form-groupCombo">
+            <div class="entryarea mt-2">
+              <div class="dropdown"> 
+                <button 
+                  class="btn dropdown-toggle" 
+                  [ngClass]="{ 'selected': user.department && user.department.name }"
+                  type="button" 
+                  id="departmentDropdown" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false"
+                >
+                  {{ user.department && user.department.name ? user.department.name : 'Selecione um Departamento' }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
+                  <li *ngFor="let dept of departments">
+                    <a class="dropdown-item" (click)="selectDepartment(dept)">
+                      {{ dept.name }}
+                    </a>
+                  </li>
+                </ul>
+              </div> 
+            </div>
+          </div>
+        </div>
         <button type="submit">Cadastrar</button>
       </form>
     </div>
 
-
+    <!-- Formulário de Login -->
     <div class="form-container sign-in">
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmitLogin()">
         <h1>Entrar</h1>
         <div class="social-icons">
           <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
@@ -30,13 +59,15 @@
           <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
           <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
-        <span> ou use seu e-mail e senha</span>
-        <input [(ngModel)]="email" type="email" placeholder="Email" name="email" required>
+        <span> ou use seu username e senha</span>
+        <input [(ngModel)]="username" type="username" placeholder="Username" name="username" required>
         <input [(ngModel)]="password" type="password" placeholder="Senha" name="password" required>
         <a href="#">Esqueceu Sua Senha? </a>
         <button type="submit">Entrar</button>
       </form>
     </div>
+
+    <!-- Alternar entre Login e Registro -->
     <div class="toggle-container">
       <div class="toggle">
         <div class="toggle-panel toggle-left">
