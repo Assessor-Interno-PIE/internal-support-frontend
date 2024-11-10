@@ -38,7 +38,6 @@ export class DocumentService {
     return this.http.get(this.API+"/view/"+id, { responseType: 'blob' });
   }
 
-
   //save with upload archive
   saveDocument(file: File, department: Department, title: string, description: string): Observable<string> {
     const formData: FormData = new FormData();

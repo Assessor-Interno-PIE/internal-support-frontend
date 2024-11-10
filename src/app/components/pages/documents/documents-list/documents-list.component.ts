@@ -36,10 +36,6 @@ export class DocumentsListComponent {
 
   sanitizer = inject(DomSanitizer);
 
-  showModal: boolean = false;
-  pdfUrl: SafeResourceUrl | null = null;
-  //  pdfUrl: string = '';
-
 visualizarPdf(id: number) {
     this.documentService.viewDocument(id).subscribe({
         next: (blob) => {
@@ -51,12 +47,6 @@ visualizarPdf(id: number) {
         }
     });
 }
-
-  // Função para fechar o modal
-  closeModal() {
-    this.showModal = false;
-   // this.pdfUrl = null;
-  }
 
   // Carregar todos os documentos
 findAll(): void {
