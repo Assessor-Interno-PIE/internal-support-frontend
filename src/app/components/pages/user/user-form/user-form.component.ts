@@ -136,4 +136,8 @@ export class UserFormComponent {
     this.router.navigate(['admin/users']);
   }
   
+  selectAccessLevel(level: number): void {
+    this.user.isAdmin = level;
+  }
+
 }
