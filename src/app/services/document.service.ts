@@ -4,6 +4,8 @@ import { Document } from '../models/document';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Department } from '../models/department';
+import { HttpResponse } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,7 @@ export class DocumentService {
     return this.http.put<string>(this.API + "/edit/" + id, formData, { responseType: 'text' as 'json' });
   }
 
+  
   viewDocument(id:number): Observable<Blob>{
     return this.http.get(this.API+"/view/"+id, { responseType: 'blob' });
   }
@@ -50,8 +53,11 @@ export class DocumentService {
     return this.http.post<string>(this.API + "/save", formData, { responseType: 'text' as 'json' });
   }
 
-  downloadDocument(id: number): Observable<Document> {
-    return this.http.get<Document>(this.API + "/download/" + id);
+  downloadDocument(id: number): Observable<HttpResponse<Blob>> {
+    return this.http.get<Blob>(this.API + "/download/" + id, {
+      observe: 'response',
+      responseType: 'blob' as 'json' // Garantir que o tipo de resposta seja Blob
+    });
   }
 
   //    @DeleteMapping("/{id}")

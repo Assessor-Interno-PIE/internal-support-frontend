@@ -48,7 +48,7 @@
             </td>
 
             <td class="text-center">
-              <a class="btn btn-success me-2" [href]="document.filePath" target="_blank">
+              <a class="btn btn-success me-2" (click)="downloadDocument(document.id)" target="_blank">
                 <i class="fas fa-download"></i>
               </a>
 

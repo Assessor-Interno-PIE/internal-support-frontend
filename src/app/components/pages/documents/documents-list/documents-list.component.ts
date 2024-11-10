@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { DocumentService } from '../../../../services/document.service';
 import { Document } from '../../../../models/document';
 import Swal from 'sweetalert2';
@@ -7,8 +7,6 @@ import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { Department } from '../../../../models/department';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-
-
 
 @Component({
   selector: 'app-documents-list',
@@ -19,7 +17,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class DocumentsListComponent {
   documents: Document[] = [];  // Lista completa de documentos
-  document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
+  @Input() document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
   selectedDocument?: Document = this.document;
 
   documentService = inject(DocumentService);
@@ -46,7 +44,32 @@ visualizarPdf(id: number) {
             console.log('Erro', 'Erro ao carregar o arquivo.', 'error');
         }
     });
+
 }
+downloadDocument(id: number): void {
+  this.documentService.downloadDocument(id).subscribe({
+    next: (response) => {
+      // O backend já envia o arquivo com o tipo de conteúdo correto
+      const contentDisposition = response.headers.get('Content-Disposition');
+      const fileName = contentDisposition ? contentDisposition.split('filename=')[1].replace(/"/g, '') : 'documento.pdf';
+      // Cria o Blob a partir da resposta
+      const blob = response.body as Blob;
+      const fileUrl = window.URL.createObjectURL(blob);
+      // Cria um link para o download
+      const link = document.createElement('a');
+      link.href = fileUrl;
+      link.download = fileName;
+      link.click();
+      // Libera a URL temporária
+      window.URL.revokeObjectURL(fileUrl);
+      console.log('Sucesso', 'Sucesso em baixar o arquivo!', 'success');
+    },
+    error: () => {
+      console.log('Erro', 'Deu erro em baixar o arquivo!', 'error');
+    }
+  });
+}
+
 
   // Carregar todos os documentos
 findAll(): void {
