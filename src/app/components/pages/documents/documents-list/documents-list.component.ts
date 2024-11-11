@@ -123,8 +123,13 @@ findAll(): void {
       if (result.isConfirmed) {
         this.documentService.delete(id).subscribe({
           next: () => {
-            this.findAll();  // Recarrega a lista de documentos após a exclusão
             Swal.fire('Deletado!', 'Documento deletado com sucesso!', 'success');
+            this.documents = this.documents.filter(document => document.id !== id);
+            this.updatePage();
+            if(this.paginatedDocuments.length === 0 && this.currentPage > 1){
+              this.currentPage--;
+              this.updatePage();
+            }
           },
           error: () => {
             Swal.fire('Erro', 'Erro ao deletar o documento.', 'error');
