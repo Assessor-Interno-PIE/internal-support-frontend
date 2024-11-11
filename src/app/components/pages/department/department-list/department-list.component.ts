@@ -107,15 +107,21 @@ export class DepartmentListComponent {
               confirmButtonText: 'OK'
           });
       } else {
-          this.departmentService.deleteById(id).subscribe({
-            next: () => {
-              this.findAll();
-              Swal.fire('Sucesso', 'Departamento deletado com sucesso!', 'success');
-            },
-            error: () => {
-              Swal.fire('Erro', 'Erro ao deletar o departamento.', 'error');
-            },
-          });
+        this.departmentService.deleteById(id).subscribe({
+          next: () => {
+            Swal.fire('Sucesso', 'Departamento deletado com sucesso!', 'success');
+            this.departments = this.departments.filter(department => department.id !== id);
+            this.updatePage();
+            if (this.paginatedDepartments.length === 0 && this.currentPage > 1) {
+              this.currentPage--;
+              this.updatePage();
+            }
+            console.log('Departamento excluído com sucesso!');
+          },
+          error: () => {
+            Swal.fire('Erro', 'Erro ao deletar o departamento.', 'error');
+          }
+        });
       }
       });
     });
