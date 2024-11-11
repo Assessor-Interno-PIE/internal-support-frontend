@@ -38,9 +38,7 @@
   
   .table td {
     padding: 8px;
-    /* Reduz o espaçamento entre células */
     text-align: center;
-    color: #000000;
     background-color: #ffffff;
   }
   
@@ -50,6 +48,11 @@
     font-weight: 600;
     padding: 10px 15px;
   
+  }
+
+  td {
+    color: #707EAE;
+    font-family: 'Gotham', sans-serif;
   }
   
   .acoes{
@@ -104,26 +107,29 @@
     border-radius: 50px;
     transition: all 0.3s ease;
     font-weight: 600;
+    border-color: #707eae85;
   }
   
   .pagination .page-item .page-link:hover {
     background-color: #f4a261;
-    color: white;
+    color: white !important;
     border-color: #f4a261;
     transform: scale(1.1);
   }
   
   .pagination .page-item.disabled .page-link {
-    background-color: #e0e0e0;
+    background-color: #0c0c0c18;
+    border-color: #0c0c0c18 ;
     pointer-events: none;
   }
   
   .pagination .page-item.disabled .page-link i {
-    color: #a0a0a0;
+    color:#0c0c0c38 ;
+
   }
   
   .pagination .page-item .page-link i {
-    color: #a0a0a0;
+    color:#707eae85 ;
     font-size: 18px;
     transition: all 0.3s ease;
   }
@@ -142,7 +148,8 @@
   }
   
   .custom-label {
-    color: #333;
+    color: #707EAE;
+    font-weight: 500;
     margin-bottom: 3px;
     font-size: 0.9rem;
   }
@@ -150,9 +157,9 @@
   .custom-select {
     border-radius: 10px;
     padding: 10px 20px;
-    border: 2px solid #ddd;
-    background-color: #fafafa;
-    color: #5a5a5a;
+    border: 2px solid #707eae85;
+    background-color: #F4F7FE;
+    color: #707EAE;
     font-size: 1rem;
     appearance: none;
     transition: all 0.3s ease;
@@ -162,26 +169,26 @@
   }
   
   .custom-select:focus {
-    border-color: #5e5e5e;
+    border-color: #707EAE;
     outline: none;
     box-shadow: 0 0 8px rgba(79, 79, 79, 0.3);
   
   }
   
   .custom-select:hover {
-    border-color: #000000;
-    background-color: #e7e7e7;
+    border-color: #12509b;
+    color: #12509b;
   }
   
   .custom-select option {
     padding: 10px;
     font-size: 1rem;
     background-color: #fff;
-    color: #333;
+    color: #12509b;
   }
   
   .custom-select option:hover {
-    background-color: #646464;
+
     color: white;
   }
   
@@ -189,8 +196,8 @@
   .custom-select {
     transition: all 0.3s ease;
   }
-  
-  
+
+
   /* Responsividade para telas pequenas */
   @media (max-width: 576px) {
     .custom-select {
