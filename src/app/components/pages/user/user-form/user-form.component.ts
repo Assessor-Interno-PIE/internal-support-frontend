@@ -38,6 +38,9 @@ export class UserFormComponent {
     this.findDepartments();
   }
 
+
+  
+
   selectDepartment(department: Department | null): void {
     if (department === null) {
       this.user.department = new Department(0, 'Selecione um Departamento', [], []); // Desmarcar
@@ -132,6 +135,8 @@ export class UserFormComponent {
     });
   }
 
+
+  
   closeForm(): void {
     this.router.navigate(['admin/users']);
   }

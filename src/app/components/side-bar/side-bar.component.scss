@@ -60,13 +60,15 @@
     height: 0%;
     /* Inicialmente a linha está invisível */
     background-color: #124f9b;
-    transition: height 0.3s ease-in-out;
+    transition: 0.5s ease;
 
 }
 
 .nav-link:hover {
     color: #124f9b;
 }
+
+
 
 .nav-link:hover::after {
     height: 100%;
@@ -190,4 +192,16 @@
 #dropdownUser1[aria-expanded="true"] .fa-chevron-down {
     transform: rotate(180deg);
     /* Roda o ícone para cima */
+}
+
+.nav-link.active,
+    .nav-link.active::after {
+    color: #ec7324; 
+    border-right: 3.3px solid #ec7324 ;
+
+  }
+
+
+  .nav-link.active::after {
+    content:none;
 }

@@ -29,7 +29,7 @@
       <thead>
         <tr>
           <th scope="col" class="text-start">Nome</th> 
-          <th scope="col" class="acoes text-end">Ações</th> 
+          <th scope="col" class=" acoes text-end">Ações</th> 
         </tr>
       </thead>
       <tbody class="table-group-divider">
@@ -38,12 +38,12 @@
             <td class="text-start text-truncate" style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
               {{ department.name }}
             </td>
-            <td class="text-end"> 
+            <td class="text-end acoes-btn"> 
               <a class="btn btn-primary me-2" href="admin/departamentos/edit/{{department.id}}">
-                <i class="fas fa-pen"></i> Editar
+                <i class="fas fa-pen"></i>
               </a>
               <button class="btn btn-danger" (click)="deletar(department.id)">
-                <i class="fas fa-trash me-1"></i> Deletar
+                <i class="fas fa-trash"></i> 
               </button>
             </td>
           </tr>

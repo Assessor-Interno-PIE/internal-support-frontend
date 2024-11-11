@@ -12,51 +12,38 @@
         <i class="fa-solid fa-circle-plus me-2"></i>Adicionar Usuário
       </a>
     </div>
-
     <table class="table table-light table-hover mt-2 shadow-sm">
       <thead>
         <tr>
           <th scope="col" class="text-start">Nome</th>
           <th scope="col" class="text-start">Username</th>
-          <th scope="col" class="text-start">Password</th>
-          <th scope="col" class="text-start">Departamento</th>
-          <th scope="col" class="text-start">Nivel de Acesso</th>
-          <th scope="col" class="acoes text-end">Ações</th>
+          <th scope="col" class="text-center">Password</th>
+          <th scope="col" class="text-center">Departamento</th>
+          <th scope="col" class="text-center">Nivel de Acesso</th>
+          <th scope="col" class="acoes text-center">Ações</th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
         <ng-container *ngIf="paginatedUsers.length > 0; else noUsers">
           <tr *ngFor="let user of paginatedUsers; trackBy: trackById">
-            <td class="text-start text-truncate"
-              style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-              {{ user.name }}
-            </td>
-            <td class="text-start text-truncate"
-              style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-              {{ user.username }}
-            </td>
-            <td class="text-start text-truncate"
-              style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-              {{ user.password }}
-            </td>
-            <td class="text-start">{{ user.department.name }}</td>
-
-            <!-- Nível de Acesso com máscara para exibir "Admin" ou "Não Admin" -->
-            <td>{{ user.isAdmin == 1 ? 'Admin' : 'Não Admin' }}</td>
-
-            <td class="text-end">
+            <td class="text-start table-cell-truncate">{{ user.name }}</td>
+            <td class="text-start table-cell-truncate">{{ user.username }}</td>
+            <td class="text-center table-cell-truncate">{{ user.password }}</td>
+            <td class="text-center table-cell-truncate">{{ user.department.name }}</td>
+            <td class="text-center">{{ user.isAdmin == 1 ? 'Admin' : 'Não Admin' }}</td>
+            <td class="text-center">
               <a class="btn btn-primary me-2" href="admin/users/edit/{{user.id}}">
-                <i class="fas fa-pen"></i> Editar
+                <i class="fas fa-pen"></i>
               </a>
               <button class="btn btn-danger" (click)="deletar(user.id)">
-                <i class="fas fa-trash me-1"></i> Deletar
+                <i class="fas fa-trash "></i>
               </button>
             </td>
           </tr>
         </ng-container>
         <ng-template #noUsers>
           <tr>
-            <td colspan="2" class="text-center">
+            <td colspan="6" class="text-center">
               Nenhum Usuário encontrado.
             </td>
           </tr>

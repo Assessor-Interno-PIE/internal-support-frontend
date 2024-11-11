@@ -47,6 +47,7 @@ td {
   width: 100%;
   font-size: 0.9rem;
   color: rgb(255, 255, 255);
+
 }
 
 .table th,
@@ -54,6 +55,11 @@ td {
   padding: 8px;
   /* Reduz o espaçamento entre células */
   text-align: center;
+  
+}
+
+.table td {
+  background-color: #F4F7FE;  /* Cor de fundo para as células */
 }
 
 

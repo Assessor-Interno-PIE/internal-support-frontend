@@ -153,7 +153,7 @@ textarea {
     padding: 0 10px;
     margin: 0 15px;
     margin-top: 1px;
-    background-color: rgb(248, 249, 250);
+    background-color: rgb(255, 255, 255);
     transition: all 0.2s ease;
     /* Inclui todos os efeitos de transição */
 }
@@ -273,7 +273,7 @@ textarea:valid+.labelline {
     border: 3px solid #ec7324;
     border-radius: 6px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    width: 100%;
+    
 }
 
 

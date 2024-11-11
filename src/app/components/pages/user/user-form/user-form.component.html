@@ -1,99 +1,97 @@
 <section class="d-flex mx-auto">
-    <div class="container-fluid div-form bg-light">
-      <div class="container-fluid p-1">
-        <h2 class="text-center mb-2">Gestão de Usuários</h2>
-        <hr>
-        <div class="p-1 pb-1">
-          <h5 class="p-2 text-center">
-            {{ isEditMode ? 'Editar Usuários' : 'Adicionar Usuários' }}
-          </h5>
-          <form class="mt-3" #formUsuarios="ngForm" (ngSubmit)="save()">
-            <!-- Nome -->
-            <div class="form-group">
-              <div class="entryarea mt-2">
-                <input type="text" [(ngModel)]="user.name" name="name" required 
-                  style="width: 100%; max-width: 900px; height: 40px;">
-                <div class="labelline">Nome</div>
-              </div>
+  <div class="container-fluid div-form bg-white rounded-4">
+    <div class="container-fluid p-1">
+      <h2 class="text-center mb-2">Gestão de Usuários</h2>
+      <hr>
+      <div class="">
+        <h5 class="p-2 text-center">
+          {{ isEditMode ? 'Editar Usuários' : 'Adicionar Usuários' }}
+        </h5>
+        <form class="mt-3" #formUsuarios="ngForm" (ngSubmit)="save()">
+          <!-- Nome -->
+          <div class="form-group">
+            <div class="entryarea mt-2">
+              <input type="text" [(ngModel)]="user.name" name="name" required
+                style="width: 100%; max-width: 900px; height: 40px;">
+              <div class="labelline">Nome</div>
             </div>
+          </div>
 
-            <div class="form-group">
-                <div class="entryarea mt-2">
-                  <input type="text" [(ngModel)]="user.username" name="username" required 
-                    style="width: 100%; max-width: 900px; height: 40px;">
-                  <div class="labelline">Username</div>
-                </div>
-              </div>
+          <div class="form-group">
+            <div class="entryarea mt-2">
+              <input type="text" [(ngModel)]="user.username" name="username" required
+                style="width: 100%; max-width: 900px; height: 40px;">
+              <div class="labelline">Username</div>
+            </div>
+          </div>
 
-              <div class="form-group">
-                <div class="entryarea mt-2">
-                  <input type="text" [(ngModel)]="user.password" name="password" required 
-                    style="width: 100%; max-width: 900px; height: 40px;">
-                  <div class="labelline">Senha</div>
-                </div>
-              </div>
+          <div class="form-group">
+            <div class="entryarea mt-2">
+              <input type="text" [(ngModel)]="user.password" name="password" required
+                style="width: 100%; max-width: 900px; height: 40px;">
+              <div class="labelline">Senha</div>
+            </div>
+          </div>
+
+
+<div class="d-flex justify-content-between">
   
-
-              
-              <div class="form-groupCombo">
-                <div class="entryarea mt-2">
-                  <div class="dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="departmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ user.department ? user.department.name : 'Selecione o Departamento' }}
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
-                      <li *ngFor="let dept of departments">
-                        <a class="dropdown-item"  (click)="selectDepartment(dept)">
-                          {{ dept.name }}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="labelline">Departamento</div>
-                </div>
-              </div>
-
-          <!-- Somente no Edit Mode -->
-<!-- Somente no Edit Mode -->
-<div *ngIf="isEditMode" class="form-groupCombo">
-  <div class="entryarea mt-2">
-    <div class="dropdown"> 
-      <button 
-        class="btn dropdown-toggle" 
-        [ngClass]="{ 'selected': user.isAdmin !== null && user.isAdmin !== undefined }"
-        type="button" 
-        id="accessLevelDropdown" 
-        data-bs-toggle="dropdown" 
-        aria-expanded="false"
-      >
-        {{ user.isAdmin === 1 ? 'Admin' : user.isAdmin === 0 ? 'Não Admin' : 'Selecione o Nível de Acesso' }}
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="accessLevelDropdown">
-        <li>
-          <a class="dropdown-item" (click)="selectAccessLevel(1)">
-            Admin
-          </a>
-        </li>
-        <li>
-          <a class="dropdown-item" (click)="selectAccessLevel(0)">
-            Não Admin
-          </a>
-        </li>
-      </ul>
-    </div> 
-  </div>
-</div>
-              
-
-            <div class="btns d-flex">
-              <button type="submit" class="btn btn-primary" id="submit">
-                {{ isEditMode ? 'Salvar Alterações' : 'Adicionar Usuários' }}
-              </button>
-              <button type="button" class="btn btn-danger" (click)="closeForm()">Cancelar</button>
-            </div>
-          </form>
-        </div>
+  <div class="form-groupCombo">
+    <div class="labelline2 bg-white">Departamento</div>
+    <div class="entryarea mt-2">
+      <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="departmentDropdown"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          {{ user.department ? user.department.name : 'Selecione o Departamento' }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
+          <li *ngFor="let dept of departments">
+            <a class="dropdown-item" (click)="selectDepartment(dept)">
+              {{ dept.name }}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-  </section>
-  
+  </div>
+
+
+  <!-- Somente no Edit Mode -->
+  <div *ngIf="isEditMode" class="form-groupCombo">
+    <div class="text-center mt-1" style="font-size: 1.2rem;">Nivel da Acesso</div>
+    <div class="entryarea mt-2">
+      <div class="dropdown">
+        <button class="btn btn-outline-dark dropdown-toggle"
+          [ngClass]="{ 'selected': user.isAdmin !== null && user.isAdmin !== undefined }" type="button"
+          id="accessLevelDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ user.isAdmin === 1 ? 'Admin' : user.isAdmin === 0 ? 'Não Admin' : 'Selecione o Nível de Acesso' }}
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="accessLevelDropdown">
+          <li>
+            <a class="dropdown-item" (click)="selectAccessLevel(1)">
+              Admin
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="selectAccessLevel(0)">
+              Não Admin
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <div class="btns d-flex">
+            <button type="submit" class="btn btn-primary" id="submit">
+              {{ isEditMode ? 'Salvar Alterações' : 'Adicionar Usuários' }}
+            </button>
+            <button type="button" class="btn btn-danger" (click)="closeForm()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -34,7 +34,7 @@
           <th scope="col" class="acoes text-center">Ações</th>
         </tr>
       </thead>
-      <tbody class="table-group-divider">
+      <tbody class="table-group-divider ">
         <ng-container *ngIf="paginatedDocuments.length > 0; else noDocuments">
           <tr *ngFor="let document of paginatedDocuments; trackBy: trackById">
             <td class="text-start text-truncate"

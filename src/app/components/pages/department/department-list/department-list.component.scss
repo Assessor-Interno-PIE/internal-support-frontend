@@ -32,7 +32,7 @@ section {
   width: 100%;
   /* Deixa a tabela responsiva dentro do container */
   font-size: 0.9rem;
-  color: rgb(248,249,250);
+  color: rgb(255, 255, 255);
 }
 
 
@@ -40,7 +40,8 @@ section {
 .table td {
   padding: 8px;
   text-align: center;
-  background-color: #ffffff;
+  background-color: #F4F7FE;  /* Cor de fundo para as células */
+
 }
 
 .table th {
@@ -53,6 +54,9 @@ section {
 
 .acoes{
   padding-right: 80px !important;
+}
+.acoes-btn{
+  padding-right: 65px !important;
 }
 
 td{
