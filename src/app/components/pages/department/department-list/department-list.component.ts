@@ -1,6 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { DepartmentService } from '../../../../services/department.service';
+import { DocumentService } from '../../../../services/document.service';
+import { UserService } from '../../../../services/user.service';
 import { Department } from '../../../../models/department';
+import { Document } from '../../../../models/document';
+import { User } from '../../../../models/user';
 import Swal from 'sweetalert2';
 import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
@@ -19,10 +23,14 @@ export class DepartmentListComponent {
   department: Department = new Department(0, '', [], []);
   departmentStatsDTO: DepartmentStatsDTO = new DepartmentStatsDTO(0, 0);
   selectedDepartment?: Department;
+  relatedDocuments: Document[] = [];
+  relatedUsers: User[] = [];  
   isUsersPopupOpen = false;
   isDocumentsPopupOpen = false;
 
   departmentService = inject(DepartmentService);
+  documentService = inject(DocumentService);
+  userService = inject(UserService);
 
   // Variáveis de Paginação
   paginatedDepartments: Department[] = [];  // Departamentos exibidos na página atual
@@ -69,18 +77,52 @@ export class DepartmentListComponent {
     this.goToPage(1);  // Volta para a primeira página após alterar a quantidade de itens por página
   }
 
-  // Função para deletar o departamento
   deletar(id: number): void {
-    this.departmentService.deleteById(id).subscribe({
-      next: () => {
-        this.findAll();  // Recarrega a lista de departamentos após a exclusão
-        Swal.fire('Sucesso', 'Departamento deletado com sucesso!', 'success');
-      },
-      error: () => {
-        Swal.fire('Erro', 'Erro ao deletar o departamento.', 'error');
-      },
+    this.documentService.findDocumentsByDepartment(id).subscribe((documents: Document[]) => {
+      this.relatedDocuments = documents;
+      console.log('Documentos relacionados:', documents);
+
+      this.userService.findUsersByDepartment(id).subscribe((users: User[]) => {
+        this.relatedUsers = users;
+        console.log('Usuários relacionados:', users);
+
+        if (documents.length > 0 || users.length > 0) {
+          const htmlContent = `
+              <h3>Documentos Relacionados:</h3>
+              <ul>
+                  ${documents.map(doc => `<li>${doc.title}</li>`).join('')}
+              </ul>
+  
+              <h3>Usuários Relacionados:</h3>
+              <ul>
+                  ${users.map(user => `<li>${user.name}</li>`).join('')}
+              </ul>
+          `;
+  
+          Swal.fire({
+              icon: 'info',
+              title: 'Aviso',
+              html: htmlContent,
+              showCancelButton: false,
+              confirmButtonText: 'OK'
+          });
+      } else {
+          this.departmentService.deleteById(id).subscribe({
+            next: () => {
+              this.findAll();
+              Swal.fire('Sucesso', 'Departamento deletado com sucesso!', 'success');
+            },
+            error: () => {
+              Swal.fire('Erro', 'Erro ao deletar o departamento.', 'error');
+            },
+          });
+      }
+      });
     });
   }
+  
+  
+
 
   // Função para rastrear os departamentos pelo ID (necessário para *ngFor)
   trackById(index: number, department: Department): number {
