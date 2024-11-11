@@ -72,8 +72,14 @@ changePageSize() {
 deletar(id: number): void {
   this.userService.deleteById(id).subscribe({
     next: () => {
-      this.findAll(); 
-      Swal.fire('Sucesso', 'Usuário deletado com sucesso!', 'success');
+      Swal.fire('Sucesso', 'Departamento deletado com sucesso!', 'success');
+      this.users = this.users.filter(user => user.id !== id);
+      this.updatePage();
+      if (this.paginatedUsers.length === 0 && this.currentPage > 1) {
+        this.currentPage--;
+        this.updatePage();
+      }
+      console.log('Departamento excluído com sucesso!');
     },
     error: () => {
       Swal.fire('Erro', 'Erro ao deletar o usuário.', 'error');
