@@ -88,15 +88,37 @@ export class DepartmentListComponent {
 
         if (documents.length > 0 || users.length > 0) {
           const htmlContent = `
-              <h3>Documentos Relacionados:</h3>
-              <ul>
-                  ${documents.map(doc => `<li>${doc.title}</li>`).join('')}
-              </ul>
-  
-              <h3>Usuários Relacionados:</h3>
-              <ul>
-                  ${users.map(user => `<li>${user.name}</li>`).join('')}
-              </ul>
+            <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+              <h3 style="color: #d9534f;">Não é possível deletar o departamento!</h3>
+              <p>Este departamento possui relações ativas com <strong>documentos</strong> e <strong>usuários</strong>.</p>
+              <p>Por favor, remova ou associe os documentos e usuários a outros departamentos antes de excluir este departamento.</p>
+              
+              <div style="margin-top: 20px;">
+                <h4 style="color: #5bc0de;">Documentos Relacionados:</h4>
+                <ul style="list-style-type: none; padding-left: 0;">
+                  ${documents
+              .map(
+                (doc) =>
+                  `<li style="background-color: #f9f9f9; padding: 5px; margin: 5px 0; border-radius: 5px; border: 1px solid #ddd;">${doc.title}</li>`
+              )
+              .join('')}
+                </ul>
+              </div>
+
+              <div style="margin-top: 20px;">
+                <h4 style="color: #5bc0de;">Usuários Relacionados:</h4>
+                <ul style="list-style-type: none; padding-left: 0;">
+                  ${users
+              .map(
+                (user) =>
+                  `<li style="background-color: #f9f9f9; padding: 5px; margin: 5px 0; border-radius: 5px; border: 1px solid #ddd;">${user.name}</li>`
+              )
+              .join('')}
+                </ul>
+              </div>
+
+              <p style="margin-top: 20px;">Após remover essas relações, você poderá excluir o departamento com segurança.</p>
+            </div>
           `;
   
           Swal.fire({
