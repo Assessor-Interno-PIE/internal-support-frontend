@@ -168,6 +168,9 @@ button:hover {
   height: 40px;
 }
 
+
+
+
 .toggle-container {
   position: absolute;
   top: 0;
@@ -463,3 +466,16 @@ button:hover {
   .container.active .toggle-right {
     transform: translate(200%);
   }
+
+  .dropdown-menu {
+    background-color: #ffffff;
+    border: 3px solid #ec7324;
+    border-radius: 6px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    max-height: 200px;
+    overflow-y: auto; /* Adiciona barra de rolagem caso o conteúdo ultrapasse a altura */
+    word-wrap: break-word;
+}
+
+

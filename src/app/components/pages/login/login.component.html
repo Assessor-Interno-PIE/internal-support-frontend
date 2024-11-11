@@ -20,12 +20,12 @@
         <input [(ngModel)]="user.password" type="password" placeholder="Senha" name="password" required>
         
         
-        <div class="d-flex justify-content-between" style="width:88%;">
+        <div class="d-flex">
           <div class="form-groupCombo">
-            <div class="entryarea mt-2">
-              <div class="dropdown"> 
+            <div class="entryarea mb-1">
+              <div class="dropdown " > 
                 <button 
-                  class="btn dropdown-toggle" 
+                  class="btn dropdown-toggle"
                   [ngClass]="{ 'selected': user.department && user.department.name }"
                   type="button" 
                   id="departmentDropdown" 
