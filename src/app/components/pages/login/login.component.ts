@@ -8,6 +8,8 @@ import { DepartmentService } from '../../../services/department.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../../services/auth.service';
+import { Login } from '../../../auth/login';
+import { LoginService } from '../../../auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -17,29 +19,30 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  login: Login = new Login();
+
   @ViewChild('container') container!: ElementRef;
   @Input() user: User = new User(0,'','','', new Department(0,'',[],[]),0);
   department: Department = new Department(0,'',[],[]);
   departments: Department[]=[];
   selectedUser?: User;
 
-    // Campos de login
-    //email: string = '';
+
     username: string = '';
     password: string = '';
   
-    // Campos de registro
     name: string = '';
-    //registerUsername: string = ''; = SERÁ user.username MESMO
-    // registerPassword: string = ''; = SERÁ user.password MESMO
-  //email: string = 'admin';
-  //password: string = 'admin';
 
   renderer = inject(Renderer2);
   router = inject(Router);
   userService = inject(UserService);
   departmentService =inject(DepartmentService);
   authService = inject(AuthService);
+
+  // JWT Login teste
+  loginService = inject(LoginService);
+  // JWT Login teste
   
   constructor(){
     this.findDepartments();
@@ -86,6 +89,17 @@ export class LoginComponent {
       console.error("Container não está definido.");
     }
   }
+
+  // JWT Login teste
+  userLogin(){
+    this.loginService.loginUser(this.login).subscribe({
+      next: token => {
+
+      },
+      error: error => {}
+    });
+  }
+  // JWT Login teste
 
   onSubmitLogin() {
     if (!this.username || !this.password) {
