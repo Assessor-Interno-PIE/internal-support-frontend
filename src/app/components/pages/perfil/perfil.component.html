@@ -1,9 +1,33 @@
-<div class="perfil-container">
+<section class="section-header mt-3">
+  <p class="m-0" style="font-weight: 500; color: #707EAE;">Página / Perfil</p>
+  <h2 style="color: #12509b;">Perfil</h2>
+</section>
+
+<section class="d-flex flex-column justify-content-center">
+  <div class="perfil-container">
     <div class="perfil-card">
-      <img src="{{ usuario.foto }}" alt="Foto do usuário" class="perfil-foto" />
-      <h2>{{ usuario.nome }}</h2>
-      <p><strong>Email:</strong> {{ usuario.email }}</p>
-      <p><strong>Biografia:</strong> {{ usuario.biografia }}</p>
+      <div class="p-2 me-4" >
+      <!--<img src="{{usuario.foto}}" alt="Foto do usuário" class="perfil-foto d-flex mx-auto shadow-lg" /> -->
+      <i class="fas fa-user-circle bg-white" style="font-size: 300px; color: #124F9B;"></i>
+        <h2 class="d-flex align-items-center justify-content-center text-center">{{ usuario.nome }}</h2>
+      </div>
+      <hr class="vertical-line ms-2">
+      <div class="p-2 ms-4">
+
+        <div class="separator-container" aria-hidden="true">
+          <div class="separator">
+            <div class="line">
+              <div class="notch"></div>
+            </div>
+          </div>
+          <span class="separator-title">Dados</span>
+        </div>
+
+        <p><strong>Email:</strong><br> {{ usuario.email }}</p>
+        <p><strong>Departamento:</strong> <br> {{usuario.departamento}}</p>
+        <p><strong>Biografia:</strong> <br> {{ usuario.biografia }}</p>
+
+      </div>
     </div>
   </div>
-  
+</section>

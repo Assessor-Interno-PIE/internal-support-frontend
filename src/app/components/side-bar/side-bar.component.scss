@@ -1,34 +1,207 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-.enerluz-header{
-    font-family: "Inter", sans-serif;
-    font-size: 2rem;
+
+
+/* Estilos gerais */
+.sidebar {
+    background-color: #ffffff;
+    color: #124f9b;
+}
+
+
+
+
+
+
+
+.enerluz-header {
+    font-family: "Roboto", sans-serif;
+    font-size: 2.5rem;
     font-style: italic;
-    color: white;
+    color: #124f9b;
     font-weight: 500;
+}
+
+#div-content-dashboard {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+}
+
+.nav {
+
+    row-gap: 8px;
 }
 
 .nav-link {
     font-family: 'Gotham';
     display: flex;
-    color: #fff;
+    color: #707EAE;
     font-size: 1rem;
     text-align: center;
     text-decoration: none;
+    position: relative;
+    /* Necessário para o pseudo-elemento */
+    padding: 10px 15px;
+    background-color: #fff;
+    font-weight: 500;
+    text-transform: uppercase;
     transition: all 0.3s;
 }
 
-.nav-link:hover {
-    background-color: #ec7324;
-    color: #fff !important;
+.nav-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    /* Tamanho da linha */
+    height: 0%;
+    /* Inicialmente a linha está invisível */
+    background-color: #124f9b;
+    transition: 0.5s ease;
+
 }
+
+.nav-link:hover {
+    color: #124f9b;
+}
+
+
+
+.nav-link:hover::after {
+    height: 100%;
+    /* A linha cresce para 100% do tamanho vertical */
+}
+
+
 
 .nav-link i {
     margin-right: 10px;
 }
 
-.enerluzLogo{
+.enerluzLogo {
     width: 80%;
     margin: 0 auto;
     display: block;
+}
+
+
+/* Ajuste o espaçamento do separator para baixo dos itens */
+.separator-container {
+
+    justify-content: center;
+    display: flex;
+}
+
+.separator {
+    width: 40%;
+    height: 5px;
+    background-color: #124f9b;
+    position: relative;
+    border-bottom: 2px solid #ec7324;
+}
+
+
+.line {
+    width: 80%;
+    height: 3px;
+    background-color: #124f9b;
+    opacity: 1;
+}
+
+.notch {
+    background-color: #124f9b;
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%, 10px 100%);
+    width: 64px;
+    height: 8px;
+    top: 0%;
+    left: -6px;
+    transition: all 0.3s;
+    z-index: 2;
+}
+
+.notch2 {
+    background-color: #ec7324;
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -10px, 90% -1px, calc(92% - 10px) 100%, 5px 80%);
+    width: 64px;
+    height: 6px;
+    top: 3.5px;
+    left: -1px;
+    transition: all 0.3s;
+    z-index: 1;
+}
+
+
+
+
+.dropdown {
+    background-color: #707EAE;
+    transition: all 0.3s;
+    
+}
+.dropdown:hover {
+    background-color: #124f9b;
+}
+
+#dropdownUser1 {
+    background-color: #ffffff;
+    border-radius: 15px 0 15px 0;
+    color: #707EAE!important;
+    transition: all 0.3s;
+
+}
+
+#dropdownUser1:hover {
+    background-color: #ffffff !important;
+    color: #124f9b !important;
+    border-radius: 0px 15px 0px 15px;
+}
+
+.dropdown-item {
+    display: flex;
+    color: #124f9b;
+    font-weight: 500;
+    transition: all 0.3s;
+    border-radius: 3px !important;
+}
+
+.dropdown-item:hover {
+    background-color: #ec7324 !important;
+    color: #ffffff !important;
+}
+
+
+
+.dropdown-menu {
+    margin: 0 80px !important;
+}
+
+/* Estilo e animação do ícone de dropdown */
+#dropdownUser1 .fa-chevron-down {
+    transition: transform 0.3s ease;
+    /* Animação suave */
+}
+
+/* Gira o ícone quando o dropdown estiver aberto */
+#dropdownUser1[aria-expanded="true"] .fa-chevron-down {
+    transform: rotate(180deg);
+    /* Roda o ícone para cima */
+}
+
+.nav-link.active,
+    .nav-link.active::after {
+    color: #ec7324; 
+    border-right: 3.3px solid #ec7324 ;
+
+  }
+
+
+  .nav-link.active::after {
+    content:none;
 }

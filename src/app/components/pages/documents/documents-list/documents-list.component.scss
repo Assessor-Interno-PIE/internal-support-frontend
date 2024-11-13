@@ -1,15 +1,53 @@
+  
+
+
 section {
   max-height: 1080px;
-  padding-bottom: var(--space-l);
-  padding-left: calc(var(--space-6xl) * 2);
-  padding-right: var(--space-m);
+  padding-bottom: var(--space-xs) !important;
+  padding-left: calc(var(--space-6xl) * 2) !important;
+  padding-right: var(--space-l) !important;
+
 }
 
+.titulo-header{
+  background:color-mix(in lab, #000000 26%, transparent);
+  --backdrop: blur(25px) saturate(120%);
+  backdrop-filter: var(--backdrop);
+  background: linear-gradient(to bottom, #12509bc6 10%, #12509b49 100%);
+  border-bottom: 2px solid #ffffff;
+  
+}
+
+h5{
+  display: flex;
+  justify-content: center;
+  color: #124f9b;
+  background-color: rgb(255, 255, 255);;
+  border-radius: 4px;
+  padding: 10px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.338);
+}
+
+hr{
+  color: #124f9b;
+  
+}
+
+td {
+  color: #707EAE;
+  font-family: 'Gotham', sans-serif;
+}
+
+.text-strong{
+  color: #656565;
+}
 .table {
   width: 100%;
-  /* Deixa a tabela responsiva dentro do container */
   font-size: 0.9rem;
-  /* Tamanho de fonte menor */
+  color: rgb(255, 255, 255);
+
 }
 
 .table th,
@@ -17,12 +55,22 @@ section {
   padding: 8px;
   /* Reduz o espaçamento entre células */
   text-align: center;
+  
 }
 
-.table thead th {
-  background-color: #f8f9fa;
-  /* Cor mais leve para o cabeçalho */
+.table td {
+  background-color: #F4F7FE;  /* Cor de fundo para as células */
 }
+
+
+.table th {
+  background-color: #12509b;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 15px;
+
+}
+
 
 .bg-light {
   padding: 1rem;
@@ -34,4 +82,196 @@ section {
   font-size: 0.85rem;
   /* Diminui o tamanho dos botões */
   padding: 4px 8px;
+}
+
+.card {
+  overflow: hidden; /* Oculta o conteúdo que excede o card */
+}
+
+.card-details {
+  max-height: 0; /* Inicia oculto */
+  overflow: hidden; /* Oculta o conteúdo que excede */
+  transition: max-height  0.6s ease-in-out; /* Transição suave para a altura */
+}
+
+.card-details.show {
+  max-height: 500px; /* Define a altura máxima quando os detalhes estão visíveis */
+}
+
+
+.card-text {
+  display: -webkit-box; /* Para navegadores WebKit (Chrome, Safari) */
+  display: box; /* Para navegadores não-WebKit */
+  -webkit-box-orient: vertical; /* Para navegadores WebKit */
+  -webkit-line-clamp: 3; /* Número de linhas que você deseja exibir */
+  box-orient: vertical; /* Para navegadores não-WebKit */
+  overflow: hidden; /* Oculta o excesso de conteúdo */
+  text-overflow: ellipsis; /* Adiciona reticências no final */
+}
+
+.separator-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: var(--space-m);
+  align-items: center;
+  margin-bottom: var(--space-xl);
+}
+
+.separator {
+  position: relative;
+  width: 100%;
+  height: 2px;
+}
+
+.line {
+  width: 100%;
+  height: 100%;
+  background-color: #ec7324;
+  opacity: 1;
+}
+
+
+.notch {
+  background-color: #ec7324;
+  position: absolute;
+  opacity: 1;
+  clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%, 10px 100%);
+  width: 64px;
+  height: 8px;
+  top: 2px;
+  left: -1px;
+}
+
+
+.separator-container2 {
+  position: relative;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: var(--space-m);
+  align-items: end;
+  margin-bottom: var(--space-xl);
+}
+
+.separator2 {
+  position: relative;
+  width: 100%;
+  height: 2px;
+}
+
+.line2 {
+  width: 100%;
+  height: 100%;
+  background-color: #124f9b;
+  opacity: 1;
+}
+
+
+.notch2 {
+  background-color: #124f9b ;
+  position: absolute;
+  opacity: 1;
+  clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%, 10px 100%);
+  width: 64px;
+  height: 8px;
+  top: 2px;
+  right: -1px;
+}
+
+.card{
+  border: 2px solid #ec742450;
+}
+
+.custom-label {
+  color: #707EAE;
+  font-weight: 500;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+}
+
+.custom-select {
+  border-radius: 10px;
+  padding: 10px 20px;
+  border: 2px solid #707eae85;
+  background-color: #F4F7FE;
+  color: #707EAE;
+  font-size: 1rem;
+  appearance: none;
+  transition: all 0.3s ease;
+  width: 120px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.custom-select:focus {
+  border-color: #707EAE;
+  outline: none;
+  box-shadow: 0 0 8px rgba(79, 79, 79, 0.3);
+
+}
+
+.custom-select:hover {
+  border-color: #12509b;
+  color: #12509b;
+}
+
+.custom-select option {
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #12509b;
+}
+
+.custom-select option:hover {
+
+  color: white;
+}
+
+/* Adiciona uma animação suave para o select */
+.custom-select {
+  transition: all 0.3s ease;
+}
+  
+.pagination .page-item .page-link {
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  border-color: #707eae85;
+}
+
+.pagination .page-item .page-link:hover {
+  background-color: #f4a261;
+  color: white !important;
+  border-color: #f4a261;
+  transform: scale(1.1);
+}
+
+.pagination .page-item.disabled .page-link {
+  background-color: #0c0c0c18;
+  border-color: #0c0c0c18 ;
+  pointer-events: none;
+}
+
+.pagination .page-item.disabled .page-link i {
+  color:#0c0c0c38 ;
+
+}
+
+.pagination .page-item .page-link i {
+  color:#707eae85 ;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.pagination .page-item .page-link:hover i {
+  transform: scale(1.2);
+  color: white;
+}
+
+.pagination .page-item .page-link {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pagination .page-item .page-link:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

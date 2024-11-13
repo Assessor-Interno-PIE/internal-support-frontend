@@ -1,50 +1,85 @@
-<div class="position-fixed d-flex flex-column flex-shrink-0 p-3 text-white bg-black" style="width: 280px; height: 100vh; top: 0;left: 0;right: 0;">
-  <a href="" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <a class="nav-link-logo" href="">
-      <img src="assets/images/enerluz.png" class="enerluzLogo" alt="enerluzLogo">
+<div class="sidebar position-fixed d-flex flex-column flex-shrink-0 shadow-sm"
+  style="width: 280px; height: 100vh; top: 0; z-index: 1111; padding: 18px;">
+  <div class="d-flex flex-column justify-content-around align-items-start m-0">
+    <a href="admin/dashboard" class="d-flex align-items-center  text-decoration-none">
+      <a class="nav-link-logo" routerLink="admin/dashboard">
+        <img src="assets/images/enerluz.png" class="enerluzLogo" alt="enerluzLogo">
+      </a>
+      <span class="enerluz-header">enerluz</span>
     </a>
-    <span class="enerluz-header">enerluz</span>
-  </a>
-  <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li>
-      <a href="admin/dashboard" class="nav-link text-black">
-        <i class="fas fa-rocket"></i>
-        Dashboard
-      </a>
-    </li>
-    <li>
-      <a href="admin/departamentos" class="nav-link text-black">
-<i class="fas fa-address-card"></i>
-        Departamentos
-      </a>
-    </li>
-    <li>
-      <a href="admin/documentos" class="nav-link text-black">
-        <i class="fas fa-file-text"></i>
-        Documentos
-      </a>
-    </li>
-    <li>
-      <a href="admin/configuracoes" class="nav-link text-black">
-        <i class="fas fa-cog"></i>
-        Configurações
-      </a>
-    </li>
-  </ul>
-  <hr>
+  </div>
+  <!-- Separador src -->
+  <div class="p-2 ms-0 me-0 text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="1" viewBox="0 0 234 1" fill="none">
+      <path d="M0 0.5H233.25" stroke="url(#paint0_linear_580_4333)" />
+      <defs>
+        <linearGradient id="paint0_linear_580_4333" x1="0" y1="0" x2="234" y2="0" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#124F9B" stop-opacity="0" />
+          <stop offset="0.5" stop-color="#124F9B" />
+          <stop offset="1" stop-color="#124F9B" stop-opacity="0.15625" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+
+  <div class="sidebar-content d-flex flex-column p-0" id="div-content-dashboard">
+    <ul class="nav d-flex justify-content-center flex-column mb-auto">
+      <li>
+        <a class="nav-link d-flex align-items-center w-100" [class.active]="currentRoute === '/admin/dashboard'"
+          href="/admin/dashboard">
+          <i class="fas fa-rocket"></i>
+          Dashboard
+        </a>
+      </li>
+      <li>
+        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/departamentos'"
+          href="/admin/departamentos">
+          <i class="fas fa-address-card"></i> Departamentos
+        </a>
+      </li>
+      <li>
+        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/documentos'"
+          href="/admin/documentos">
+          <i class="fas fa-file-text"></i> Documentos
+        </a>
+      </li>
+      <li>
+        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
+          href="/admin/users">
+          <i class="fa-solid fa-users"></i> Usuários
+        </a>
+      </li>
+      <li>
+        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/configuracoes'"
+          href="/admin/configuracoes">
+          <i class="fas fa-cog"></i> Configurações
+        </a>
+      </li>
+    </ul>
+  </div>
+
   <div class="dropdown">
-    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+    <a class=" p-2 d-flex align-items-center text-white text-decoration-none" id="dropdownUser1"
       data-bs-toggle="dropdown" aria-expanded="false">
-      <img src="https://avatars.githubusercontent.com/u/115734698?v=4" alt="" width="50" height="50" class="rounded-circle me-2">
-      <strong>Graciota</strong>
+      <!-- Icon do perfil -->
+      <i class="fas fa-user-circle fa-2x ms-2 me-2"></i>
+      <!-- <img src="{{usuario.foto}}" alt="Foto do Usuario" width="50" height="50" class=" rounded-circle ms-2 me-2" style="box-shadow: -0px 0px 0px 2px"> -->
+      <p class="d-flex align-items-center justify-content-center m-0"
+        style="font-weight: 500;font-size:large; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+        {{usuario.nome}}
+        <i id="icon-dropdown" class="p-1 fas fa-chevron-down fa-xs"></i>
+      </p>
     </a>
-    <ul class="dropdown-menu dropdown-menu-white text-small shadow" aria-labelledby="dropdownUser1">
-      <li> <a class="dropdown-item" href="admin/perfil">Perfil</a></li>
+    <ul class="p-2 dropdown-menu dropdown-menu-white text-small shadow" aria-labelledby="dropdownUser1">
+      <li> <a class="dropdown-item rounded-0" href="admin/perfil">
+          <i class="fas fa-user me-2 p-1"></i>Perfil</a></li>
       <li>
         <hr class="dropdown-divider">
       </li>
-      <li><a class="dropdown-item" href="">Sair da conta</a></li>
+      <li><a class="dropdown-item rounded-0" href="">
+          <i class="fas fa-right-from-bracket me-2 p-1"></i>Sair da conta</a></li>
     </ul>
   </div>
+  <!--<hr> -->
 </div>

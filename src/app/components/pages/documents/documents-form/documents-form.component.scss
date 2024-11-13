@@ -1,43 +1,305 @@
-.container {
-    background-color: #f8f9fa; /* Cor de fundo cinza claro */
+section {
+    max-height: 1080px;
+    max-width: 1110px;
+    padding-bottom: var(--space-l);
+    padding-left: calc(var(--space-5xl) * 2);
+    padding-right: var(--space-xl);
+    padding-top: var(--space-m);
+}
+
+
+.div-form {
     border-radius: 8px;
-    padding: 50px;
-    max-width: 50%;
-    margin-bottom: 100px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.form-groupCombo {
+    margin-top: 110px !important;
+}
+.form-groupFile {
+    margin-top: 95px !important;
+}
+
+.container-fluid {
+    max-height: 662px;
+    padding: 32px;
+    border-radius: 8px;
+}
+
+.icon {
+    position: absolute;
+    padding: 10px;
+    color: #124f9b;
 }
 
 h2 {
-    color: #333;
+    color: #124f9b;
 }
 
-h4 {
-    color: #007bff; /* Cor do título do formulário */
+h5 {
+    color: #ec7324
+        /* Cor do título do formulário */
 }
 
 .bg-light {
-    background-color: #ffffff; /* Fundo branco para o formulário e tabela */
+    background-color: #ffffff;
+    /* Fundo branco para o formulário e tabela */
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #f2f2f2; /* Cor de fundo para linhas ímpares da tabela */
+    background-color: #f2f2f2;
+    /* Cor de fundo para linhas ímpares da tabela */
 }
 
 .table th {
-    background-color: #007bff; /* Cor de fundo para o cabeçalho da tabela */
-    color: white; /* Cor do texto do cabeçalho da tabela */
+    background-color: #007bff;
+    /* Cor de fundo para o cabeçalho da tabela */
+    color: white;
+    /* Cor do texto do cabeçalho da tabela */
 }
 
 .table td {
-    vertical-align: middle; /* Alinhamento vertical das células */
+    vertical-align: middle;
+    /* Alinhamento vertical das células */
 }
 
 .btn-primary {
-    background-color: #007bff; /* Cor primária do botão */
-    border-color: #007bff; /* Cor da borda do botão */
+    background-color: #007bff;
+    /* Cor primária do botão */
+    border-color: #007bff;
+    /* Cor da borda do botão */
 }
 
 .btn-danger {
-    background-color: #dc3545; /* Cor do botão de excluir */
-    border-color: #dc3545; /* Cor da borda do botão de excluir */
+    background-color: #dc3545;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 1em;
+    border-color: #dc3545;
+}
+
+
+
+.entryarea {
+    display: flex;
+    position: relative;
+    height: 60px;
+}
+
+.file-input {
+    color: #828282 !important;
+    border: 2px solid #828282 !important;
+}
+
+.file-input .labelline {
+    color: #828282 !important;
+}
+
+input:hover+.labelline,
+input:focus+.labelline
+ {
+    color: #124f9b !important;
+}
+
+.file-input:hover,
+.file-input:focus{
+    color: #ec7324 !important;
+    border: 3px solid #ec7324 !important;
+    box-shadow: none;
+}
+
+input {
+    position: absolute;
+    outline: none;
+    font-size: 1em;
+    /* Ajustado para tamanhos adequados */
+    padding: 20px 20px 20px 20px;
+    /* Ajuste o padding inferior para descer o texto */
+    line-height: normal;
+    /* Ajustado para coincidir com a altura do input */
+    border-radius: 6px;
+    border: 2px solid #828282;
+    background: transparent;
+    transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    /* Transições suaves */
+    z-index: 1;
+    /* Mudado para um valor mais adequado */
+}
+
+
+
+textarea {
+    position: absolute;
+    outline: none;
+    font-size: 1em;
+    /* Ajustado para tamanhos adequados */
+    padding: 0 20px;
+    border-radius: 6px;
+    border: 2px solid #828282;
+    background: transparent;
+    transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    /* Transições suaves */
+    z-index: 1;
+    /* Mudado para um valor mais adequado */
+    resize: none;
+}
+
+
+
+.labelline {
+    font-size: 1.5em;
+    /* Ajustado para o tamanho do texto */
+    color: #828282;
+    padding: 0 10px;
+    margin: 0 15px;
+    margin-top: 1px;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.2s ease;
+    /* Inclui todos os efeitos de transição */
+}
+
+input:focus,
+textarea:focus,
+input:valid,
+textarea:valid {
+    color: #ec7324;
+    border: 3px solid #ec7324;
+    box-shadow: none;
+}
+
+input:focus+.labelline,
+textarea:focus+.labelline,
+input:valid+.labelline,
+textarea:valid+.labelline {
+    color: #124f9b;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    transform: translate(-10px, -20px) scale(0.88);
+    z-index: 1;
+    /* Aumentado para garantir que o rótulo fique acima do input */
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.btns {
+    margin-top: 30px !important;
+    column-gap: 10px;
+    margin-bottom: 0 !important;
+}
+
+#submit {
+    display: flex;
+    font-weight: 500;
+    letter-spacing: 1px;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    font-size: 1em;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color
+}
+
+.department-select {
+    margin-top: 30px;
+    /* Adiciona espaçamento superior para afastar do campo acima */
+}
+
+
+.btn.selected {
+    border: 2px solid #ec7324 !important; /* Borda laranja */
+    color: #124f9b !important; /* Texto azul */
+  }
+  
+
+
+.dropdown-toggle {
+    border-color: #828282 !important;
+    box-shadow: none;
+    border: 2px solid;
+    font-weight: 500;
+}
+
+.dropdown-toggle:hover {
+
+    box-shadow: none !important;
+}
+
+
+#departmentDropdown {
+    color: #828282;
+    
+}
+
+#departmentDropdown {
+    border-top-color: #828282;
+}
+
+.dropdown-toggle:focus,
+.dropdown-toggle:hover {
+    color: #124f9b !important;
+    box-shadow: none !important;
+    border: 3px solid #ec7324 !important;
+}
+
+.dropdown-item {
+    display: flex;
+    color: #124f9b;
+    font-weight: 500;
+    transition: all 0.3s;
+
+}
+
+.dropdown-item-select-none {
+    display: flex;
+    color: #828282;
+    font-weight: 500;
+    transition: all 0.3s;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.dropdown-menu {
+    background-color: #ffffff;
+    border: 3px solid #ec7324;
+    border-radius: 6px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    
+}
+
+
+
+.file-input.selected {
+    border: 2px solid #ec7324 !important; /* Borda laranja */
+  }
+  
+  .labelline.selected {
+    color: #124f9b !important; /* Texto azul */
+  }
+  
+
+
+
+.swal2-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1050 !important;
+    /* Certifique-se de que o modal tenha o z-index adequado */
+}
+
+.swal2-popup {
+    margin: 0 auto !important;
+    /* Centraliza o modal */
+    max-width: 80% !important;
+    /* Ajuste para que o modal não ultrapasse o tamanho da tela */
 }

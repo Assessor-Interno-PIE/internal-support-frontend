@@ -1,3 +1,5 @@
+
+
 :root {
   /* Cores */
   --black: oklch(0% 0 0);
@@ -99,11 +101,14 @@
 html,
 body {
   font-family: var(--font-stack);
-  //   background-color: #3e4449; /* Ou a cor que você desejar */
-  background: linear-gradient(90deg, rgb(118, 118, 118) 0%, rgb(216, 216, 216) 100%) !important;
-  transition: var(--duration-m) ease;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;  
+  background-image: none !important;
+  background-color: #F4F7FE !important;
   color: var(--text-body);
   width: 100vw;
+  height: 100vh !important;
   overflow-x: hidden !important;
 }
 
@@ -111,3 +116,6 @@ body {
 
 @import '@fortawesome/fontawesome-free/css/all.css';
 @import 'mdb-angular-ui-kit/assets/scss/mdb.scss';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

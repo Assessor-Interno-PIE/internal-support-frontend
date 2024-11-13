@@ -1,0 +1,158 @@
+section {
+    max-height: 1080px;
+    max-width: 1210px;
+    padding-bottom: var(--space-l);
+    padding-left: calc(var(--space-6xl) * 2);
+    padding-right: var(--space-xl);
+    padding-top: var(--space-xl);
+
+}
+
+
+.div-form{
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.container-fluid {
+    padding: 45px;
+    border-radius: 8px;
+}
+
+.icon {
+    position: absolute;
+    padding: 10px;
+    color: #124f9b;
+}
+
+h2 {
+    color: #124f9b;
+}
+
+h5 {
+    color: #ec7324 /* Cor do título do formulário */
+}
+
+.bg-light {
+    background-color: #ffffff; /* Fundo branco para o formulário e tabela */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2; /* Cor de fundo para linhas ímpares da tabela */
+}
+
+.table th {
+    background-color: #007bff; /* Cor de fundo para o cabeçalho da tabela */
+    color: white; /* Cor do texto do cabeçalho da tabela */
+}
+
+.table td {
+    vertical-align: middle; /* Alinhamento vertical das células */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Cor primária do botão */
+    border-color: #007bff; /* Cor da borda do botão */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Cor do botão de excluir */
+    border-color: #dc3545; /* Cor da borda do botão de excluir */
+}
+
+
+.entryarea {
+    display: flex;
+    position: relative;
+    height: 60px;
+}
+
+input {
+    position: absolute;
+    outline: none;
+    font-size: 1.2em;
+    padding:20px 20px 20px 20px; /* Ajuste o padding inferior para descer o texto */
+    line-height: normal; 
+    border-radius: 6px;
+    border: 2px solid #828282;
+    background: transparent;
+    transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    z-index: 1;
+}
+
+.labelline {
+    font-size: 1.5em;
+    color: #828282;
+    padding: 2px 10px;
+    margin: 0 15px;
+    margin-top: 1px;
+    background-color: rgb(248, 249, 250);
+    transition: all 0.2s ease;
+}
+.labelline2{
+    font-size: 1.5em;
+    color: #124f9b;
+    margin: 0 15px;
+    background-color: rgb(248, 249, 250);
+    transition: all 0.2s ease;
+}
+
+.btn-outline-primary{
+    color: #124f9b;
+    border-color: #124f9b;
+}
+
+.btn-outline-primary:hover{
+    background-color: #124f9b;
+    color: white;
+}   
+
+input:focus,
+textarea:focus,
+input:valid,
+textarea:valid {
+    color: #ec7324;
+    border: 4px solid #ec7324;
+}
+
+input:focus + .labelline,
+textarea:focus + .labelline,
+input:valid + .labelline,
+textarea:valid + .labelline {
+    color: #ec7324;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    transform: translate(-10px, -19px) scale(0.88);
+    z-index: 1;
+}
+
+
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.btns{
+ margin-top: 0px !important;
+  column-gap: 10px;
+}
+
+#submit {
+    display: flex;
+    background-color: #007bff; /* Cor do botão de envio */
+    border-color: #007bff; /* Cor da borda do botão de envio */
+    color: white; /* Cor do texto do botão de envio */
+    font-size: 1.2em; /* Ajustado para o tamanho do texto */
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color
+}
+
+/* Dropdowns */
+
+

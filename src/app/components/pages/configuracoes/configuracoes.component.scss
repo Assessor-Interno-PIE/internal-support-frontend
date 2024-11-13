@@ -1,0 +1,322 @@
+
+section {
+    max-height: 1080px;
+    padding-bottom: var(--space-xs) !important;
+    padding-left: calc(var(--space-6xl) * 2) !important;
+    padding-right: var(--space-2xl) !important;
+  }
+  
+
+.titulo-header {
+    background: color-mix(in lab, #000000 26%, transparent);
+    --backdrop: blur(25px) saturate(120%);
+    backdrop-filter: var(--backdrop);
+    background: linear-gradient(to bottom, #12509bc6 10%, #12509b49 100%);
+    border-bottom: 2px solid #ffffff;
+}
+.config-container {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding
+: 20px;
+}
+
+.config-item {
+    margin-bottom: 15px;
+}
+
+
+.config-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.background-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.background-option {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    background-size: cover;
+    background-position: center;
+    transition: border 0.3s;
+}
+
+.background-option:hover {
+    border: 2px solid #000000;
+}
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    /* Para que o dropdown se posicione corretamente */
+}
+
+.custom-dropdown-toggle {
+    background-color: #007bff;
+    /* Cor de fundo do botão */
+    color: white;
+    /* Cor do texto */
+    padding: 10px 20px;
+    /* Espaçamento interno */
+    border: none;
+    /* Sem borda */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    cursor: pointer;
+    /* Cursor em forma de mão */
+    display: flex;
+    /* Flex para alinhar ícones e texto */
+    justify-content: space-between;
+    /* Espaço entre texto e ícone */
+    align-items: center;
+    /* Alinha verticalmente */
+    transition: background-color 0.3s;
+    /* Transição suave para hover */
+}
+
+.custom-dropdown-toggle:hover {
+    background-color: #0056b3;
+    /* Cor ao passar o mouse */
+}
+
+.custom-dropdown-menu {
+    border: 1px solid #124f9b;
+    position: absolute;
+    /* Para sobrepor ao conteúdo */
+    z-index: 99999;
+    /* Para estar acima de outros elementos */
+    margin-top: 10px;
+    /* Espaçamento acima do menu */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Sombra */
+    background-color: white;
+    /* Cor de fundo do menu */
+    opacity: 0;
+    /* Começa invisível */
+    visibility: hidden;
+    /* Começa invisível */
+    transform: translateY(-10px);
+    /* Começa um pouco acima */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    /* Transição suave para opacidade e transformação */
+}
+
+.custom-dropdown-menu.show {
+    opacity: 1;
+    /* Tornar visível */
+    visibility: visible;
+    /* Tornar visível */
+    transform: translateY(0);
+    /* Voltar para a posição original */
+}
+
+.custom-dropdown-item {
+    display: flex;
+    /* Flex para alinhar conteúdo */
+    align-items: center;
+    /* Centraliza verticalmente */
+    padding: 7px;
+    /* Espaçamento */
+    color: #333;
+    /* Cor do texto */
+    text-decoration: none;
+    /* Remover sublinhado */
+    transition: background-color 0.3s;
+    /* Transição suave para hover */
+}
+
+.custom-dropdown-item:hover {
+    background-color: #12509b35
+        /* Cor ao passar o mouse */
+}
+
+.background-preview {
+    display: flex;
+    /* Flex para alinhar conteúdo */
+    width: 60px;
+    /* Tamanho do preview */
+    height: 40px;
+    /* Tamanho do preview */
+    border-radius: 5px;
+    /* Bordas arredondadas */
+    background-size: cover;
+    /* Cobrir o espaço */
+    background-position: center;
+    /* Centralizar a imagem */
+}
+
+li {
+    list-style-type: none;
+}
+
+ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+
+h1 {
+    font-size: 2.5rem;
+    color: #124f9b;
+}
+
+
+
+.container {
+    border-radius: 30px;
+    border: 2px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 1100px;
+    min-height: 500px;
+    padding: 16px 20px !important;
+}
+
+
+
+.container button {
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.278);
+}
+
+.button:hover {
+    background-color: rgb(255, 255, 255) !important;
+    color: #ec7324 !important;
+    border-color: #ec7324 !important;
+}
+
+
+
+.toggle-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    z-index: 1000;
+}
+
+
+.toggle {
+    background-color: #ec7324;
+    height: 100%;
+    background: linear-gradient(#ca440e 0%, #ec7324 100%) !important;
+    color: #fff;
+    position: relative;
+    left: -102%;
+    top: 16px;
+    height: 94%;
+    width: 200%;
+    transform: translate(0);
+    transition: all 0.6s ease-in-out;
+    border-radius: 10px;
+}
+
+
+.separator-container {
+    position: relative;
+    display: flex;
+    grid-template-columns: 90px 1fr;
+    gap: var(--space-m);
+    align-items: center;
+    margin-bottom: var(--space-xl);
+}
+
+.separator {
+    position: relative;
+    width: 100%;
+    height: 2px;
+}
+
+.line {
+    width: 100%;
+    height: 100%;
+    background-color: #ca440e;
+    opacity: 1;
+}
+
+
+.notch {
+    background-color: #ca440e;
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%, 10px 100%);
+    width: 64px;
+    height: 8px;
+    top: 2px;
+    left: -1px;
+}
+
+
+.div-perfil-options {
+    position: absolute;
+    top: 10%;
+    left: 52%;
+    width: 100%;
+    z-index: 22222;
+    right: 0;
+
+}
+
+
+.separator2 {
+    position: relative;
+    width: 100%;
+    height: 2px;
+}
+
+.line2 {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(248, 249, 250);
+    opacity: 1;
+    border-radius: 15px;
+}
+
+
+.notch2 {
+    background-color: rgb(248, 249, 250);
+    position: absolute;
+    opacity: 1;
+    clip-path: polygon(0 -1px, 100% -1px, calc(100% - 10px) 100%, 10px 100%);
+    width: 64px;
+    height: 8px;
+    top: 2px;
+    left: 42.4%;
+}
+
+
+.rotate-icon {
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+}
+
+.no-rotate {
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg);
+}
