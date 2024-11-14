@@ -91,47 +91,64 @@ export class LoginComponent {
   }
 
   // JWT Login teste
-  userLogin(){
-    this.loginService.loginUser(this.login).subscribe({
-      next: token => {
-
-      },
-      error: error => {}
-    });
-  }
-  // JWT Login teste
-
   onSubmitLogin() {
-    if (!this.username || !this.password) {
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Por favor, preencha todos os campos obrigatórios!',
-        icon: 'error',
-      });
-      return;
-    }
-
-    this.authService.login(this.username, this.password).subscribe({
-      next: (user) => {
-        // Se o login for bem-sucedido, redireciona para a dashboard
-        Swal.fire({
-          title: 'Bem-vindo!',
-          text: 'Login bem-sucedido!',
-          icon: 'success',
-        }).then(() => {
-          this.router.navigate(['admin/dashboard']);  // ou para qualquer outra página de sua escolha
-        });
+    console.log(this.login);
+    this.loginService.loginUser(this.login).subscribe({
+      next: (token) => {
+        if (token) {
+          this.loginService.addToken(token);
+          this.router.navigate(['admin/dashboard']);
+        } else {
+          Swal.fire({
+            title: 'Erro!',
+            text: 'Usuário ou senha incorretos.',
+            icon: 'error'
+          });
+        }
       },
-      error: () => {
-        // Se o login falhar, exibe uma mensagem de erro
+      error: (error) => {
+        console.error('Erro ao fazer login:', error);
         Swal.fire({
           title: 'Erro!',
-          text: 'Usuário ou senha inválidos!',
-          icon: 'error',
+          text: 'Ocorreu um erro ao fazer login. Por favor, tente novamente.',
+          icon: 'error'
         });
       }
     });
   }
+  // JWT Login teste
+
+  // onSubmitLogin() {
+  //   if (!this.username || !this.password) {
+  //     Swal.fire({
+  //       title: 'Erro!',
+  //       text: 'Por favor, preencha todos os campos obrigatórios!',
+  //       icon: 'error',
+  //     });
+  //     return;
+  //   }
+
+  //   this.authService.login(this.username, this.password).subscribe({
+  //     next: (user) => {
+  //       // Se o login for bem-sucedido, redireciona para a dashboard
+  //       Swal.fire({
+  //         title: 'Bem-vindo!',
+  //         text: 'Login bem-sucedido!',
+  //         icon: 'success',
+  //       }).then(() => {
+  //         this.router.navigate(['admin/dashboard']);  // ou para qualquer outra página de sua escolha
+  //       });
+  //     },
+  //     error: () => {
+  //       // Se o login falhar, exibe uma mensagem de erro
+  //       Swal.fire({
+  //         title: 'Erro!',
+  //         text: 'Usuário ou senha inválidos!',
+  //         icon: 'error',
+  //       });
+  //     }
+  //   });
+  // }
 
 
   onSubmitRegister() {

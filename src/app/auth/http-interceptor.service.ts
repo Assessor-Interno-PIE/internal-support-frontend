@@ -3,10 +3,11 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 
-export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
+export const httpInterceptor: HttpInterceptorFn = (request, next) => {
 
   let router = inject(Router);
 
+  // inclui o token do local storage em cada request http
   let token = localStorage.getItem('token');
   if (token && !router.url.includes('/login')) {
     request = request.clone({
@@ -14,6 +15,7 @@ export const meuhttpInterceptor: HttpInterceptorFn = (request, next) => {
     });
   }
 
+  // tratamento dos responses, genericos
   return next(request).pipe(
     catchError((err: any) => {
       if (err instanceof HttpErrorResponse) {
