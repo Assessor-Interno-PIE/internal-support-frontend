@@ -11,7 +11,7 @@ import { User } from '../models/user';
 export class LoginService {
 
   http = inject(HttpClient);
-  API = "http://localhost:8080/api/login";
+  API = "http://localhost:5000/api/login";
 
 
   constructor() { }
