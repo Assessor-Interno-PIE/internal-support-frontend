@@ -134,7 +134,7 @@ export class LoginComponent {
           text: 'Usuário registrado com sucesso!',
           icon: 'success',
         });
-        this.toggleContainer('login'); // Retorna para a tela de login após o registro
+        this.toggleContainer('login');
       },
       error: () => {
         Swal.fire({
