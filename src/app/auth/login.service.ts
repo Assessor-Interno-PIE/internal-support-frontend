@@ -41,7 +41,7 @@ export class LoginService {
     return "";
   }
 
-  hasPermission(isAdmin: string) {
+  hasPermission(isAdmin: number) {
     let user = this.jwtDecode() as User;
     if (user.isAdmin == 1)
       return true;

@@ -45,7 +45,7 @@
         </a>
       </li>
       
-      @if (loginService.hasPermission("ROLE_ADMIN")) {
+      @if (loginService.hasPermission(1)) {
         <li>
           <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
             href="/admin/users">
