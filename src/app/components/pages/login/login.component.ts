@@ -73,7 +73,6 @@ export class LoginComponent {
   
 
   toggleContainer(action: 'register' | 'login') { 
-    // Verifica se o container está definido antes de acessar seu nativeElement
     if (this.container) {
       const containerElement = this.container.nativeElement;
 
