@@ -91,7 +91,6 @@ export class LoginComponent {
     }
   }
 
-  // JWT Login teste
   onSubmitLogin() {
     this.loginService.loginUser(this.login).subscribe({
       next: (token) => {
@@ -117,40 +116,6 @@ export class LoginComponent {
       }
     });
   }
-  // JWT Login teste
-
-  // onSubmitLogin() {
-  //   if (!this.username || !this.password) {
-  //     Swal.fire({
-  //       title: 'Erro!',
-  //       text: 'Por favor, preencha todos os campos obrigatórios!',
-  //       icon: 'error',
-  //     });
-  //     return;
-  //   }
-
-  //   this.authService.login(this.username, this.password).subscribe({
-  //     next: (user) => {
-  //       // Se o login for bem-sucedido, redireciona para a dashboard
-  //       Swal.fire({
-  //         title: 'Bem-vindo!',
-  //         text: 'Login bem-sucedido!',
-  //         icon: 'success',
-  //       }).then(() => {
-  //         this.router.navigate(['admin/dashboard']);  // ou para qualquer outra página de sua escolha
-  //       });
-  //     },
-  //     error: () => {
-  //       // Se o login falhar, exibe uma mensagem de erro
-  //       Swal.fire({
-  //         title: 'Erro!',
-  //         text: 'Usuário ou senha inválidos!',
-  //         icon: 'error',
-  //       });
-  //     }
-  //   });
-  // }
-
 
   onSubmitRegister() {
     if (!this.user.name || !this.user.username || !this.user.password) {
