@@ -45,7 +45,8 @@ export class LoginComponent {
   // JWT Login teste
   
   constructor(){
-    this.findDepartments();
+    // this.findDepartments(); removi pra ele parar de chamar isso toda hr
+    this.loginService.removeToken();
   }
 
 
@@ -92,10 +93,10 @@ export class LoginComponent {
 
   // JWT Login teste
   onSubmitLogin() {
-    console.log(this.login);
     this.loginService.loginUser(this.login).subscribe({
       next: (token) => {
         if (token) {
+          console.log(token);
           this.loginService.addToken(token);
           this.router.navigate(['admin/dashboard']);
         } else {
