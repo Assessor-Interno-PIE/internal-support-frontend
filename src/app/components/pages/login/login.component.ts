@@ -8,7 +8,8 @@ import { DepartmentService } from '../../../services/department.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Login } from '../../../auth/login';
-import { LoginService } from '../../../auth/login.service';
+import { AuthService } from '../../../auth/auth.service';
+import { Registration } from '../../../auth/registration';
 
 @Component({
   selector: 'app-login',
@@ -26,11 +27,8 @@ export class LoginComponent {
   department: Department = new Department(0,'',[],[]);
   departments: Department[]=[];
   selectedUser?: User;
-
-
     username: string = '';
     password: string = '';
-  
     name: string = '';
 
   renderer = inject(Renderer2);
@@ -38,36 +36,25 @@ export class LoginComponent {
   userService = inject(UserService);
   departmentService =inject(DepartmentService);
 
+  userRegister: Registration = new Registration();
+
   // JWT Login teste
-  loginService = inject(LoginService);
+  authService = inject(AuthService);
   // JWT Login teste
   
   constructor(){
-    // this.findDepartments(); removi pra ele parar de chamar isso toda hr
-    this.loginService.removeToken();
+    this.findDepartments();
+    this.authService.removeToken();
   }
 
 
-  selectDepartment(department: Department | null): void {
-    if (department === null) {
-      this.user.department = new Department(0, 'Selecione um Departamento', [], []); // Desmarcar
-    } else {
-      this.user.department = department; // Selecionar o departamento
-    }
+  selectDepartment(department: Department): void {
+    this.userRegister.department = department;
   }
-
-  findDepartments(): void {
-    this.departmentService.findAll().subscribe({
-      next: (departments) => {
-        this.departments = departments;
-      },
-      error: () => {
-        Swal.fire({
-          title: "Erro!",
-          text: "Houve um erro ao tentar buscar os departamentos!",
-          icon: "error"
-        });
-      }
+  findDepartments() {
+    this.departmentService.findAll().subscribe(departments => {
+      this.departments = departments;
+      console.log(this.departments);
     });
   }
   
@@ -77,6 +64,7 @@ export class LoginComponent {
       const containerElement = this.container.nativeElement;
 
       if (action === 'register') {
+        this.findDepartments();
         this.renderer.addClass(containerElement, 'active');
         console.log("Classe 'active' adicionada para 'register'");
       } else if (action === 'login') {
@@ -89,11 +77,11 @@ export class LoginComponent {
   }
 
   onSubmitLogin() {
-    this.loginService.loginUser(this.login).subscribe({
+    this.authService.loginUser(this.login).subscribe({
       next: (token) => {
         if (token) {
           console.log(token);
-          this.loginService.addToken(token);
+          this.authService.addToken(token);
           this.router.navigate(['admin/dashboard']);
         } else {
           Swal.fire({
@@ -115,35 +103,24 @@ export class LoginComponent {
   }
 
   onSubmitRegister() {
-    if (!this.user.name || !this.user.username || !this.user.password) {
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Por favor, preencha todos os campos obrigatórios!',
-        icon: 'error',
-      });
+    if (!this.userRegister.name || !this.userRegister.username || !this.userRegister.password) {
+      alert('Por favor, preencha todos os campos obrigatórios!');
       return;
     }
-  
-    console.log('Registrando novo usuário ', this.user);
-  
-    this.userService.save(this.user).subscribe({
-      next: () => {
-        Swal.fire({
-          title: 'Sucesso!',
-          text: 'Usuário registrado com sucesso!',
-          icon: 'success',
-        });
-        this.toggleContainer('login');
+
+    console.log('Registrando novo usuário ', this.userRegister);
+
+    this.authService.registerUser(this.userRegister).subscribe({
+      next: (token) => {
+        console.log('Usuário registrado com sucesso', token);
+        this.authService.addToken(token);
+        alert('Usuário registrado com sucesso!');
       },
-      error: () => {
-        Swal.fire({
-          title: 'Erro!',
-          text: 'Ocorreu um erro ao registrar o usuário!',
-          icon: 'error',
-        });
+      error: (error) => {
+        console.error('Erro ao registrar o usuário:', error);
+        alert('Ocorreu um erro ao registrar o usuário!');
       }
     });
   }
-  
   
 }

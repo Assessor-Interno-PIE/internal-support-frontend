@@ -1,24 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { jwtDecode, JwtPayload } from "jwt-decode";
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { Login } from './login';
 import { User } from '../models/user';
+import { Registration } from './registration';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class LoginService {
+export class AuthService {
 
   http = inject(HttpClient);
-  API = "http://localhost:5000/api/login";
+  API = 'http://localhost:5000/api';
 
-
-  constructor() { }
-
+  constructor() {}
 
   loginUser(login: Login): Observable<string> {
-    return this.http.post<string>(this.API, login, {responseType: 'text' as 'json'});
+    return this.http.post<string>(`${this.API}/login`, login, { responseType: 'text' as 'json' });
+  }
+
+  registerUser(user: Registration): Observable<string> {
+    return this.http.post<string>(`${this.API}/register`, user, { responseType: 'text' as 'json' });
   }
 
   addToken(token: string) {
@@ -38,15 +41,11 @@ export class LoginService {
     if (token) {
       return jwtDecode<JwtPayload>(token);
     }
-    return "";
+    return '';
   }
 
   hasPermission(isAdmin: number) {
     let user = this.jwtDecode() as User;
-    if (user.isAdmin == 1)
-      return true;
-    else
-      return false;
+    return user.isAdmin === 1;
   }
-
 }
