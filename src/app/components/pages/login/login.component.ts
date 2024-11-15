@@ -7,7 +7,6 @@ import { Department } from '../../../models/department';
 import { DepartmentService } from '../../../services/department.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { AuthService } from '../../../services/auth.service';
 import { Login } from '../../../auth/login';
 import { LoginService } from '../../../auth/login.service';
 
@@ -38,7 +37,6 @@ export class LoginComponent {
   router = inject(Router);
   userService = inject(UserService);
   departmentService =inject(DepartmentService);
-  authService = inject(AuthService);
 
   // JWT Login teste
   loginService = inject(LoginService);
