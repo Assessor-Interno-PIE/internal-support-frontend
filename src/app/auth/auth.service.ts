@@ -17,7 +17,6 @@ export class AuthService {
   constructor() {}
 
   loginUser(login: Login): Observable<any> {
-    console.log('Login enviado:', login);  // Verifique os dados que estão sendo enviados
     return this.http.post<any>(`${this.API}/login`, login);
   }
 

@@ -88,14 +88,12 @@ export class LoginComponent {
         }
       },
       error: (error: HttpErrorResponse) => {
-        // Verifique se o erro é 401 e, nesse caso, mostre uma mensagem mais amigável.
         if (error.status === 401) {
           Swal.fire('Erro!', 'Credenciais incorretas. Por favor, verifique seu usuário e senha.', 'error');
         } else {
           const errorMessage = error.error?.message || error.error || 'Ocorreu um erro ao fazer login.';
           Swal.fire('Erro!', errorMessage, 'error');
         }
-        console.error('Erro de requisição:', error);
       }
     });
   }
