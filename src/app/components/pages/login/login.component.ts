@@ -55,7 +55,6 @@ export class LoginComponent {
   findDepartments() {
     this.departmentService.findAll().subscribe(departments => {
       this.departments = departments;
-      console.log(this.departments);
     });
   }
   
@@ -67,10 +66,8 @@ export class LoginComponent {
       if (action === 'register') {
         this.findDepartments();
         this.renderer.addClass(containerElement, 'active');
-        console.log("Classe 'active' adicionada para 'register'");
       } else if (action === 'login') {
         this.renderer.removeClass(containerElement, 'active');
-        console.log("Classe 'active' removida para 'login'");
       }
     } else {
       console.error("Container não está definido.");
