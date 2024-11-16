@@ -98,23 +98,32 @@ export class LoginComponent {
 
   onSubmitRegister() {
     if (!this.userRegister.name || !this.userRegister.username || !this.userRegister.password) {
-      alert('Por favor, preencha todos os campos obrigatórios!');
+      Swal.fire('Atenção!', 'Por favor, preencha todos os campos obrigatórios!', 'warning');
       return;
     }
-
-    console.log('Registrando novo usuário ', this.userRegister);
-
+  
     this.authService.registerUser(this.userRegister).subscribe({
       next: (token) => {
-        console.log('Usuário registrado com sucesso', token);
         this.authService.addToken(token);
-        alert('Usuário registrado com sucesso!');
+        Swal.fire('Sucesso!', 'Usuário registrado com sucesso!', 'success');
       },
       error: (error) => {
         console.error('Erro ao registrar o usuário:', error);
-        alert('Ocorreu um erro ao registrar o usuário!');
+  
+        if (error.status >= 500) {
+          Swal.fire('Erro!', 'Ocorreu um erro no servidor. Tente novamente mais tarde.', 'error');
+        }
+        
+        else if (error.status >= 400 && error.status < 500) {
+          Swal.fire('Erro!', 'Ocorreu um erro ao registrar o usuário. Verifique os dados informados.', 'error');
+        } 
+  
+        else {
+          Swal.fire('Erro!', 'Ocorreu um erro desconhecido. Tente novamente.', 'error');
+        }
       }
     });
   }
+  
   
 }
