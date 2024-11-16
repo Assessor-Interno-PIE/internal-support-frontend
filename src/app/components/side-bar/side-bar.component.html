@@ -44,12 +44,16 @@
           <i class="fas fa-file-text"></i> Documentos
         </a>
       </li>
-      <li>
-        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
-          href="/admin/users">
-          <i class="fa-solid fa-users"></i> Usuários
-        </a>
-      </li>
+      
+      @if (authService.hasPermission(1)) {
+        <li>
+          <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
+            href="/admin/users">
+            <i class="fa-solid fa-users"></i> Usuários
+          </a>
+        </li>
+      }
+      
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/configuracoes'"
           href="/admin/configuracoes">
