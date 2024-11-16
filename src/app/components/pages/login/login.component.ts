@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { Login } from '../../../auth/login';
 import { AuthService } from '../../../auth/auth.service';
 import { Registration } from '../../../auth/registration';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -80,27 +81,25 @@ export class LoginComponent {
     this.authService.loginUser(this.login).subscribe({
       next: (token) => {
         if (token) {
-          console.log(token);
           this.authService.addToken(token);
           this.router.navigate(['admin/dashboard']);
         } else {
-          Swal.fire({
-            title: 'Erro!',
-            text: 'Usuário ou senha incorretos.',
-            icon: 'error'
-          });
+          Swal.fire('Erro!', 'Usuário ou senha incorretos.', 'error');
         }
       },
-      error: (error) => {
-        console.error('Erro ao fazer login:', error);
-        Swal.fire({
-          title: 'Erro!',
-          text: 'Ocorreu um erro ao fazer login. Por favor, tente novamente.',
-          icon: 'error'
-        });
+      error: (error: HttpErrorResponse) => {
+        // Verifique se o erro é 401 e, nesse caso, mostre uma mensagem mais amigável.
+        if (error.status === 401) {
+          Swal.fire('Erro!', 'Credenciais incorretas. Por favor, verifique seu usuário e senha.', 'error');
+        } else {
+          const errorMessage = error.error?.message || error.error || 'Ocorreu um erro ao fazer login.';
+          Swal.fire('Erro!', errorMessage, 'error');
+        }
+        console.error('Erro de requisição:', error);
       }
     });
   }
+  
 
   onSubmitRegister() {
     if (!this.userRegister.name || !this.userRegister.username || !this.userRegister.password) {
