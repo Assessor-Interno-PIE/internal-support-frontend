@@ -3,13 +3,16 @@
     <div class="d-flex flex-row justify-content-start flex-wrap" style="column-gap: 30px; row-gap: 20px">
       <ng-container *ngFor="let document of documents">
         <div class="card document-card text-center shadow-sm border-light">
-          <div class="card-header bg-secondary p-3">
+          <div class="card-header p-3" style="background-color: rgb(235, 235, 235);">
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ document.title }}</h5>
             <p class="card-text">{{ document.description }}</p>
             <p class="card-text">{{ document.department.name }}</p>
-            <a href="admin/cadastro/documentos" class="btn" style="background-color: #124f9b; color:white" data-mdb-ripple-init>Ver Detalhes</a>
+
+            <button (click)="visualizarPdf(document.id)" class="btn" style="background-color: #124F9B; color: white;">
+              <i class="fas fa-file-pdf"></i> Visualizar PDF
+            </button>
           </div>
           <!--div class="card-footer text-muted">
             Criado por: {{ document.createdAt | date: 'short' }} | Usuário: {{ document.user.name }}

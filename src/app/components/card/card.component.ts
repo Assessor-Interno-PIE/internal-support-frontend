@@ -54,4 +54,21 @@ export class CardComponent {
       document.showDetails = !document.showDetails;
     }
   }*/
+
+
+
+
+
+    visualizarPdf(id: number) {
+      this.documentService.viewDocument(id).subscribe({
+          next: (blob) => {
+              const fileUrl = URL.createObjectURL(blob);
+              window.open(fileUrl, '_blank'); // Abre o PDF em uma nova aba
+          },
+          error: () => {
+              console.log('Erro', 'Erro ao carregar o arquivo.', 'error');
+          }
+      });
+  
+  }
 }
