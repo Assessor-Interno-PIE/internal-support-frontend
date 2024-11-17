@@ -7,6 +7,7 @@ import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { Department } from '../../../../models/department';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
   selector: 'app-documents-list',
@@ -21,6 +22,7 @@ export class DocumentsListComponent {
   selectedDocument?: Document = this.document;
 
   documentService = inject(DocumentService);
+  notificationService = inject(NotificationService);
 
   // Variáveis de Paginação
   paginatedDocuments: Document[] = [];  // Documentos exibidos na página atual
@@ -121,20 +123,25 @@ findAll(): void {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.documentService.delete(id).subscribe({
-          next: () => {
-            Swal.fire('Deletado!', 'Documento deletado com sucesso!', 'success');
-            this.documents = this.documents.filter(document => document.id !== id);
-            this.updatePage();
-            if(this.paginatedDocuments.length === 0 && this.currentPage > 1){
-              this.currentPage--;
-              this.updatePage();
-            }
-          },
-          error: () => {
-            Swal.fire('Erro', 'Erro ao deletar o documento.', 'error');
-          }
-        });
+        this.deleteDocument(id);
+      }
+    });
+  }
+
+  private deleteDocument(id: number): void {
+    this.documentService.delete(id).subscribe({
+      next: () => {
+        this.notificationService.handleSuccess('Documento deletado com sucesso!');
+        this.documents = this.documents.filter(document => document.id !== id);
+        this.updatePage();
+        
+        if (this.paginatedDocuments.length === 0 && this.currentPage > 1) {
+          this.currentPage--;
+          this.updatePage();
+        }
+      },
+      error: () => {
+        this.notificationService.handleError('Erro ao deletar o documento.');
       }
     });
   }
