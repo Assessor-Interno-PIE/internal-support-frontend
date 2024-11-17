@@ -17,7 +17,7 @@ export class SideBarComponent {
 
   authService = inject(AuthService);
 
- currentRoute: string = '';
+  currentRoute: string = '';
 
   constructor(private router: Router) {
     // Monitora mudanças de rota e atualiza `currentRoute` sempre que a navegação é concluída

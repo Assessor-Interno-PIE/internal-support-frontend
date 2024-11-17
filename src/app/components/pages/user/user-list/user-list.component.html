@@ -17,7 +17,6 @@
         <tr>
           <th scope="col" class="text-start">Nome</th>
           <th scope="col" class="text-start">Username</th>
-          <th scope="col" class="text-center">Password</th>
           <th scope="col" class="text-center">Departamento</th>
           <th scope="col" class="text-center">Nivel de Acesso</th>
           <th scope="col" class="acoes text-center">Ações</th>
@@ -28,7 +27,6 @@
           <tr *ngFor="let user of paginatedUsers; trackBy: trackById">
             <td class="text-start table-cell-truncate">{{ user.name }}</td>
             <td class="text-start table-cell-truncate">{{ user.username }}</td>
-            <td class="text-center table-cell-truncate">{{ user.password }}</td>
             <td class="text-center table-cell-truncate">{{ user.department.name }}</td>
             <td class="text-center">{{ user.isAdmin == 1 ? 'Admin' : 'Não Admin' }}</td>
             <td class="text-center">

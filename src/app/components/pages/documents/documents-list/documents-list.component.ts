@@ -8,6 +8,7 @@ import { Department } from '../../../../models/department';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NotificationService } from '../../../../services/notification.service';
+import { AuthService } from '../../../../auth/auth.service';
 
 @Component({
   selector: 'app-documents-list',
@@ -20,6 +21,8 @@ export class DocumentsListComponent {
   documents: Document[] = [];  // Lista completa de documentos
   @Input() document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
   selectedDocument?: Document = this.document;
+
+  authService = inject(AuthService);
 
   documentService = inject(DocumentService);
   notificationService = inject(NotificationService);
