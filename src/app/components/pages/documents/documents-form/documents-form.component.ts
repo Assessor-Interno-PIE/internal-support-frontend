@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { DocumentService } from '../../../../services/document.service';
 import { Department } from '../../../../models/department';
 import { Document } from '../../../../models/document';
@@ -10,6 +9,7 @@ import { DepartmentService } from '../../../../services/department.service';
 import { lastValueFrom } from 'rxjs';
 import { firstValueFrom } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
   selector: 'app-documents-form',
@@ -29,11 +29,10 @@ export class DocumentsFormComponent {
   documentService = inject(DocumentService);
   departmentService = inject(DepartmentService);
   route = inject(ActivatedRoute);
+  notificationService = inject(NotificationService);
 
   constructor() {
     this.loadDepartments();
-
-    // Verificar se há um ID no parâmetro da rota para modo de edição
     const docId = this.route.snapshot.paramMap.get('id');
     if (docId) {
       this.loadDocumentForEdit(+docId);
@@ -45,56 +44,39 @@ export class DocumentsFormComponent {
       const doc = await this.documentService.findById(id).toPromise();
       if (doc) {
         this.document = doc;
-        this.document.department = doc.department; // Vincula o objeto do departamento
+        this.document.department = doc.department;
         console.log('Documento carregado para edição:', this.document);
       }
     } catch (error) {
-      console.error('Erro ao carregar o documento para edição:', error);
+      this.notificationService.handleError('Erro ao carregar o documento para edição.');
     }
   }
-
 
   async loadDepartments(): Promise<void> {
     try {
       const depts = await lastValueFrom(this.departmentService.findAll());
       this.departments = depts || [];
-      //console.log('Departamentos carregados:', this.departments);
     } catch (error) {
-      console.error('Erro ao carregar departamentos:', error);
+      this.notificationService.handleError('Erro ao carregar departamentos.');
     }
   }
 
   async save(): Promise<void> {
     if (!this.document.title || !this.document.description || !this.document.department.id || !this.selectedFile) {
-      Swal.fire({
-        title: 'Erro de Validação!',
-        text: 'Todos os campos obrigatórios devem ser preenchidos!',
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
+      this.notificationService.handleError('Todos os campos obrigatórios devem ser preenchidos!');
       return;
     }
 
     try {
       if (this.document.id) {
-        // Update doc
         await firstValueFrom(this.documentService.updateDocument(this.document.id, this.selectedFile, this.document));
-        Swal.fire('Sucesso!', 'Documento atualizado com sucesso!', 'success');
+        this.notificationService.handleSuccess('Documento atualizado com sucesso!');
       } else {
-        // Save doc
         await firstValueFrom(this.documentService.saveDocument(this.selectedFile, this.document.department, this.document.title, this.document.description));
-        Swal.fire('Sucesso!', 'Documento adicionado com sucesso!', 'success');
+        this.notificationService.handleSuccess('Documento adicionado com sucesso!');
       }
 
-      Swal.fire({
-        title: 'Operação concluída!',
-        text: 'Você será redirecionado...',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1500
-      }).then(() => {
-        this.router.navigate(['admin/documentos']);
-      });
+      this.router.navigate(['admin/documentos']);
     } catch (error) {
       if (error instanceof HttpErrorResponse && error.status === 400) {
         const validationErrors = error.error;
@@ -107,19 +89,16 @@ export class DocumentsFormComponent {
 
   showValidationErrors(errors: { [key: string]: string }): void {
     let errorMessages = Object.values(errors).join(', ');
-    Swal.fire('Erro de Validação!', errorMessages, 'error');
+    this.notificationService.handleError(errorMessages);
   }
-
 
   selectDepartment(department: Department | null): void {
     if (department === null) {
-      this.document.department = new Department(0, 'Selecione um Departamento', [], []); // Desmarcar
+      this.document.department = new Department(0, 'Selecione um Departamento', [], []);
     } else {
-      this.document.department = department; // Selecionar o departamento
+      this.document.department = department;
     }
   }
-
-
 
   fileSelected = false;
 
@@ -132,8 +111,6 @@ export class DocumentsFormComponent {
       this.fileSelected = false;
     }
   }
-
-
 
   closeForm(): void {
     this.router.navigate(['admin/documentos']);
