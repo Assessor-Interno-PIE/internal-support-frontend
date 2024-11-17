@@ -88,7 +88,14 @@ export class LoginComponent {
         if (error.status === 401) {
           Swal.fire('Erro!', 'Credenciais incorretas. Por favor, verifique seu usuário e senha.', 'error');
         } else {
-          const errorMessage = error.error?.message || error.error || 'Ocorreu um erro ao fazer login.';
+          let errorMessage = 'Ocorreu um erro ao fazer login.';
+          
+          if (typeof error.error === 'string') {
+            errorMessage = error.error;
+          } else if (error.error?.message) {
+            errorMessage = error.error.message;
+          }
+  
           Swal.fire('Erro!', errorMessage, 'error');
         }
       }
