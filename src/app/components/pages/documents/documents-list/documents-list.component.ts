@@ -117,8 +117,8 @@ findAll(): void {
       text: 'Esta ação não poderá ser desfeita.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#ec7324', // Cor do botão de confirmação
-      cancelButtonColor: '#3085d6',  // Cor do botão de cancelamento
+      confirmButtonColor: '#ec7324',
+      cancelButtonColor: '#3085d6',
       confirmButtonText: 'Sim, deletar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
