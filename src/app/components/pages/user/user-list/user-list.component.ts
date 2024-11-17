@@ -6,6 +6,7 @@ import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
   selector: 'app-user-list',
@@ -23,6 +24,7 @@ isUsersPopupOpen = false;
 isDepartmentPopupOpen = false;
 
 userService = inject(UserService);
+notificationService = inject(NotificationService);
 
 
  // Variáveis de Paginação
@@ -70,20 +72,33 @@ changePageSize() {
 }
 
 deletar(id: number): void {
-  this.userService.deleteById(id).subscribe({
-    next: () => {
-      Swal.fire('Sucesso', 'Departamento deletado com sucesso!', 'success');
-      this.users = this.users.filter(user => user.id !== id);
-      this.updatePage();
-      if (this.paginatedUsers.length === 0 && this.currentPage > 1) {
-        this.currentPage--;
-        this.updatePage();
-      }
-      console.log('Departamento excluído com sucesso!');
-    },
-    error: () => {
-      Swal.fire('Erro', 'Erro ao deletar o usuário.', 'error');
-    },
+  Swal.fire({
+    title: 'Tem certeza?',
+    text: 'Esta ação não poderá ser desfeita.',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#ec7324',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Sim, deletar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.userService.deleteById(id).subscribe({
+        next: () => {
+          this.notificationService.handleSuccess('Departamento deletado com sucesso!');
+          this.users = this.users.filter(user => user.id !== id);
+          this.updatePage();
+
+          if (this.paginatedUsers.length === 0 && this.currentPage > 1) {
+            this.currentPage--;
+            this.updatePage();
+          }
+        },
+        error: () => {
+          this.notificationService.handleError('Erro ao deletar o usuário.');
+        },
+      });
+    }
   });
 }
 
