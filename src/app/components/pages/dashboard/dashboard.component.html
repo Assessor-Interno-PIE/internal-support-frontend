@@ -126,7 +126,12 @@
   </div>
 </section> -->
 
+
+
 <section>
+
+
+
   <div class="mb-4 col-lg-12 col-sm-6">
     <div class="h-100 card rounded-4 border-0 p-3">
       <div class="d-flex align-items-center justify-content-between card-body">
@@ -134,13 +139,18 @@
           <h5 class="subtitle text-sm mb-0" style="font-weight: 500; color: #12509b;">
             Últimos Lançamentos de Documentos
           </h5>
-          <h6 class="fw-normal mb-0" style="color: #707EAE;">
+          
+          <h6 class="fw-normal mb-0 me-2" style="color: #707EAE;">
             Departamento: DepartamentoExemplo
           </h6>
         </div>
+        <div>
+          <button class="btn text-white d-flex p-2 align-items-center"
+            style="font-weight: 500; background-color: #12509b;" (click)="navigateToDocuments()">
+            <i class="fas fa-folder-open"></i>
+          </button>
+        </div>
       </div>
-
-
 
 
       <div class="d-flex p-3 w-100 h-100 rounded-4" style="background-color: #F4F7FE;">
@@ -154,27 +164,28 @@
               <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mb-0" style="color: #ec7324;">Título do Documento 1</h5>
                 <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#details1" aria-expanded="false"
-                  aria-controls="details1">
-                  <i class="bi bi-chevron-down" style="color: #ec7324;"></i>
-                </button>
-              </div>
-              <div id="details1" class="collapse mt-3">
-                <p>Detalhes do Documento 1. Aqui você pode adicionar mais informações sobre este documento, como
-                  descrição, data de criação, etc.</p>
+                aria-controls="details1">
+                <i class="bi bi-chevron-down" style="color: #ec7324;"></i>
+              </button>
+            </div>
+            <div id="details1" class="collapse mt-3">
+              <p>Detalhes do Documento 1. Aqui você pode adicionar mais informações sobre este documento, como
+                descrição, data de criação, etc.</p>
               </div>
             </div>
           </div>
         </div>
-
+        
         <div class="col-lg-4 col-md-6 p-2">
           <div class="card rounded-4 border-0">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center">
                 <h5 class="mb-0" style="color: #ec7324;">Título do Documento 2</h5>
                 <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#details2" aria-expanded="false"
-                  aria-controls="details2">
-                  <i class="bi bi-chevron-down" style="color: #ec7324;"></i>
-                </button>
+                aria-controls="details2">
+                <i class="bi bi-chevron-down" style="color: #ec7324;"></i>
+              </button>
+
               </div>
               <div id="details2" class="collapse mt-3">
                 <p>Detalhes do Documento 2. Mais informações sobre este documento estarão aqui quando o botão for
@@ -201,10 +212,12 @@
           </div>
         </div> -->
       </div>
+      <!-- Botão Ver Mais -->
+
+
     </div>
-
-
   </div>
+
 </section>
 
 <section>

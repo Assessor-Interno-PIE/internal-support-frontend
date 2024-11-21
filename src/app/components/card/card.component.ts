@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Document } from '../../models/document';
 import { Department } from '../../models/department';
 import { DocumentService } from '../../services/document.service';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-card',
@@ -13,29 +12,10 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   imports: [CommonModule, FormsModule],
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  animations: [
-    trigger('toggleDetails', [
-      state('false', style({
-        height: '0',
-        opacity: 0,
-        padding: '0 20px',
-        display: 'none',
-      })),
-      state('true', style({
-        height: '*',
-        opacity: 1,
-        padding: '10px 20px',
-        display: 'block',
-      })),
-      transition('false <=> true', [
-        animate('300ms ease-out')
-      ])
-    ])
-  ]
 })
-
 export class CardComponent {
   documents: Document[] = [];
+  visibleCards: number = 8; // Número inicial de cards visíveis
 
   @Input() document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
 
@@ -46,7 +26,6 @@ export class CardComponent {
     this.findAll();
   }
 
-  // Método para alternar o estado de detalhes do documento
   toggleDetails(documentId: number): void {
     this.documents = this.documents.map(doc =>
       doc.id === documentId ? { ...doc, showDetails: !doc.showDetails } : doc
@@ -56,7 +35,7 @@ export class CardComponent {
   findAll(): void {
     this.documentService.findAll().subscribe({
       next: (lista) => {
-        this.documents = this.initializeDocuments(lista); // Inicializando o valor showDetails
+        this.documents = this.initializeDocuments(lista);
         console.log('Sucesso', 'Documentos carregados com sucesso!', 'success');
       },
       error: () => {
@@ -66,7 +45,6 @@ export class CardComponent {
     });
   }
 
-  // Método para inicializar os documentos com showDetails falso
   initializeDocuments(data: Document[]): Document[] {
     return data.map(doc => ({ ...doc, showDetails: false }));
   }
@@ -75,11 +53,13 @@ export class CardComponent {
     this.documentService.viewDocument(id).subscribe({
       next: (blob) => {
         const fileUrl = URL.createObjectURL(blob);
-        window.open(fileUrl, '_blank'); // Abre o PDF em uma nova aba
+        window.open(fileUrl, '_blank');
       },
       error: () => {
         console.log('Erro', 'Erro ao carregar o arquivo.', 'error');
       }
     });
   }
+
+
 }
