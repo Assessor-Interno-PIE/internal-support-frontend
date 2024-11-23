@@ -8,6 +8,7 @@ interface JwtPayload {
     id: string;
     isAdmin: number;
     department: Department;
+    name: string,
     username: string;
     sub: string;
     iat: number;
