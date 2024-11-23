@@ -5,18 +5,18 @@ import { User } from '../../../../models/user';
 import { Department } from '../../../../models/department';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../../services/user.service';
-import Swal from 'sweetalert2';
 import { DepartmentService } from '../../../../services/department.service';
+import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.scss'
+  styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent {
-  @Input() user: User = new User(0,'','','', new Department(0,'',[],[]),0);
+  @Input() user: User = new User(0, '', '', '', new Department(0, '', [], []), 0);
   users: User[] = [];
   departments: Department[] = [];
   department: Department;
@@ -26,8 +26,9 @@ export class UserFormComponent {
   route = inject(ActivatedRoute);
   userService = inject(UserService);
   departmentService = inject(DepartmentService);
+  notificationService = inject(NotificationService);
 
-  constructor(){
+  constructor() {
     const id = this.route.snapshot.params['id'];
     if (id) {
       this.isEditMode = true;
@@ -38,14 +39,11 @@ export class UserFormComponent {
     this.findDepartments();
   }
 
-
-  
-
   selectDepartment(department: Department | null): void {
     if (department === null) {
-      this.user.department = new Department(0, 'Selecione um Departamento', [], []); // Desmarcar
+      this.user.department = new Department(0, 'Selecione um Departamento', [], []);
     } else {
-      this.user.department = department; // Selecionar o departamento
+      this.user.department = department;
     }
   }
 
@@ -55,29 +53,21 @@ export class UserFormComponent {
         this.departments = departments;
       },
       error: () => {
-        Swal.fire({
-          title: "Erro!",
-          text: "Houve um erro ao tentar buscar o departamento pelo ID!",
-          icon: "error"
-        });
+        this.notificationService.handleError("Houve um erro ao tentar buscar os departamentos!");
       }
     });
   }
 
-  findUserById(id:number): void {
+  findUserById(id: number): void {
     this.userService.findById(id).subscribe({
       next: (user) => {
         this.user = user;
-        console.log('Sucesso', 'Usuários carregados com sucesso!', 'success');
+        this.notificationService.handleSuccess('Usuário carregado com sucesso!');
       },
       error: () => {
-        console.log(
-          'Erro',
-          'Não foi possível carregar os usuários.',
-          'error'
-        );
+        this.notificationService.handleError('Não foi possível carregar o usuário.');
       },
-      complete: () => console.log('Busca de usuários completa.'),
+      complete: () => console.log('Busca de usuário completa.'),
     });
   }
 
@@ -90,59 +80,38 @@ export class UserFormComponent {
   }
 
   createUser(): void {
-     // Verificar se o valor de 'isAdmin' está correto antes de enviar ao backend
-     console.log('Criando usuário com isAdmin:', this.user.isAdmin);  // Adicionar log aqui
+    console.log('Criando usuário com isAdmin:', this.user.isAdmin);
 
     this.userService.save(this.user).subscribe({
       next: () => {
-        Swal.fire({
-          title: 'Perfeito!',
-          text: 'Usuário cadastrado com sucesso!',
-          icon: 'success',
-        });
+        this.notificationService.handleSuccess('Usuário cadastrado com sucesso!');
         this.router.navigate(['admin/users']);
       },
       error: () => {
-        Swal.fire({
-          title: 'Erro!',
-          text: 'Ocorreu um erro ao cadastrar o usuário!',
-          icon: 'error',
-        });
+        this.notificationService.handleError('Ocorreu um erro ao cadastrar o usuário!');
       }
     });
   }
 
   updateUser(): void {
-   // Verificar se o valor de 'isAdmin' está correto antes de enviar ao backend
-   console.log('Atualizando usuário com isAdmin:', this.user.isAdmin);  // Adicionar log aqui
+    console.log('Atualizando usuário com isAdmin:', this.user.isAdmin);
 
     this.userService.updateById(this.user.id, this.user).subscribe({
       next: () => {
-        Swal.fire({
-          title: 'Perfeito!',
-          text: 'Usuário atualizado com sucesso!',
-          icon: 'success',
-        });
+        this.notificationService.handleSuccess('Usuário atualizado com sucesso!');
         this.router.navigate(['admin/users']);
       },
       error: () => {
-        Swal.fire({
-          title: 'Erro!',
-          text: 'Ocorreu um erro ao atualizar o usuário!',
-          icon: 'error',
-        });
+        this.notificationService.handleError('Ocorreu um erro ao atualizar o usuário!');
       }
     });
   }
 
-
-  
   closeForm(): void {
     this.router.navigate(['admin/users']);
   }
-  
+
   selectAccessLevel(level: number): void {
     this.user.isAdmin = level;
   }
-
 }

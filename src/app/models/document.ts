@@ -6,6 +6,7 @@ export class Document {
     department!: Department;
     description!: string;
     filePath!: string;
+  showDetails: any;
    // fileName!: string;
 
     constructor(id: number, title: string, department: Department,

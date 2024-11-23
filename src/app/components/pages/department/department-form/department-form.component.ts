@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { DepartmentService } from '../../../../services/department.service';
 import { Department } from '../../../../models/department';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from '../../../../services/notification.service';
 
 @Component({
   selector: 'app-department-form',
@@ -20,6 +20,7 @@ export class DepartmentFormComponent implements OnInit {
   router = inject(Router);
   route = inject(ActivatedRoute);
   departmentService = inject(DepartmentService);
+  notificationService = inject(NotificationService);
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -34,18 +35,13 @@ export class DepartmentFormComponent implements OnInit {
       next: (department) => {
         this.department = department;
       },
-      error: () => this.handleError("Houve um erro ao tentar buscar o departamento pelo ID!"),
+      error: () => this.notificationService.handleError("Houve um erro ao tentar buscar o departamento pelo ID!"),
     });
   }
 
   save(): void {
     if (this.department.name.trim() === '') {
-      // Verificação para garantir que o nome do departamento não está vazio
-      Swal.fire({
-        title: 'Erro!',
-        text: 'Por favor, insira o nome do departamento!',
-        icon: 'error',
-      });
+      this.notificationService.handleError('Por favor, insira o nome do departamento!');
       return;
     }
 
@@ -58,36 +54,25 @@ export class DepartmentFormComponent implements OnInit {
 
   createDepartment(): void {
     this.departmentService.save(this.department).subscribe({
-      next: () => this.handleSuccess('Departamento cadastrado com sucesso!'),
-      error: () => this.handleError('Ocorreu um erro ao cadastrar o departamento!'),
+      next: () => {
+        this.notificationService.handleSuccess('Departamento cadastrado com sucesso!');
+        this.router.navigate(['admin/departamentos']);
+      },
+      error: () => this.notificationService.handleError('Ocorreu um erro ao cadastrar o departamento!'),
     });
   }
 
   updateDepartment(): void {
     this.departmentService.updateById(this.department.id, this.department).subscribe({
-      next: () => this.handleSuccess('Departamento atualizado com sucesso!'),
-      error: () => this.handleError('Ocorreu um erro ao atualizar o departamento!'),
+      next: () => {
+        this.notificationService.handleSuccess('Departamento atualizado com sucesso!');
+        this.router.navigate(['admin/departamentos']);
+      },
+      error: () => this.notificationService.handleError('Ocorreu um erro ao atualizar o departamento!'),
     });
   }
 
   closeForm(): void {
     this.router.navigate(['admin/departamentos']);
-  }
-
-  private handleSuccess(message: string): void {
-    Swal.fire({
-      title: 'Perfeito!',
-      text: message,
-      icon: 'success',
-    });
-    this.router.navigate(['admin/departamentos']);
-  }
-
-  private handleError(message: string): void {
-    Swal.fire({
-      title: 'Erro!',
-      text: message,
-      icon: 'error',
-    });
   }
 }

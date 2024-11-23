@@ -1,5 +1,5 @@
 <div class="sidebar position-fixed d-flex flex-column flex-shrink-0 shadow-sm"
-  style="width: 280px; height: 100vh; top: 0; z-index: 1111; padding: 18px;">
+  style="width: 280px; height: 100vh; top: 0;padding: 18px;">
   <div class="d-flex flex-column justify-content-around align-items-start m-0">
     <a href="admin/dashboard" class="d-flex align-items-center  text-decoration-none">
       <a class="nav-link-logo" routerLink="admin/dashboard">
@@ -32,24 +32,30 @@
           Dashboard
         </a>
       </li>
+      @if (authService.hasPermission(1)) {
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/departamentos'"
           href="/admin/departamentos">
           <i class="fas fa-address-card"></i> Departamentos
         </a>
       </li>
+      }
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/documentos'"
           href="/admin/documentos">
           <i class="fas fa-file-text"></i> Documentos
         </a>
       </li>
-      <li>
-        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
-          href="/admin/users">
-          <i class="fa-solid fa-users"></i> Usuários
-        </a>
-      </li>
+      
+      @if (authService.hasPermission(1)) {
+        <li>
+          <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
+            href="/admin/users">
+            <i class="fa-solid fa-users"></i> Usuários
+          </a>
+        </li>
+      }
+      
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/configuracoes'"
           href="/admin/configuracoes">

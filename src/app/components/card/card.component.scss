@@ -1,65 +1,22 @@
-.item {
-  padding: 10px;
-  background-color: lightblue;
-}
-
-section {
-  max-height: 1080px;
-  padding-bottom: var(--space-l);
-  padding-left: calc(var(--space-6xl) * 2);
-}
-
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-
-/* Adicione este estilo CSS para aprimorar o design do card */
-.document-card {
-  width: 270px;
-  height: 280px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 20px;
+.details {
+  max-height: 0;
   overflow: hidden;
+  opacity: 0;
+  transform: scaleY(0.9);
+  transform-origin: top;
+  
+  &.show-details {
+    max-height: 1000px;
+    opacity: 1;
+    transform: scaleY(1);
+  }
 }
 
-.document-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+hr.solid {
+  border: 1px solid #124F9B;
+  border-radius: 5px;
 }
 
-.document-card .card-header {
-  background-color: #007bff;
-  /* Azul primário */
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 1rem;
-}
-
-.document-card .card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-
-.document-card .card-text {
-  color: #666;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  margin-bottom: 1rem;
-}
-
-.document-card .card-footer {
-  font-size: 0.85rem;
-  color: #999;
-  background-color: #f8f9fa;
-}
-
-.document-card .btn {
-  margin-top: 20px;
-  transition: background-color 0.2s;
-}
+  .d-grid {
+    grid-template-columns: 100px 100px 100px;
+  }

@@ -12,12 +12,13 @@ import { DepartmentListComponent } from './components/pages/department/departmen
 import { DepartmentFormComponent } from './components/pages/department/department-form/department-form.component';
 import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
 import { UserListComponent } from './components/pages/user/user-list/user-list.component';
+import { loginGuard } from './auth/login.guard';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: 'full'},
     {path: "login", component: LoginComponent},
     {path: "register", component: RegisterComponent},
-    {path: "admin", component: PrincipalComponent, children: [
+    {path: "admin", component: PrincipalComponent, canActivate: [loginGuard], children: [
         {path: "dashboard", component: DashboardComponent},
 
         {path: "departamentos", component: DepartmentListComponent},

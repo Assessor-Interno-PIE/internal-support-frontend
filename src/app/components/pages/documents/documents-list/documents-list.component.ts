@@ -7,6 +7,8 @@ import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { Department } from '../../../../models/department';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NotificationService } from '../../../../services/notification.service';
+import { AuthService } from '../../../../auth/auth.service';
 
 @Component({
   selector: 'app-documents-list',
@@ -20,7 +22,10 @@ export class DocumentsListComponent {
   @Input() document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
   selectedDocument?: Document = this.document;
 
+  authService = inject(AuthService);
+
   documentService = inject(DocumentService);
+  notificationService = inject(NotificationService);
 
   // Variáveis de Paginação
   paginatedDocuments: Document[] = [];  // Documentos exibidos na página atual
@@ -115,26 +120,31 @@ findAll(): void {
       text: 'Esta ação não poderá ser desfeita.',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#ec7324', // Cor do botão de confirmação
-      cancelButtonColor: '#3085d6',  // Cor do botão de cancelamento
+      confirmButtonColor: '#ec7324',
+      cancelButtonColor: '#3085d6',
       confirmButtonText: 'Sim, deletar',
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.documentService.delete(id).subscribe({
-          next: () => {
-            Swal.fire('Deletado!', 'Documento deletado com sucesso!', 'success');
-            this.documents = this.documents.filter(document => document.id !== id);
-            this.updatePage();
-            if(this.paginatedDocuments.length === 0 && this.currentPage > 1){
-              this.currentPage--;
-              this.updatePage();
-            }
-          },
-          error: () => {
-            Swal.fire('Erro', 'Erro ao deletar o documento.', 'error');
-          }
-        });
+        this.deleteDocument(id);
+      }
+    });
+  }
+
+  private deleteDocument(id: number): void {
+    this.documentService.delete(id).subscribe({
+      next: () => {
+        this.notificationService.handleSuccess('Documento deletado com sucesso!');
+        this.documents = this.documents.filter(document => document.id !== id);
+        this.updatePage();
+        
+        if (this.paginatedDocuments.length === 0 && this.currentPage > 1) {
+          this.currentPage--;
+          this.updatePage();
+        }
+      },
+      error: () => {
+        this.notificationService.handleError('Erro ao deletar o documento.');
       }
     });
   }

@@ -15,9 +15,9 @@
           <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
         <span> ou use seu e-mail para registro</span>
-        <input [(ngModel)]="user.name" type="text" placeholder="Nome" name="name" required>
-        <input [(ngModel)]="user.username" type="text" placeholder="Username" name="username" required>
-        <input [(ngModel)]="user.password" type="password" placeholder="Senha" name="password" required>
+        <input [(ngModel)]="userRegister.name" type="text" placeholder="Nome" name="name" required>
+        <input [(ngModel)]="userRegister.username" type="text" placeholder="Username" name="username" required>
+        <input [(ngModel)]="userRegister.password" type="password" placeholder="Senha" name="password" required>
         
         
         <div class="d-flex">
@@ -26,13 +26,13 @@
               <div class="dropdown " > 
                 <button 
                   class="btn dropdown-toggle"
-                  [ngClass]="{ 'selected': user.department && user.department.name }"
+                  [ngClass]="{ 'selected': userRegister.department && userRegister.department.name }"
                   type="button" 
                   id="departmentDropdown" 
                   data-bs-toggle="dropdown" 
                   aria-expanded="false"
                 >
-                  {{ user.department && user.department.name ? user.department.name : 'Selecione um Departamento' }}
+                  {{ userRegister.department && userRegister.department.name ? userRegister.department.name : 'Selecione um Departamento' }}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
                   <li *ngFor="let dept of departments">
@@ -60,8 +60,8 @@
           <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
         </div>
         <span> ou use seu username e senha</span>
-        <input [(ngModel)]="username" type="username" placeholder="Username" name="username" required>
-        <input [(ngModel)]="password" type="password" placeholder="Senha" name="password" required>
+        <input [(ngModel)]="login.username" type="username" placeholder="Username" name="username" required>
+        <input [(ngModel)]="login.password" type="password" placeholder="Senha" name="password" required>
         <a href="#">Esqueceu Sua Senha? </a>
         <button type="submit">Entrar</button>
       </form>
