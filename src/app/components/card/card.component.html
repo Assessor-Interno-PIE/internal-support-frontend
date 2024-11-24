@@ -1,47 +1,69 @@
-<ul class="nav p-1 mb-auto">
-  <div class="d-grid flex-wrap row-gap-4 column-gap-3" style="grid-template-columns: 260px 260px 260px 260px;">
-    <ng-container *ngFor="let document of documents | slice:0:visibleCards">
-      <div>
-        <div class="card rounded-4 border-0 shadow-sm" style="width: 100%;">
-          <div class="card-body">
-            <div>
-              <div class="d-flex justify-content-between">
-                <h5 class="mb-0" style="color: #ec7324;">{{ document.title }}</h5>
-                <button 
-                  class="btn btn-link p-0" 
-                  (click)="toggleDetails(document.id)" 
-                  [attr.aria-expanded]="document.showDetails">
-                  <i 
-                    [class.bi-chevron-down]="!document.showDetails" 
-                    [class.bi-chevron-up]="document.showDetails" 
-                    style="color: #ec7324;">
-                  </i>
-                </button>
-              </div>
-              <div [class.show-details]="document.showDetails" class="details">
-                <div class="mt-3">
-                  <hr class="solid">
-                  <p class="mb-1" style="font-size: 0.9rem;">Descrição: {{ document.description }}</p>
-                  <p class="mb-3" style="font-size: 0.9rem; color: gray;">Departamento: {{ document.department.name }}</p>
-                </div>
-              </div>
-              
-              <div class="d-flex justify-content-center rounded-2" style="background-color:#F4F7FE;">
-                <button 
-                  *ngIf="document.showDetails" 
-                  (click)="visualizarPdf(document.id)" 
-                  class="btn mt-2 mb-2" 
-                  style="background-color: #124F9B; color: white;">
-                  <i class="fas fa-file-pdf"></i> Visualizar PDF
-                </button>
-              </div>
-            </div>
-          </div>
+<section>
+  <div class="mb-4 col-12">
+    <div class="h-100 card card-fundo rounded-4 border-0 p-3">
+      <div class="d-flex align-items-center justify-content-between card-body">
+        <div class="d-flex justify-content-between w-100">
+          <h5 class="subtitle text-sm mb-0" style="font-weight: 500; color: #12509b;">
+            Últimos Lançamentos de Documentos
+          </h5>
+          <h6 class="fw-normal mb-0 me-2" style="color: #707EAE;">
+            Ver mais
+          </h6>
+        </div>
+        <div>
+          <button class="btn text-white d-flex p-2 align-items-center" 
+            style="font-weight: 500; background-color: #12509b;" 
+            (click)="navigateToDocuments()">
+            <i class="fas fa-folder-open"></i>
+          </button>
         </div>
       </div>
-    </ng-container>
+      <div class="d-flex flex-wrap justify-content-center p-3 w-100 h-100 rounded-4" 
+        style="background-color: #F4F7FE;">
+        
+        <!-- Substituindo app-card pelo conteúdo diretamente -->
+        <div class="d-grid w-100">
+          <ng-container *ngFor="let document of documents | slice:0:visibleCards">
+            <div class="mb-3">
+              <div class="card rounded-4 border-0 shadow-sm">
+                <div class="card-body">
+                  <div>
+                    <div class="d-flex justify-content-between">
+                      <h5 class="mb-0" style="color: #ec7324;">{{ document.title }}</h5>
+                      <button 
+                        class="btn btn-link p-0" 
+                        (click)="toggleDetails(document.id)" 
+                        [attr.aria-expanded]="document.showDetails">
+                        <i 
+                          [class.bi-chevron-down]="!document.showDetails" 
+                          [class.bi-chevron-up]="document.showDetails" 
+                          style="color: #ec7324;">
+                        </i>
+                      </button>
+                    </div>
+                    <div [class.show-details]="document.showDetails" class="details">
+                      <div class="mt-3">
+                        <hr class="solid">
+                        <p class="mb-1" style="font-size: 0.9rem;">Descrição: {{ document.description }}</p>
+                        <p class="mb-3" style="font-size: 0.9rem; color: gray;">Departamento: {{ document.department.name }}</p>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-center rounded-2" style="background-color:#F4F7FE;">
+                      <button 
+                        *ngIf="document.showDetails" 
+                        (click)="visualizarPdf(document.id)" 
+                        class="btn mt-2 mb-2" 
+                        style="background-color: #124F9B; color: white;">
+                        <i class="fas fa-file-pdf"></i> Visualizar PDF
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
   </div>
-</ul>
-
-
-
+</section>

@@ -25,4 +25,231 @@ section {
     background-color: #0000007c;
   }
   
-  
+/* Estilo do card */
+.custom-card {
+  width: 26%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto; /* Ajuste a altura para ser automática */
+  border-radius: 10px;
+  transition: all 0.3s ease; /* Transição suave ao diminuir o tamanho */
+}
+
+.custom-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 15px; /* Ajusta o padding para diminuir a altura */
+  transition: padding 0.3s ease;
+}
+
+.custom-card-content {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ocupa o máximo de espaço disponível */
+}
+
+
+.custom-icon-container {
+  background-color: #F4F7FE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* Reduz o tamanho do ícone */
+  height: 50px; /* Reduz o tamanho do ícone */
+  flex-shrink: 0; /* Impede que o ícone encolha */
+}
+
+.custom-icon {
+  color: #12509b;
+  font-size: 1.8rem; /* Tamanho reduzido do ícone */
+  transition: font-size 0.3s ease;
+}
+
+.custom-text-container {
+  padding-left: 15px;
+  max-width: calc(100% - 60px); /* Ajusta a largura do texto */
+}
+
+.custom-text {
+  font-weight: 500;
+  color: #707EAE;
+  font-size: 0.9vw; /* Ajuste proporcional da fonte */
+  overflow: hidden; /* Impede o texto de transbordar */
+}
+
+.custom-number {
+  color: #12509b;
+  font-size: 1.5vw; /* Ajuste proporcional do número */
+  margin: 0;
+  transition: font-size 0.3s ease;
+}
+
+
+@media (max-width: 1500px) {
+  .custom-card {
+    height: auto; /* Ajusta a altura do card para auto */
+    width: 31%; /* Ajusta a largura do card */
+  }
+
+  .custom-card-body {
+    padding: 10px; /* Diminui o padding para caber melhor */
+  }
+
+  .custom-icon-container {
+    width: 50px; /* Reduz o tamanho do ícone */
+    height: 50px;
+  }
+
+  .custom-icon {
+    font-size: 1.7rem; /* Reduz o tamanho do ícone */
+  }
+
+  .custom-number {
+    font-size: 1.8vw; /* Ajuste dinâmico do número */
+  }
+
+  .custom-text {
+    font-size: 1vw; /* Ajusta o texto proporcionalmente */
+  }
+}
+
+@media (max-width: 1200px) {
+  .custom-card {
+    height: auto;
+  }
+
+  .custom-card-body {
+    padding: 8px;
+  }
+
+  .custom-icon-container {
+    width: 45px; /* Ícone ainda menor */
+    height: 45px;
+  }
+
+  .custom-icon {
+    font-size: 1.5rem; /* Ícone reduzido */
+  }
+
+  .custom-number {
+    font-size: 1.5vw; /* Ajuste do número */
+  }
+
+  .custom-text {
+    font-size: 1vw; /* Texto reduzido */
+  }
+}
+
+@media (max-width: 1024px) {
+  .custom-card {
+    height: auto;
+    width: 30%; /* Ajusta a largura do card */
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px; /* Ícone ainda menor */
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.4rem; /* Ícone ainda menor */
+  }
+
+  .custom-number {
+    font-size: 1.4vw;
+  }
+
+  .custom-text {
+    font-size: 1vw; /* Texto reduzido */
+  }
+}
+
+@media (max-width: 992px) {
+  .custom-card {
+    height: auto;
+    width: 40%; /* Ajusta a largura do card */
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px; /* Ícone ainda menor */
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.3rem; /* Ícone ainda menor */
+  }
+
+  .custom-number {
+    font-size: 1.5vw;
+  }
+
+  .custom-text {
+    font-size: 1.3vw; /* Texto reduzido */
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    height: auto;
+    width: 60%;
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.3rem; /* Ícone ainda menor */
+  }
+
+  .custom-number {
+    font-size: 1.8vw;
+  }
+
+  .custom-text {
+    font-size: 1.3vw; /* Texto reduzido ainda mais */
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-card {
+    height: auto;
+    width: 100%; /* Ocupa toda a largura disponível */
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 35px;
+    height: 35px;
+  }
+
+  .custom-icon {
+    font-size: 1.2rem; /* Tamanho bem reduzido para telas pequenas */
+  }
+
+  .custom-number {
+    font-size: 2vw;
+  }
+
+  .custom-text {
+    font-size: 1.75vw; /* Texto bem pequeno */
+  }
+}

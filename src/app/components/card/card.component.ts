@@ -82,5 +82,9 @@ export class CardComponent {
     });
   }
 
+      // Método para redirecionar para outra página
+      navigateToDocuments(): void {
+        this.router.navigate(['/admin/documentos']);
+      }
 
 }

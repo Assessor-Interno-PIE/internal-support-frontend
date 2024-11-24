@@ -1,22 +1,77 @@
+section {
+  max-height: 1080px;
+  padding-bottom: var(--space-xs) !important;
+  padding-left: calc(var(--space-6xl) * 2) !important;
+  padding-right: var(--space-2xl) !important;
+}
+
 .details {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transform: scaleY(0.9);
   transform-origin: top;
-  
-  &.show-details {
-    max-height: 1000px;
-    opacity: 1;
-    transform: scaleY(1);
-  }
+}
+
+.details.show-details {
+  max-height: 1000px;
+  opacity: 1;
+  transform: scaleY(1);
 }
 
 hr.solid {
   border: 1px solid #124F9B;
   border-radius: 5px;
 }
+.d-grid {
+  display: grid;
+  gap: 1rem; /* Espaçamento entre os cards */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta automaticamente o número de colunas */
+  width: 100%; /* Garante que ocupe 100% do contêiner */
+  max-width: 100%; /* Impede que extrapole o contêiner pai */
+  box-sizing: border-box; /* Inclui padding e border nos cálculos de largura */
+}
 
+.card-fundo {
+  max-width: 100%; /* Garante que o contêiner não seja ultrapassado */
+  overflow: hidden; /* Evita qualquer vazamento de elementos */
+  padding: 1rem;
+}
+
+/* Responsividade */
+@media (min-width: 1500px) {
   .d-grid {
-    grid-template-columns: 100px 100px 100px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Reduz a largura mínima dos cards em telas maiores */
   }
+}
+
+@media (max-width: 1024px) {
+  .d-grid {
+    grid-template-columns: repeat(2, minmax(100px, 1fr)); /* 3 colunas para tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .d-grid {
+    grid-template-columns: repeat(1, minmax(200px, 1fr)); /* 2 colunas para dispositivos menores */
+  }
+}
+
+@media (max-width: 576px) {
+  .d-grid {
+    grid-template-columns: 1fr; /* Apenas uma coluna para smartphones */
+  }
+}
+
+.card {
+  width: 100%;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02); /* Efeito de zoom no hover */
+}
+
+.card-fundo{
+  transform: none !important;
+}
