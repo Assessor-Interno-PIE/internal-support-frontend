@@ -9,7 +9,7 @@
       <div class="p-2 me-4" >
       <!--<img src="{{usuario.foto}}" alt="Foto do usuário" class="perfil-foto d-flex mx-auto shadow-lg" /> -->
       <i class="fas fa-user-circle bg-white" style="font-size: 300px; color: #124F9B;"></i>
-        <h2 class="d-flex align-items-center justify-content-center text-center">{{ usuario.nome }}</h2>
+        <h2 class="d-flex align-items-center justify-content-center text-center">{{ usuario.username }}</h2>
       </div>
       <hr class="vertical-line ms-2">
       <div class="p-2 ms-4">
@@ -23,6 +23,7 @@
           <span class="separator-title">Dados</span>
         </div>
 
+        <p><strong>Nome:</strong><br>{{usuario.nome}}</p>
         <p><strong>Departamento:</strong> <br> {{usuario.departamento}}</p>
 
       </div>
