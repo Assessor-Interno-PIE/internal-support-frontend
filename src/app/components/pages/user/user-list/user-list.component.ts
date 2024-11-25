@@ -85,7 +85,7 @@ deletar(id: number): void {
     if (result.isConfirmed) {
       this.userService.deleteById(id).subscribe({
         next: () => {
-          this.notificationService.handleSuccess('Departamento deletado com sucesso!');
+          this.notificationService.handleSuccess('Usuário deletado com sucesso!');
           this.users = this.users.filter(user => user.id !== id);
           this.updatePage();
 
