@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { User } from '../../../../models/user';
 import { Department } from '../../../../models/department';
 import { UserService } from '../../../../services/user.service';
-import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -11,7 +10,7 @@ import { NotificationService } from '../../../../services/notification.service';
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [SearchBarComponent, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss'
 })

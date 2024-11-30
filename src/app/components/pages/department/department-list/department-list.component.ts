@@ -6,7 +6,6 @@ import { Department } from '../../../../models/department';
 import { Document } from '../../../../models/document';
 import { User } from '../../../../models/user';
 import Swal from 'sweetalert2';
-import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { CommonModule } from '@angular/common';
 import { DepartmentStatsDTO } from '../../../../models/DTO/department-stats-dto';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +14,7 @@ import { NotificationService } from '../../../../services/notification.service';
 @Component({
   selector: 'app-department-list',
   standalone: true,
-  imports: [SearchBarComponent, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './department-list.component.html',
   styleUrls: ['./department-list.component.scss'],
 })

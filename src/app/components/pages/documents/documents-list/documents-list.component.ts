@@ -3,17 +3,16 @@ import { DocumentService } from '../../../../services/document.service';
 import { Document } from '../../../../models/document';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-import { SearchBarComponent } from '../../../search-bar/search-bar.component';
 import { Department } from '../../../../models/department';
 import { FormsModule } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NotificationService } from '../../../../services/notification.service';
 import { AuthService } from '../../../../auth/auth.service';
 
 @Component({
   selector: 'app-documents-list',
   standalone: true,
-  imports: [SearchBarComponent, CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './documents-list.component.html',
   styleUrls: ['./documents-list.component.scss']
 })

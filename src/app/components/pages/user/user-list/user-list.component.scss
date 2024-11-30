@@ -2,14 +2,12 @@
     background-color: #ec7324 !important;
   }
   
-  
   section {
     max-height: 1080px;
     padding-bottom: var(--space-xs) !important;
     padding-left: calc(var(--space-6xl) * 2) !important;
     padding-right: var(--space-2xl) !important;
   }
-  
   
   .section-header {
     max-height: 1080px;
@@ -29,12 +27,9 @@
   
   .table {
     width: 100%;
-    /* Deixa a tabela responsiva dentro do container */
-    font-size: 0.9rem;
+        font-size: 0.9rem;
     color: rgb(248,249,250);
   }
-  
-  
   
   .table td {
     padding: 8px;
@@ -72,15 +67,13 @@
   
   .btn {
     font-size: 0.85rem;
-    /* Diminui o tamanho dos botões */
-    padding: 4px 8px;
+        padding: 4px 8px;
   }
   
   
   
   
-  /* department-list.component.scss */
-  .modal {
+    .modal {
     display: flex;
     position: fixed;
     top: 0;
@@ -197,14 +190,12 @@
     color: white;
   }
   
-  /* Adiciona uma animação suave para o select */
-  .custom-select {
+    .custom-select {
     transition: all 0.3s ease;
   }
 
 
-  /* Responsividade para telas pequenas */
-  @media (max-width: 576px) {
+    @media (max-width: 576px) {
     .custom-select {
       width: 100%;
     }

@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { SearchBarComponent } from "../../search-bar/search-bar.component";
 import { CardComponent } from "../../card/card.component";
 import { Router } from '@angular/router';
 import { Decoder } from '../../../decoder/decoder';
@@ -8,7 +7,7 @@ import { DocumentService } from '../../../services/document.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SearchBarComponent, CardComponent],
+  imports: [CardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -57,7 +56,6 @@ export class DashboardComponent {
         throw new Error("Invalid token structure");
     }
   }
-
 
     // Método para redirecionar para outra página
     navigateToDocuments(): void {
