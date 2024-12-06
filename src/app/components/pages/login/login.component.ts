@@ -131,6 +131,16 @@ export class LoginComponent {
       }
     });
   }
+ notImplementedYet(event: Event) {
+    event.preventDefault();
+    Swal.fire({
+      title: 'Funcionalidade em desenvolvimento!',
+      text: 'Este método de login ainda não está disponível. Por favor, cadastre-se ou realize o login normalmente enquanto trabalhamos nessa funcionalidade.',
+      icon: 'info',
+      confirmButtonText: 'Entendi!',
+    });
+  }
+  
   
   
 }

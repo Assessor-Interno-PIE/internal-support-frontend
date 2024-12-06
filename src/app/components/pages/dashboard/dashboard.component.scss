@@ -1,9 +1,9 @@
 section {
-    max-height: 1080px;
-    padding-bottom: var(--space-xs) !important;
-    padding-left: calc(var(--space-6xl) * 2) !important;
-    padding-right: var(--space-2xl) !important;
-  }
+  max-height: 1080px;
+  padding-bottom: var(--space-xs) !important;
+  padding-left: calc(var(--space-6xl) * 2) !important;
+  padding-right: var(--space-2xl) !important;
+}
 
 /* Estilo do card */
 .custom-card {
@@ -11,23 +11,23 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: auto; /* Ajuste a altura para ser automática */
+  height: auto;
   border-radius: 10px;
-  transition: all 0.3s ease; /* Transição suave ao diminuir o tamanho */
+  transition: all 0.3s ease;
 }
 
 .custom-card-body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 10px 15px; /* Ajusta o padding para diminuir a altura */
+  padding: 10px 15px;
   transition: padding 0.3s ease;
 }
 
 .custom-card-content {
   display: flex;
   align-items: center;
-  width: 100%; /* Ocupa o máximo de espaço disponível */
+  width: 100%;
 }
 
 
@@ -36,32 +36,32 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px; /* Reduz o tamanho do ícone */
-  height: 50px; /* Reduz o tamanho do ícone */
-  flex-shrink: 0; /* Impede que o ícone encolha */
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
 }
 
 .custom-icon {
   color: #12509b;
-  font-size: 1.8rem; /* Tamanho reduzido do ícone */
+  font-size: 1.8rem;
   transition: font-size 0.3s ease;
 }
 
 .custom-text-container {
   padding-left: 15px;
-  max-width: calc(100% - 60px); /* Ajusta a largura do texto */
+  max-width: calc(100% - 60px);
 }
 
 .custom-text {
   font-weight: 500;
   color: #707EAE;
-  font-size: 0.9vw; /* Ajuste proporcional da fonte */
-  overflow: hidden; /* Impede o texto de transbordar */
+  font-size: 0.9vw;
+  overflow: hidden;
 }
 
 .custom-number {
   color: #12509b;
-  font-size: 1.5vw; /* Ajuste proporcional do número */
+  font-size: 1.5vw;
   margin: 0;
   transition: font-size 0.3s ease;
 }
@@ -69,29 +69,29 @@ section {
 
 @media (max-width: 1500px) {
   .custom-card {
-    height: auto; /* Ajusta a altura do card para auto */
-    width: 31%; /* Ajusta a largura do card */
+    height: auto;
+    width: 31%;
   }
 
   .custom-card-body {
-    padding: 10px; /* Diminui o padding para caber melhor */
+    padding: 10px;
   }
 
   .custom-icon-container {
-    width: 50px; /* Reduz o tamanho do ícone */
+    width: 50px;
     height: 50px;
   }
 
   .custom-icon {
-    font-size: 1.7rem; /* Reduz o tamanho do ícone */
+    font-size: 1.7rem;
   }
 
   .custom-number {
-    font-size: 1.8vw; /* Ajuste dinâmico do número */
+    font-size: 1.8vw;
   }
 
   .custom-text {
-    font-size: 1vw; /* Ajusta o texto proporcionalmente */
+    font-size: 1vw;
   }
 }
 
@@ -105,68 +105,12 @@ section {
   }
 
   .custom-icon-container {
-    width: 45px; /* Ícone ainda menor */
+    width: 45px;
     height: 45px;
   }
 
   .custom-icon {
-    font-size: 1.5rem; /* Ícone reduzido */
-  }
-
-  .custom-number {
-    font-size: 1.5vw; /* Ajuste do número */
-  }
-
-  .custom-text {
-    font-size: 1vw; /* Texto reduzido */
-  }
-}
-
-@media (max-width: 1024px) {
-  .custom-card {
-    height: auto;
-    width: 30%; /* Ajusta a largura do card */
-  }
-
-  .custom-card-body {
-    padding: 5px;
-  }
-
-  .custom-icon-container {
-    width: 40px; /* Ícone ainda menor */
-    height: 40px;
-  }
-
-  .custom-icon {
-    font-size: 1.4rem; /* Ícone ainda menor */
-  }
-
-  .custom-number {
-    font-size: 1.4vw;
-  }
-
-  .custom-text {
-    font-size: 1vw; /* Texto reduzido */
-  }
-}
-
-@media (max-width: 992px) {
-  .custom-card {
-    height: auto;
-    width: 40%; /* Ajusta a largura do card */
-  }
-
-  .custom-card-body {
-    padding: 5px;
-  }
-
-  .custom-icon-container {
-    width: 40px; /* Ícone ainda menor */
-    height: 40px;
-  }
-
-  .custom-icon {
-    font-size: 1.3rem; /* Ícone ainda menor */
+    font-size: 1.5rem;
   }
 
   .custom-number {
@@ -174,7 +118,63 @@ section {
   }
 
   .custom-text {
-    font-size: 1.3vw; /* Texto reduzido */
+    font-size: 1vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .custom-card {
+    height: auto;
+    width: 30%;
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.4rem;
+  }
+
+  .custom-number {
+    font-size: 1.4vw;
+  }
+
+  .custom-text {
+    font-size: 1vw;
+  }
+}
+
+@media (max-width: 992px) {
+  .custom-card {
+    height: auto;
+    width: 40%;
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.3rem;
+  }
+
+  .custom-number {
+    font-size: 1.5vw;
+  }
+
+  .custom-text {
+    font-size: 1.3vw;
   }
 }
 
@@ -194,7 +194,7 @@ section {
   }
 
   .custom-icon {
-    font-size: 1.3rem; /* Ícone ainda menor */
+    font-size: 1.3rem;
   }
 
   .custom-number {
@@ -202,14 +202,14 @@ section {
   }
 
   .custom-text {
-    font-size: 1.3vw; /* Texto reduzido ainda mais */
+    font-size: 1.3vw;
   }
 }
 
 @media (max-width: 576px) {
   .custom-card {
     height: auto;
-    width: 100%; /* Ocupa toda a largura disponível */
+    width: 100%;
   }
 
   .custom-card-body {
@@ -222,7 +222,7 @@ section {
   }
 
   .custom-icon {
-    font-size: 1.2rem; /* Tamanho bem reduzido para telas pequenas */
+    font-size: 1.2rem;
   }
 
   .custom-number {
@@ -230,6 +230,6 @@ section {
   }
 
   .custom-text {
-    font-size: 1.75vw; /* Texto bem pequeno */
+    font-size: 1.75vw;
   }
 }
