@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Document } from '../models/document';
 import { Observable } from 'rxjs';
@@ -20,6 +20,11 @@ export class DocumentService {
 
   findAll(): Observable<Document[]> {
     return this.http.get<Document[]>(this.API + "/find-all");
+  }
+
+  findAllPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(`${this.API}/find-all/paginated`, { params });
   }
 
   findById(id: number): Observable<Document> {

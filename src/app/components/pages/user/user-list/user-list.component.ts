@@ -27,47 +27,62 @@ notificationService = inject(NotificationService);
 
 
  // Variáveis de Paginação
+ totalElements: number = 0;
  paginatedUsers: User[] = [];  // Usuários exibidos na página atual
  currentPage: number = 1;  // Página atual
  itemsPerPage: number = 5;  // Itens por página
  totalPages: number = 1;  // Total de páginas
 
 constructor(){
-this.findAll();
+this.loadPaginatedUsers();
 }
 
-findAll(): void {
-  this.userService.findAll().subscribe({
-    next: (lista) => {
-      this.users = lista;
-      this.totalPages = Math.ceil(this.users.length / this.itemsPerPage);
-      this.updatePage(); // Atualiza a lista paginada
-      console.log('Usuários carregados com sucesso!');
+// findAll(): void {
+//   this.userService.findAll().subscribe({
+//     next: (lista) => {
+//       this.users = lista;
+//       this.totalPages = Math.ceil(this.users.length / this.itemsPerPage);
+//       this.updatePage(); // Atualiza a lista paginada
+//       console.log('Usuários carregados com sucesso!');
+//     },
+//     error: () => {
+//       console.log('Erro ao carregar usuários.');
+//     },
+//   });
+// }
+
+
+
+loadPaginatedUsers(page: number = 0, size: number = 5): void {
+  this.userService.findAllPaginated(page, size).subscribe({
+    next: (response) => {
+      this.paginatedUsers = response.content || [];
+      this.totalElements = response.totalElements || 0;
+      this.currentPage = response.number + 1;
+      this.totalPages = response.totalPages || 1;
+
+      if (this.paginatedUsers.length === 0 && this.currentPage > 1) {
+        this.goToPage(this.currentPage - 1);
+      }
     },
-    error: () => {
-      console.log('Erro ao carregar usuários.');
+    error: (err) => {
+      console.log('Erro ao carregar docmentos paginados:', err);
     },
   });
 }
 
 
-updatePage() {
-  const start = (this.currentPage - 1) * this.itemsPerPage;
-  const end = start + this.itemsPerPage;
-  this.paginatedUsers = this.users.slice(start, end);
-}
 
 // Função para navegar entre as páginas
 goToPage(page: number) {
   if (page < 1 || page > this.totalPages) return;
   this.currentPage = page;
-  this.updatePage();  // Atualiza a lista para a nova página
+  this.loadPaginatedUsers(page - 1, this.itemsPerPage); // Atualiza a lista para a nova página
 }
 
 // Função para alterar o número de itens por página
 changePageSize() {
-  this.totalPages = Math.ceil(this.users.length / this.itemsPerPage);
-  this.goToPage(1);  // Volta para a primeira página após alterar a quantidade de itens por página
+  this.loadPaginatedUsers(0, this.itemsPerPage); // Volta para a primeira página após alterar a quantidade de itens por página
 }
 
 deletar(id: number): void {
@@ -86,12 +101,7 @@ deletar(id: number): void {
         next: () => {
           this.notificationService.handleSuccess('Usuário deletado com sucesso!');
           this.users = this.users.filter(user => user.id !== id);
-          this.updatePage();
-
-          if (this.paginatedUsers.length === 0 && this.currentPage > 1) {
-            this.currentPage--;
-            this.updatePage();
-          }
+          this.updateListUsers()
         },
         error: () => {
           this.notificationService.handleError('Erro ao deletar o usuário.');
@@ -100,6 +110,21 @@ deletar(id: number): void {
     }
   });
 }
+
+  // Função para att a lista de documentos após a exclusão
+  private updateListUsers(): void {
+    this.userService.findAllPaginated(this.currentPage - 1, this.itemsPerPage).subscribe({
+      next: (response) => {
+        if (response.content.length === 0 && this.currentPage > 1) {
+          this.currentPage -= 1;
+        }
+        this.loadPaginatedUsers(this.currentPage - 1, this.itemsPerPage);
+      },
+      error: () => {
+        Swal.fire('Erro!', 'Erro ao carregar dados após exclusão.', 'error');
+      },
+    });
+  }
 
 // Função para rastrear os usuários pelo ID (necessário para *ngFor)
 trackById(index: number, user: User): number {

@@ -50,7 +50,7 @@
     </table>
 
     <!-- Exibe a paginação apenas se houver mais de 5 usuarios -->
-    <div *ngIf="users.length > 5" class="d-flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between mt-3">
       <div>
         <label for="itemsPerPage" class="custom-label">Itens por página:</label>
         <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage"

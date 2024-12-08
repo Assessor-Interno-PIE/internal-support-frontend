@@ -72,8 +72,7 @@
       </tbody>
     </table>
 
-    <!-- Exibe a paginação apenas se houver mais de 5 documentos -->
-    <div *ngIf="documents.length > 5" class="d-flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between mt-3">
       <div>
         <label for="itemsPerPage" class="custom-label">Itens por página:</label>
         <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage"

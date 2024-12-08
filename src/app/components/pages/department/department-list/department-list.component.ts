@@ -19,12 +19,13 @@ import { NotificationService } from '../../../../services/notification.service';
   styleUrls: ['./department-list.component.scss'],
 })
 export class DepartmentListComponent {
-  departments: Department[] = [];  // Lista completa de departamentos
+
+  departments: Department[] = [];
   department: Department = new Department(0, '', [], []);
   departmentStatsDTO: DepartmentStatsDTO = new DepartmentStatsDTO(0, 0);
   selectedDepartment?: Department;
   relatedDocuments: Document[] = [];
-  relatedUsers: User[] = [];  
+  relatedUsers: User[] = [];
   isUsersPopupOpen = false;
   isDocumentsPopupOpen = false;
 
@@ -34,63 +35,64 @@ export class DepartmentListComponent {
   notificationService = inject(NotificationService);
 
   // Variáveis de Paginação
-  paginatedDepartments: Department[] = [];  // Departamentos exibidos na página atual
-  currentPage: number = 1;  // Página atual
-  itemsPerPage: number = 5;  // Itens por página
-  totalPages: number = 1;  // Total de páginas
+  totalElements: number = 0;
+  paginatedDepartments: Department[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalPages: number = 1;
 
   constructor() {
-    this.findAll();
+    this.loadPaginatedDepartments();
   }
 
-  // Carregar todos os departamentos
-  findAll(): void {
-    this.departmentService.findAll().subscribe({
-      next: (lista) => {
-        this.departments = lista;
-        this.totalPages = Math.ceil(this.departments.length / this.itemsPerPage);
-        this.updatePage(); // Atualiza a lista paginada ao carregar os dados
-        console.log('Departamentos carregados com sucesso!');
+  loadPaginatedDepartments(page: number = 0, size: number = 5): void {
+    this.departmentService.findAllPaginated(page, size).subscribe({
+      next: (response) => {
+        this.paginatedDepartments = response.content || [];
+        this.totalElements = response.totalElements || 0;
+        this.currentPage = response.number + 1;
+        this.totalPages = response.totalPages || 1;
+
+        // Verifica se a página atual está vazia e ajusta
+        if (this.paginatedDepartments.length === 0 && this.currentPage > 1) {
+          this.goToPage(this.currentPage - 1);
+        }
       },
-      error: () => {
-        console.log('Erro ao carregar departamentos.');
+      error: (err) => {
+        console.error('Erro ao carregar departamentos paginados:', err);
       },
     });
   }
 
-  // Atualiza a lista de departamentos paginada com base na página atual
-  updatePage() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.paginatedDepartments = this.departments.slice(start, end);
-  }
 
-  // Função para navegar entre as páginas
-  goToPage(page: number) {
+  goToPage(page: number): void {
     if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
-    this.updatePage();  // Atualiza a lista para a nova página
+    this.loadPaginatedDepartments(page - 1, this.itemsPerPage);
   }
 
-  // Função para alterar o número de itens por página
-  changePageSize() {
-    this.totalPages = Math.ceil(this.departments.length / this.itemsPerPage);
-    this.goToPage(1);  // Volta para a primeira página após alterar a quantidade de itens por página
+
+  changePageSize(): void {
+    this.loadPaginatedDepartments(0, this.itemsPerPage);
   }
 
   deletar(id: number): void {
     Swal.fire({
       title: 'Você tem certeza?',
-      text: 'Esta ação não pode ser desfeita!',
+      text: 'Esta ação não poderá ser desfeita!',
       icon: 'warning',
       showCancelButton: true,
+      confirmButtonColor: '#ec7324',
+      cancelButtonColor: '#3085d6',
       confirmButtonText: 'Sim, deletar!',
       cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
+        // Verifique se existem documentos relacionados
         this.documentService.findDocumentsByDepartment(id).subscribe((documents: Document[]) => {
           this.relatedDocuments = documents;
   
+          // Verifique se existem usuários relacionados
           this.userService.findUsersByDepartment(id).subscribe((users: User[]) => {
             this.relatedUsers = users;
   
@@ -98,7 +100,7 @@ export class DepartmentListComponent {
               const htmlContent = `
                 <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
                   <h3 style="color: #d9534f;">Não é possível deletar o departamento!</h3>
-                  <p>Este departamento possui relações ativas com <strong>documentos</strong> e <strong>usuários</strong>.</p>
+                  <p>Este departamento possui relações ativas com <strong>documentos</strong> ou <strong>usuários</strong>.</p>
                   <p>Por favor, remova ou associe os documentos e usuários a outros departamentos antes de excluir este departamento.</p>
                   
                   <div style="margin-top: 20px;">
@@ -125,7 +127,7 @@ export class DepartmentListComponent {
                     </ul>
                   </div>
   
-                  <p style="margin-top: 20px;">Após remover essas relações, você poderá excluir o departamento com segurança.</p>
+                  <p style="margin-top: 15px;">Após remover essas relações, você poderá excluir o departamento com segurança.</p>
                 </div>
               `;
               Swal.fire({
@@ -133,22 +135,19 @@ export class DepartmentListComponent {
                 title: 'Aviso',
                 html: htmlContent,
                 showCancelButton: false,
+                confirmButtonColor: '#ec7324',
                 confirmButtonText: 'OK',
               });
             } else {
+              // Se não houver relações, prosseguir com a exclusão
               this.departmentService.deleteById(id).subscribe({
                 next: () => {
                   this.notificationService.handleSuccess('Departamento deletado com sucesso!');
-                  this.departments = this.departments.filter(department => department.id !== id);
-                  this.updatePage();
-                  if (this.paginatedDepartments.length === 0 && this.currentPage > 1) {
-                    this.currentPage--;
-                    this.updatePage();
-                  }
+                  this.updateListDocuments(); // Atualiza a lista com a paginação
                 },
                 error: () => {
                   this.notificationService.handleError('Erro ao deletar o departamento.');
-                }
+                },
               });
             }
           });
@@ -156,8 +155,24 @@ export class DepartmentListComponent {
       }
     });
   }
+  
 
-  // Função para rastrear os departamentos pelo ID (necessário para *ngFor)
+  // Função para att a lista de documentos após a exclusão
+  private updateListDocuments(): void {
+    this.departmentService.findAllPaginated(this.currentPage - 1, this.itemsPerPage).subscribe({
+      next: (response) => {
+        if (response.content.length === 0 && this.currentPage > 1) {
+          this.currentPage -= 1;
+        }
+        this.loadPaginatedDepartments(this.currentPage - 1, this.itemsPerPage);
+      },
+      error: () => {
+        Swal.fire('Erro!', 'Erro ao carregar dados após exclusão.', 'error');
+      },
+    });
+  }
+
+  //ratreia os departamentos pelo id
   trackById(index: number, department: Department): number {
     return department.id;
   }

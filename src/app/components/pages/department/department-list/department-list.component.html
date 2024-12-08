@@ -48,10 +48,9 @@
           </tr>
         </ng-template>
       </tbody>
-    </table>
+    </table> 
 
-    <!-- Exibe a paginação apenas se houver mais de 5 departamentos -->
-    <div *ngIf="departments.length > 5" class="d-flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between mt-3">
       <div>
         <label for="itemsPerPage" class="custom-label">Itens por página:</label>
         <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage"
@@ -70,6 +69,10 @@
             (click)="goToPage(currentPage - 1)">
             <i class="fas fa-angle-left"></i>
           </a>
+        </li>
+        
+        <li class="p-2" style="color: #707EAE;">
+          <span class="">{{ currentPage }} de {{ totalPages }}</span>
         </li>
         <li class="page-item me-2" [ngClass]="{'disabled': currentPage === totalPages}">
           <a class="page-link ms-2 border-3 hover-custom" href="javascript:void(0)" (click)="goToPage(currentPage + 1)">
