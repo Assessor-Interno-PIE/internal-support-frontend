@@ -183,3 +183,35 @@ td {
     width: 100%;
   }
 }
+
+@media (max-width: 576px) {
+  .custom-select {
+    width: 100%;
+  }
+
+  .table th,
+  .table td {
+    font-size: 0.8rem;
+    /* Reduzir o tamanho da fonte em telas pequenas */
+    padding: 0.5rem;
+    /* Ajustar o padding */
+  }
+
+  .d-flex {
+    flex-direction: column;
+    /* Mudar a direção do flex em telas pequenas */
+    align-items: flex-start;
+    /* Alinhar itens ao início */
+  }
+
+  .acoes {
+    padding-right: 0;
+    /* Remover padding em telas pequenas */
+  }
+
+  .acoes-btn {
+    padding-right: 0;
+    /* Remover padding em telas pequenas */
+  }
+
+}

@@ -5,56 +5,55 @@
 
 <!-- Lista de Usuários -->
 <section class="mt-4 mb-4 container-fluid">
-  <div class="bg-white p-4 rounded shadow-sm">
-    <div class="d-flex justify-content-between">
-      <h4 style="color: #12509b;">Lista de Usuários</h4>
+  <div class="bg-white p-4 rounded-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+      <h4 style="color: #12509b;" class="mb-3 mb-md-0">Lista de Usuários</h4>
       <a href="admin/users/add" class="btn mb-2 p-2" style="background-color: #ec7324; color: white; font-weight:500;">
         <i class="fa-solid fa-circle-plus me-2"></i>Adicionar Usuário
       </a>
     </div>
-    <table class="table table-light table-hover mt-2 shadow-sm">
-      <thead>
-        <tr>
-          <th scope="col" class="text-start">Nome</th>
-          <th scope="col" class="text-start">Username</th>
-          <th scope="col" class="text-center">Departamento</th>
-          <th scope="col" class="text-center">Nivel de Acesso</th>
-          <th scope="col" class="acoes text-center">Ações</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        <ng-container *ngIf="paginatedUsers.length > 0; else noUsers">
-          <tr *ngFor="let user of paginatedUsers; trackBy: trackById">
-            <td class="text-start table-cell-truncate">{{ user.name }}</td>
-            <td class="text-start table-cell-truncate">{{ user.username }}</td>
-            <td class="text-center table-cell-truncate">{{ user.department.name }}</td>
-            <td class="text-center">{{ user.isAdmin == 1 ? 'Admin' : 'Não Admin' }}</td>
-            <td class="text-center">
-              <a class="btn btn-primary me-2" href="admin/users/edit/{{user.id}}">
-                <i class="fas fa-pen"></i>
-              </a>
-              <button class="btn btn-danger" (click)="deletar(user.id)">
-                <i class="fas fa-trash "></i>
-              </button>
-            </td>
-          </tr>
-        </ng-container>
-        <ng-template #noUsers>
+    <div class="table-responsive">
+      <table class="table table-light table-hover mt-2 shadow-sm">
+        <thead>
           <tr>
-            <td colspan="6" class="text-center">
-              Nenhum Usuário encontrado.
-            </td>
+            <th scope="col" class="text-start">Nome</th>
+            <th scope="col" class="text-start">Username</th>
+            <th scope="col" class="text-center">Departamento</th>
+            <th scope="col" class="text-center">Nível de Acesso</th>
+            <th scope="col" class="acoes text-center">Ações</th>
           </tr>
-        </ng-template>
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="table-group-divider">
+          <ng-container *ngIf="paginatedUsers.length > 0; else noUsers">
+            <tr *ngFor="let user of paginatedUsers; trackBy: trackById">
+              <td class="text-start table-cell-truncate">{{ user.name }}</td>
+              <td class="text-start table-cell-truncate">{{ user.username }}</td>
+              <td class="text-center table-cell-truncate">{{ user.department.name }}</td>
+              <td class="text-center">{{ user.isAdmin == 1 ? 'Admin' : 'Não Admin' }}</td>
+              <td class="text-center" id="buttons">
+                <a class="btn btn-primary me-2" href="admin/users/edit/{{user.id}}">
+                  <i class="fas fa-pen"></i>
+                </a>
+                <button class="btn btn-danger" (click)="deletar(user.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #noUsers>
+            <tr>
+              <td colspan="5" class="text-center">Nenhum Usuário encontrado.</td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- Exibe a paginação apenas se houver mais de 5 usuarios -->
-    <div *ngIf="users.length > 5" class="d-flex justify-content-between mt-3">
-      <div>
+    <!-- Exibe a paginação apenas se houver mais de 5 usuários -->
+    <div class="d-flex justify-content-between align-items-center mt-3 flex-wrap">
+      <div class="mb-2">
         <label for="itemsPerPage" class="custom-label">Itens por página:</label>
-        <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage"
-          (change)="changePageSize()">
+        <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="changePageSize()">
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="25">25</option>
@@ -65,8 +64,7 @@
       <!-- Controles de Paginação -->
       <ul class="pagination align-items-center mt-3 mb-0">
         <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
-          <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)"
-            (click)="goToPage(currentPage - 1)">
+          <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)" (click)="goToPage(currentPage - 1)">
             <i class="fas fa-angle-left"></i>
           </a>
         </li>

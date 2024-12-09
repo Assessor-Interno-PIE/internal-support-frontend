@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -15,6 +15,11 @@ export class UserService {
   API = environment.API+"/api/users";
 
   constructor() { }
+
+  findAllPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(`${this.API}/find-all/paginated`, { params });
+  }
   
   findAll(): Observable<User[]>{
     return this.http.get<User[]>(this.API+"/find-all");

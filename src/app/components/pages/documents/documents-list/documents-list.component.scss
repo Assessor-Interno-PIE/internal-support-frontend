@@ -255,3 +255,31 @@ td {
 .pagination .page-item .page-link:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 0.8rem;
+  }
+
+  .custom-select {
+    width: 100%;
+  }
+
+  .pagination .page-item .page-link {
+    font-size: 0.8rem;
+  }
+}
+
+@media  (max-width: 1235px) {
+  #buttons>a{
+    margin: 0 0 4px !important;
+  }
+}
+
+@media  (max-width: 1283px) {
+  #buttons>a{
+    margin: 0 2px 4px !important;
+  }
+}
+  

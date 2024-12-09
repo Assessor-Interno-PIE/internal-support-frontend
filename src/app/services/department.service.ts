@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Department } from '../models/department';
@@ -20,6 +20,11 @@ export class DepartmentService {
   
   findAll(): Observable<Department[]>{
     return this.http.get<Department[]>(this.API+"/find-all");
+  }
+
+  findAllPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(`${this.API}/find-all/paginated`, { params });
   }
 
   findById(id: number): Observable<Department>{

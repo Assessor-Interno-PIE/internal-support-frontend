@@ -1,38 +1,42 @@
 <section>
   <div class="logo position-absolute" style="top: -5px; right:0; left:-20px;">
-    <img src="assets/images/logo.png" style="width:100%; max-width: 290px;" alt="Logo"/>
+    <img src="assets/images/logo.png" style="width:100%; max-width: 290px;" alt="Logo" />
   </div>
-  
+
   <div class="container bg-white" id="container" #container>
     <!-- Formulário de Registro -->
     <div class="form-container sign-up">
       <form (ngSubmit)="onSubmitRegister()">
         <h1>Criar Conta</h1>
         <div class="social-icons">
-          <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-google"></i>
+          </a>
+          <a href="#" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="#" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
         </div>
-        <span> ou use seu e-mail para registro</span>
+        <span> ou crie sua conta</span>
         <input [(ngModel)]="userRegister.name" type="text" placeholder="Nome" name="name" required>
         <input [(ngModel)]="userRegister.username" type="text" placeholder="Username" name="username" required>
         <input [(ngModel)]="userRegister.password" type="password" placeholder="Senha" name="password" required>
-        
-        
+
+
         <div class="d-flex">
           <div class="form-groupCombo">
             <div class="entryarea mb-1">
-              <div class="dropdown " > 
-                <button 
-                  class="btn dropdown-toggle"
-                  [ngClass]="{ 'selected': userRegister.department && userRegister.department.name }"
-                  type="button" 
-                  id="departmentDropdown" 
-                  data-bs-toggle="dropdown" 
-                  aria-expanded="false"
-                >
-                  {{ userRegister.department && userRegister.department.name ? userRegister.department.name : 'Selecione um Departamento' }}
+              <div class="dropdown ">
+                <button class="btn dropdown-toggle"
+                  [ngClass]="{ 'selected': userRegister.department && userRegister.department.name }" type="button"
+                  id="departmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ userRegister.department && userRegister.department.name ? userRegister.department.name : 'Selecione
+                  um Departamento' }}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="departmentDropdown">
                   <li *ngFor="let dept of departments">
@@ -41,7 +45,7 @@
                     </a>
                   </li>
                 </ul>
-              </div> 
+              </div>
             </div>
           </div>
         </div>
@@ -54,10 +58,18 @@
       <form (ngSubmit)="onSubmitLogin()">
         <h1>Entrar</h1>
         <div class="social-icons">
-          <a href="#" class="icon"><i class="fa-brands fa-google"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-          <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-google"></i>
+          </a>
+          <a href="#" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="#" (click)="notImplementedYet($event)" class="icon">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
         </div>
         <span> ou use seu username e senha</span>
         <input [(ngModel)]="login.username" type="username" placeholder="Username" name="username" required>
