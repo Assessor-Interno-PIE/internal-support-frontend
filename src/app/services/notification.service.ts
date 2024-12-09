@@ -20,4 +20,17 @@ export class NotificationService {
       icon: 'error',
     });
   }
+
+  handleAlert(title: string, message: string, icon: 'success' | 'error' | 'warning' | 'info' | 'question'): void {
+    Swal.fire({
+      title: title,
+      text: message,
+      icon: icon,
+      confirmButtonColor: "#ec7324",
+      customClass: {
+        popup: 'swal-popup-high-zindex',
+      },
+    });
+  }
 }
+

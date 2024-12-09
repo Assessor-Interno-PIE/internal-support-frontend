@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { Decoder } from '../../../decoder/decoder';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-configuracoes',
@@ -13,6 +14,8 @@ import { Decoder } from '../../../decoder/decoder';
   styleUrls: ['./configuracoes.component.scss']
 })
 export class ConfiguracoesComponent{ 
+
+  notificationService = inject(NotificationService);
 
   logout(): void {
     window.location.href = '/login';
@@ -35,34 +38,34 @@ export class ConfiguracoesComponent{
   updatePassword() {
     const token = localStorage.getItem('token');
     if (!token) {
-      alert('Token não encontrado. Faça login novamente.');
+      this.notificationService.handleAlert('Alerta', 'Token não encontrado! Faça o login novamente.', 'warning');
       return;
     }
 
     const user = this.decoder.decodeJwt(token);
     if (!user || !user.id) {
-      alert('Usuário inválido. Faça login novamente.');
+      this.notificationService.handleAlert('Alerta', 'Usuário inválido. Faça login novamente.', 'warning');
       return;
     }
 
     if (this.newPassword.trim() === '') {
-      alert('Digite a nova senha.');
+      this.notificationService.handleAlert('Alerta', 'Digite a nova senha.', 'warning');
       return;
     }
 
     const userId = +user.id;
     this.userService.updatePassword(userId, this.newPassword).subscribe({
       next: () => {
-        alert('Senha alterada com sucesso!');
+        this.notificationService.handleSuccess('Senha alterada com sucesso!');
         this.showPasswordForm = false;
         this.newPassword = '';
       },
       error: (err) => {
         console.error('Erro ao atualizar senha:', err);
         if (err.status === 0) {
-          alert('Erro de conexão: Verifique o servidor.');
+          this.notificationService.handleError('Erro de conexão: Verifique o servidor.');
         } else {
-          alert(`Erro ${err.status}: ${err.message}`);
+          this.notificationService.handleError(`Erro ${err.status}: ${err.message}`);
         }
       }
     });
