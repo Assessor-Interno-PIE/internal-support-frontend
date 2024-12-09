@@ -112,9 +112,84 @@ p{
 }
 
 .vertical-line {
-  width: 1.5px; /* Largura da linha */
-  height: 354px; /* Altura desejada */
-  background-color: #124f9b; /* Cor da linha */
+  width: 1.5px;
+  height: 354px;
+  background-color: #124f9b;
   border-radius: 5px;
-  margin: 0 10px; /* Espaçamento lateral opcional */
+  margin: 0 10px;
+}
+
+
+
+@media (max-width: 576px) {
+  .perfil-container {
+    padding: 15px;
+  }
+
+  .perfil-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .perfil-foto {
+    width: 150px;
+    height: 150px;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  p {
+    font-size: 0.9em;
+  }
+
+  .vertical-line {
+    display: none;
+  }
+
+  .separator-container {
+    grid-template-columns: 1fr;
+    margin-bottom: 20px;
+  }
+
+  .separator-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .perfil-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .perfil-foto {
+    width: 200px;
+    height: 200px;
+  }
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  .vertical-line {
+    display: none;
+  }
+
+  .separator-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .separator-title {
+    font-size: 1.7rem;
+  }
 }
