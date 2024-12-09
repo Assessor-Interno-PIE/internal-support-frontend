@@ -5,6 +5,7 @@ import { jwtDecode, JwtPayload } from 'jwt-decode';
 import { Login } from './login';
 import { User } from '../models/user';
 import { Registration } from './registration';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ import { Registration } from './registration';
 export class AuthService {
 
   http = inject(HttpClient);
-  API = 'http://localhost:5000/api';
+  //API = 'http://localhost:5000/api';
+  API = environment.API+"/api";
 
   constructor() {}
 

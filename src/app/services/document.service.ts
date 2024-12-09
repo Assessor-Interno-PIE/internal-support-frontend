@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Department } from '../models/department';
 import { HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,8 @@ export class DocumentService {
 
   http = inject(HttpClient);
 
-  API = ("http://localhost:5000/api/documents"); //alterei pra porta 5000, estava 8080
+  //API = ("http://localhost:5000/api/documents"); //alterei pra porta 5000, estava 8080
+  API = environment.API+"/api/documents";
 
   constructor() { }
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Department } from '../models/department';
 import { User } from '../models/user';
 import { DepartmentStatsDTO } from '../models/DTO/department-stats-dto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class DepartmentService {
 
   http = inject(HttpClient);
 
-  API = ("http://localhost:5000/api/departments"); //alterei pra porta 5000, estava 8080
+  //API = ("http://localhost:5000/api/departments"); //alterei pra porta 5000, estava 8080
+  API = environment.API+"/api/departments";
 
   constructor() { }
   

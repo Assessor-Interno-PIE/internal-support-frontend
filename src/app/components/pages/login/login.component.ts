@@ -101,8 +101,8 @@ export class LoginComponent {
       }
     });
   }
-  
 
+  
   onSubmitRegister() {
     if (!this.userRegister.name || !this.userRegister.username || !this.userRegister.password) {
       Swal.fire('Atenção!', 'Por favor, preencha todos os campos obrigatórios!', 'warning');
