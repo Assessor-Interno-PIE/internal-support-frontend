@@ -1,28 +1,235 @@
 section {
-    max-height: 1080px;
-    padding-bottom: var(--space-xs) !important;
-    padding-left: calc(var(--space-6xl) * 2) !important;
-    padding-right: var(--space-2xl) !important;
-  }
+  max-height: 1080px;
+  padding-bottom: var(--space-xs) !important;
+  padding-left: calc(var(--space-6xl) * 2) !important;
+  padding-right: var(--space-2xl) !important;
+}
+
+/* Estilo do card */
+.custom-card {
+  width: 26%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.custom-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 15px;
+  transition: padding 0.3s ease;
+}
+
+.custom-card-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
 
-  .titulo-header{
-    background:color-mix(in lab, #000000 26%, transparent);
-    --backdrop: blur(25px) saturate(120%);
-    backdrop-filter: var(--backdrop);
-    background: linear-gradient(to bottom, #12509bc6 10%, #12509b49 100%);
-    border-bottom: 2px solid #ffffff;
-    
+.custom-icon-container {
+  background-color: #F4F7FE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.custom-icon {
+  color: #12509b;
+  font-size: 1.8rem;
+  transition: font-size 0.3s ease;
+}
+
+.custom-text-container {
+  padding-left: 15px;
+  max-width: calc(100% - 60px);
+}
+
+.custom-text {
+  font-weight: 500;
+  color: #707EAE;
+  font-size: 0.9vw;
+  overflow: hidden;
+}
+
+.custom-number {
+  color: #12509b;
+  font-size: 1.5vw;
+  margin: 0;
+  transition: font-size 0.3s ease;
+}
+
+
+@media (max-width: 1500px) {
+  .custom-card {
+    height: auto;
+    width: 31%;
   }
 
-  .fundo-atv{
-    margin-top: -15px;
-    margin-left: -10px;
-    --backdrop: blur(25px) saturate(120%);
-    padding: 15px 0;
-    border-top: 2px solid #939393;
-    backdrop-filter: var(--backdrop);
-    background-color: #0000007c;
+  .custom-card-body {
+    padding: 10px;
   }
-  
-  
+
+  .custom-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .custom-icon {
+    font-size: 1.7rem;
+  }
+
+  .custom-number {
+    font-size: 1.8vw;
+  }
+
+  .custom-text {
+    font-size: 1vw;
+  }
+}
+
+@media (max-width: 1200px) {
+  .custom-card {
+    height: auto;
+  }
+
+  .custom-card-body {
+    padding: 8px;
+  }
+
+  .custom-icon-container {
+    width: 45px;
+    height: 45px;
+  }
+
+  .custom-icon {
+    font-size: 1.5rem;
+  }
+
+  .custom-number {
+    font-size: 1.5vw;
+  }
+
+  .custom-text {
+    font-size: 1vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .custom-card {
+    height: auto;
+    width: 30%;
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.4rem;
+  }
+
+  .custom-number {
+    font-size: 1.4vw;
+  }
+
+  .custom-text {
+    font-size: 1vw;
+  }
+}
+
+@media (max-width: 992px) {
+  .custom-card {
+    height: auto;
+    width: 40%;
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.3rem;
+  }
+
+  .custom-number {
+    font-size: 1.5vw;
+  }
+
+  .custom-text {
+    font-size: 1.3vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-card {
+    height: auto;
+    width: 60%;
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .custom-icon {
+    font-size: 1.3rem;
+  }
+
+  .custom-number {
+    font-size: 1.8vw;
+  }
+
+  .custom-text {
+    font-size: 1.3vw;
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-card {
+    height: auto;
+    width: 100%;
+  }
+
+  .custom-card-body {
+    padding: 5px;
+  }
+
+  .custom-icon-container {
+    width: 35px;
+    height: 35px;
+  }
+
+  .custom-icon {
+    font-size: 1.2rem;
+  }
+
+  .custom-number {
+    font-size: 2vw;
+  }
+
+  .custom-text {
+    font-size: 1.75vw;
+  }
+}

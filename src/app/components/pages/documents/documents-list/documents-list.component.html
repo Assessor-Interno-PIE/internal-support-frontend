@@ -1,20 +1,10 @@
-<!-- <section class="titulo-header d-flex justify-content-between w-100">
-  <h2 class="d-flex align-items-center"
-    style="font-family:'Gotham'; color:#ffffff; margin-top: 15px; text-shadow: 2px 2px 5px #00000049">
-    <i class="fas fa-file-alt me-2"></i>
-    Documentos
-  </h2>
-  <app-search-bar style="margin-top: -5px !important;"></app-search-bar>
-</section> -->
-
-
 <section class="mt-3">
   <p class="m-0" style="font-weight: 500; color: #707EAE;">Pages / Documentos</p>
   <h2 style="color: #12509b;">Documentos</h2>
 </section>
 
 <!-- Lista de Documentos -->
-<section class="mt-4 mb-4 containe-fluid">
+<section class="mt-4 mb-4 container-fluid">
   <div class="bg-white p-4 rounded-4 shadow-sm ">
     <div class="d-flex justify-content-between">
       <h4 style="color: #12509b;">Lista de Documentos</h4>
@@ -26,64 +16,62 @@
       }
     </div>
 
-
-    <table class="table table-light table-hover mt-2 shadow-sm">
-      <thead>
-        <tr>
-          <th scope="col" class="text-start">Nome</th>
-          <th scope="col" class="text-center">Descrição</th>
-          <th scope="col" class="text-center">Departamento</th>
-          <th scope="col" class="text-center">Arquivo</th>
-          <th scope="col" class="acoes text-center">Ações</th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider ">
-        <ng-container *ngIf="paginatedDocuments.length > 0; else noDocuments">
-          <tr *ngFor="let document of paginatedDocuments; trackBy: trackById">
-            <td class="text-start text-truncate"
-              style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-              {{ document.title }}
-            </td>
-            <td class="text-center text-truncate"
-              style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-              {{ document.description }}
-            </td>
-            <td class="text-center">{{ document.department.name }}</td>
-            <td class="text-center">
-              <!-- Botão para visualizar o PDF -->
-              <button (click)="visualizarPdf(document.id)" class="btn btn-link p-0">
-                <i class="fas fa-file-pdf"></i> Visualizar PDF
-              </button>
-            </td>
-
-            <td class="text-center">
-              <a class="btn btn-success me-2" (click)="downloadDocument(document.id)" target="_blank">
-                <i class="fas fa-download"></i>
-              </a>
-
-              @if (authService.hasPermission(1)) {
-              <a class="btn btn-primary me-2" href="admin/documentos/edit/{{document.id}}">
-                <i class="fas fa-pen"></i>
-              </a>
-              <button class="btn btn-danger" (click)="deletar(document.id)">
-                <i class="fas fa-trash"></i>
-              </button>
-              }
-            </td>
-          </tr>
-        </ng-container>
-        <ng-template #noDocuments>
+    <!-- Adicionando a classe table-responsive -->
+    <div class="table-responsive">
+      <table class="table table-light table-hover mt-2 shadow-sm">
+        <thead>
           <tr>
-            <td colspan="5" class="text-center">
-              Nenhum documento encontrado.
-            </td>
+            <th scope="col" class="text-start">Nome</th>
+            <th scope="col" class="text-center">Descrição</th>
+            <th scope="col" class="text-center">Departamento</th>
+            <th scope="col" class="text-center">Arquivo</th>
+            <th scope="col" class="acoes text-center">Ações</th>
           </tr>
-        </ng-template>
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="table-group-divider">
+          <ng-container *ngIf="paginatedDocuments.length > 0; else noDocuments">
+            <tr *ngFor="let document of paginatedDocuments; trackBy: trackById">
+              <td class="text-start text-truncate"
+                style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                {{ document.title }}
+              </td>
+              <td class="text-center text-truncate"
+                style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                {{ document.description }}
+              </td>
+              <td class="text-center">{{ document.department.name }}</td>
+              <td class="text-center">
+                <button (click)="visualizarPdf(document.id)" class="btn btn-link p-0">
+                  <i class="fas fa-file-pdf"></i> Visualizar PDF
+                </button>
+              </td>
+              <td class="text-center" id="buttons">
+                <a class="btn btn-success me-2" (click)="downloadDocument(document.id)" target="_blank">
+                  <i class="fas fa-download"></i>
+                </a>
+                @if (authService.hasPermission(1)) {
+                <a class="btn btn-primary me-2" href="admin/documentos/edit/{{document.id}}">
+                  <i class="fas fa-pen"></i>
+                </a>
+                <button class="btn btn-danger" (click)="deletar(document.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+                }
+              </td>
+            </tr>
+          </ng-container>
+          <ng-template #noDocuments>
+            <tr>
+              <td colspan="5" class="text-center">
+                Nenhum documento encontrado.
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+    </div>
 
-    <!-- Exibe a paginação apenas se houver mais de 5 documentos -->
-    <div *ngIf="documents.length > 5" class="d-flex justify-content-between mt-3">
+    <div class="d-flex justify-content-between mt-3">
       <div>
         <label for="itemsPerPage" class="custom-label">Itens por página:</label>
         <select class="form-select custom-select" id="itemsPerPage" [(ngModel)]="itemsPerPage"

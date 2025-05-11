@@ -3,227 +3,30 @@
   <h2 style="color: #12509b;">Dashboard</h2>
 </section>
 
-
-<!-- <section class="titulo-header d-flex justify-content-between w-100">
-  <h2 class="d-flex align-items-center"
-    style="font-family:'Gotham'; color:#ffffff; margin-top: 15px;text-shadow: 2px 2px 5px #00000049">
-    <i class="fas fa-rocket me-2"></i>
-    Dashboard
-  </h2>
-  <app-search-bar style="margin-top: -5px !important;"></app-search-bar>
-</section> -->
-
-
-<!-- <section class="mb-4" style="background: linear-gradient(140deg,#ffffff 25%,  #a7a7a7 50%, #12509b00 79%);">
-  <div class="container ">
-    <div class="d-flex justify-content-between align-items-center">
-      <h4 class="p-3 mb-0" style=" color: #12509b">Bem vindo, {{ usuario.nome }}</h4>
-    </div>
-    <div class="d-flex justify-content-between">
-      <div class="separator-container" aria-hidden="true">
-        <div class="separator">
-          <div class="line">
-            <div class="notch"></div>
-          </div>
-        </div>
-      </div>
-      <div class="separator-container2" aria-hidden="true">
-        <div class="separator2">
-          <div class="line2">
-            <div class="notch2"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
 <section class="mt-2 row">
-  <div class="mb-4 col-lg-3 col-sm-6">
-    <div class="h-100 card rounded-4 border-0">
-      <div class="d-flex align-items-center justify-content-between card-body">
-        <div class="d-flex align-items-center">
-          <div class="p-3 rounded-circle"
-            style="background-color: #F4F7FE; display: flex; align-items: center; justify-content: center;">
-            <i class="fa-solid fa-book-open-reader fa-2x" style="color: #12509b;"></i>
+  <div class="mb-4" id="card-doc">
+    <div class="card rounded-4 border-0 custom-card">
+      <div class="card-body d-flex align-items-center justify-content-between custom-card-body">
+        <div class="d-flex align-items-center custom-card-content">
+          <div class="p-3 rounded-circle d-flex justify-content-center align-items-center custom-icon-container">
+            <i class="fa-solid fa-book-open-reader custom-icon"></i>
           </div>
-          <div class="p-2">
-            <p class="subtitle text-sm mb-0" style="font-weight: 500; color: #707EAE;">Documentos do meu departamento
-            </p>
-            <h4 class="fw-normal m-0" style="color: #12509b;">3</h4>
+          <div class="custom-text-container" style="padding: 6px 0 6px 6px;">
+            <p class="subtitle text-sm mb-0 custom-text">Documentos de {{ usuario.departamento }}</p>
+            <h4 class="fw-normal m-0 custom-number">{{ numDocs }}</h4>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- <div class="mb-4 col-lg-3 col-sm-6">
-    <div class="h-100 card rounded-4 border-0">
-      <div class="d-flex align-items-center justify-content-between card-body">
-        <div class="d-flex align-items-center">
-          <div class="p-3 rounded-circle" style="background-color: #F4F7FE; display: flex; align-items: center; justify-content: center;">
-            <i class="fa-solid fa-bookmark fa-2x" style="color: #ec7324;"></i>
-          </div>
-          <div class="p-2">
-            <p class="subtitle text-sm mb-0" style="font-weight: 500; color: #707EAE;">Documentos Salvos</p>
-            <h4 class="fw-normal m-0" style="color: #ec7324;">22</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
 </section>
 
+<app-card></app-card>
 
 <!-- <section>
-
-  <div class="mb-3 row">
-    <div class="mb-4 col-lg-3 col-sm-6">
-      <div class="h-100 card">
-        <div class="d-flex align-items-center justify-content-between card-body">
-          <div>
-           
-            <h4 class="fw-normal text-red">120</h4>
-            <p class="subtitle text-sm text-muted mb-0">Documentos Lidos</p>
-          </div>
-          <div class="flex-shrink-0 ms-3"><svg class="svg-icon text-red">
-              <use xlink:href="#speed-1"></use>
-            </svg></div>
-        </div>
-        <div class="py-3 bg-secondary card-footer">
-        </div>
-      </div>
-    </div>
-    <div class="mb-4 col-lg-3 col-sm-6">
-      <div class="h-100 card">
-        <div class="d-flex align-items-center justify-content-between card-body">
-          <div>
-            <h4 class="fw-normal text-blue">584</h4>
-            <p class="subtitle text-sm text-muted mb-0">Documentos Salvos</p>
-          </div>
-          <div class="flex-shrink-0 ms-3"><svg class="svg-icon text-blue">
-              <use xlink:href="#news-1"></use>
-            </svg></div>
-        </div>
-        <div class="py-3 card-footer" style="background-color:orange;">
-        </div>
-      </div>
-    </div>
-    <div class="mb-4 col-lg-3 col-sm-6">
-      <div class="h-100 card">
-        <div class="d-flex align-items-center justify-content-between card-body">
-          <div>
-            <h4 class="fw-normal text-primary">876</h4>
-            <p class="subtitle text-sm text-muted mb-0">Documentos do Seu Departamento</p>
-          </div>
-          <div class="flex-shrink-0 ms-3"><svg class="svg-icon text-primary">
-              <use xlink:href="#bookmark-1"></use>
-            </svg></div>
-        </div>
-        <div class="py-3 card-footer" style="background-color:#12509b">
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-
-
-<section>
-
-
-
-  <div class="mb-4 col-lg-12 col-sm-6">
-    <div class="h-100 card rounded-4 border-0 p-3">
-      <div class="d-flex align-items-center justify-content-between card-body">
-        <div class="d-flex justify-content-between w-100">
-          <h5 class="subtitle text-sm mb-0" style="font-weight: 500; color: #12509b;">
-            Últimos Lançamentos de Documentos
-          </h5>
-          
-          <h6 class="fw-normal mb-0 me-2" style="color: #707EAE;">
-            Departamento: DepartamentoExemplo
-          </h6>
-        </div>
-        <div>
-          <button class="btn text-white d-flex p-2 align-items-center"
-            style="font-weight: 500; background-color: #12509b;" (click)="navigateToDocuments()">
-            <i class="fas fa-folder-open"></i>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="d-flex p-3 w-100 h-100 rounded-4" style="background-color: #F4F7FE;">
-        <app-card></app-card>
-
-
-
-        <!-- <div class="col-lg-4 col-md-6 p-2">
-          <div class="card rounded-4 border-0">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0" style="color: #ec7324;">Título do Documento 1</h5>
-                <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#details1" aria-expanded="false"
-                aria-controls="details1">
-                <i class="bi bi-chevron-down" style="color: #ec7324;"></i>
-              </button>
-            </div>
-            <div id="details1" class="collapse mt-3">
-              <p>Detalhes do Documento 1. Aqui você pode adicionar mais informações sobre este documento, como
-                descrição, data de criação, etc.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-4 col-md-6 p-2">
-          <div class="card rounded-4 border-0">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0" style="color: #ec7324;">Título do Documento 2</h5>
-                <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#details2" aria-expanded="false"
-                aria-controls="details2">
-                <i class="bi bi-chevron-down" style="color: #ec7324;"></i>
-              </button>
-
-              </div>
-              <div id="details2" class="collapse mt-3">
-                <p>Detalhes do Documento 2. Mais informações sobre este documento estarão aqui quando o botão for
-                  clicado.</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div class="col-lg-4 col-md-6 p-2">
-          <div class="card rounded-4 border-0">
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center">
-                <h5 class="mb-0" style="color: #ec7324;">Título do Documento 3</h5>
-                <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#details3" aria-expanded="false"
-                  aria-controls="details3">
-                  <i class="bi bi-chevron-down" style="color: #ec7324;"></i>
-                </button>
-              </div>
-              <div id="details3" class="collapse mt-3">
-                <p>Detalhes do Documento 3. Aqui vão mais informações do conteúdo relacionado ao terceiro documento.</p>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </div>
-      <!-- Botão Ver Mais -->
-
-
-    </div>
-  </div>
-
-</section>
-
-<section>
   <div class="d-flex flex-row w-100 gap-5">
 
-    <!-- <div class="mb-4 col-lg col-sm-6">
+    <div class="mb-4 col-lg col-sm-6">
       <div class="h-100 card rounded-4 border-0 p-2">
         <div class="d-flex align-items-center justify-content-between card-body">
           <div class="d-flex justify-content-between w-100">
@@ -247,10 +50,9 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div> 
 
-    <!-- Card de Usuários -->
-    <!-- <div class="mb-4 col-lg-5 col-sm-6">
+     <div class="mb-4 col-lg-5 col-sm-6">
       <div class="h-100 card rounded-4 border-0 p-2">
         <div class="d-flex align-items-center justify-content-between card-body">
           <div class="d-flex justify-content-between w-100">
@@ -277,10 +79,9 @@
           </div>
         </div>
       </div>
-    </div> -->
-
+    </div> 
   </div>
-</section>
+</section> -->
 
 
 

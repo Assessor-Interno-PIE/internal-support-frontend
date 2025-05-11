@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Department } from '../models/department';
 import { User } from '../models/user';
 import { DepartmentStatsDTO } from '../models/DTO/department-stats-dto';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,18 @@ export class DepartmentService {
 
   http = inject(HttpClient);
 
-  API = ("http://localhost:5000/api/departments"); //alterei pra porta 5000, estava 8080
+  //API = ("http://localhost:5000/api/departments"); //alterei pra porta 5000, estava 8080
+  API = environment.API+"/api/departments";
 
   constructor() { }
   
   findAll(): Observable<Department[]>{
     return this.http.get<Department[]>(this.API+"/find-all");
+  }
+
+  findAllPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(`${this.API}/find-all/paginated`, { params });
   }
 
   findById(id: number): Observable<Department>{

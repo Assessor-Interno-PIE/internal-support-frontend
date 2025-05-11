@@ -6,7 +6,7 @@ export const loginGuard: CanActivateFn = (route, state) => {
 
   let authService = inject(AuthService);
 
-  if(!(authService.hasPermission(1)) && state.url == "/admin/users"){
+  if(!(authService.hasPermission()) && state.url == "/admin/users"){
     alert("Voce nao tem permissao pra acessar essa rota");
     return false;
   }

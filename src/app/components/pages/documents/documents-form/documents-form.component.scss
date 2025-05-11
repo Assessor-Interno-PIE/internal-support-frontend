@@ -7,7 +7,6 @@ section {
     padding-top: var(--space-m);
 }
 
-
 .div-form {
     border-radius: 8px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -38,37 +37,29 @@ h2 {
 
 h5 {
     color: #ec7324
-        /* Cor do título do formulário */
-}
+        }
 
 .bg-light {
     background-color: #ffffff;
-    /* Fundo branco para o formulário e tabela */
-}
+    }
 
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: #f2f2f2;
-    /* Cor de fundo para linhas ímpares da tabela */
-}
+    }
 
 .table th {
     background-color: #007bff;
-    /* Cor de fundo para o cabeçalho da tabela */
-    color: white;
-    /* Cor do texto do cabeçalho da tabela */
-}
+        color: white;
+    }
 
 .table td {
     vertical-align: middle;
-    /* Alinhamento vertical das células */
-}
+    }
 
 .btn-primary {
     background-color: #007bff;
-    /* Cor primária do botão */
-    border-color: #007bff;
-    /* Cor da borda do botão */
-}
+        border-color: #007bff;
+    }
 
 .btn-danger {
     background-color: #dc3545;
@@ -112,19 +103,14 @@ input {
     position: absolute;
     outline: none;
     font-size: 1em;
-    /* Ajustado para tamanhos adequados */
-    padding: 20px 20px 20px 20px;
-    /* Ajuste o padding inferior para descer o texto */
-    line-height: normal;
-    /* Ajustado para coincidir com a altura do input */
-    border-radius: 6px;
+        padding: 20px 20px 20px 20px;
+        line-height: normal;
+        border-radius: 6px;
     border: 2px solid #828282;
     background: transparent;
     transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    /* Transições suaves */
-    z-index: 1;
-    /* Mudado para um valor mais adequado */
-}
+        z-index: 1;
+    }
 
 
 
@@ -132,31 +118,26 @@ textarea {
     position: absolute;
     outline: none;
     font-size: 1em;
-    /* Ajustado para tamanhos adequados */
-    padding: 0 20px;
+        padding: 0 20px;
     border-radius: 6px;
     border: 2px solid #828282;
     background: transparent;
     transition: border 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    /* Transições suaves */
-    z-index: 1;
-    /* Mudado para um valor mais adequado */
-    resize: none;
+        z-index: 1;
+        resize: none;
 }
 
 
 
 .labelline {
     font-size: 1.5em;
-    /* Ajustado para o tamanho do texto */
-    color: #828282;
+        color: #828282;
     padding: 0 10px;
     margin: 0 15px;
     margin-top: 1px;
     background-color: rgb(255, 255, 255);
     transition: all 0.2s ease;
-    /* Inclui todos os efeitos de transição */
-}
+    }
 
 input:focus,
 textarea:focus,
@@ -177,8 +158,7 @@ textarea:valid+.labelline {
     padding: 0 10px;
     transform: translate(-10px, -20px) scale(0.88);
     z-index: 1;
-    /* Aumentado para garantir que o rótulo fique acima do input */
-}
+    }
 
 
 .form-group {
@@ -210,14 +190,11 @@ textarea:valid+.labelline {
 
 .department-select {
     margin-top: 30px;
-    /* Adiciona espaçamento superior para afastar do campo acima */
-}
+    }
 
 
 .btn.selected {
-    border: 2px solid #ec7324 !important; /* Borda laranja */
-    color: #124f9b !important; /* Texto azul */
-  }
+    border: 2px solid #ec7324 !important;     color: #124f9b !important;   }
   
 
 
@@ -279,12 +256,10 @@ textarea:valid+.labelline {
 
 
 .file-input.selected {
-    border: 2px solid #ec7324 !important; /* Borda laranja */
-  }
+    border: 2px solid #ec7324 !important;   }
   
   .labelline.selected {
-    color: #124f9b !important; /* Texto azul */
-  }
+    color: #124f9b !important;   }
   
 
 
@@ -294,12 +269,9 @@ textarea:valid+.labelline {
     top: 0 !important;
     left: 0 !important;
     z-index: 1050 !important;
-    /* Certifique-se de que o modal tenha o z-index adequado */
-}
+    }
 
 .swal2-popup {
     margin: 0 auto !important;
-    /* Centraliza o modal */
-    max-width: 80% !important;
-    /* Ajuste para que o modal não ultrapasse o tamanho da tela */
-}
+        max-width: 80% !important;
+    }

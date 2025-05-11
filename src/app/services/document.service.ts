@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Document } from '../models/document';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Department } from '../models/department';
 import { HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -14,12 +15,18 @@ export class DocumentService {
 
   http = inject(HttpClient);
 
-  API = ("http://localhost:5000/api/documents"); //alterei pra porta 5000, estava 8080
+  //API = ("http://localhost:5000/api/documents"); //alterei pra porta 5000, estava 8080
+  API = environment.API+"/api/documents";
 
   constructor() { }
 
   findAll(): Observable<Document[]> {
     return this.http.get<Document[]>(this.API + "/find-all");
+  }
+
+  findAllPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(`${this.API}/find-all/paginated`, { params });
   }
 
   findById(id: number): Observable<Document> {

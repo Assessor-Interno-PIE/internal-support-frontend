@@ -1,66 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { debounceTime, Subject } from 'rxjs';
-import { BackgroundService } from '../../../services/background.service';
-
-interface BackgroundOption {
-  type: 'image';
-  value: string;
-  label: string;
-}
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { UserService } from '../../../services/user.service';
+import { Decoder } from '../../../decoder/decoder';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-configuracoes',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './configuracoes.component.html',
   styleUrls: ['./configuracoes.component.scss']
 })
-export class ConfiguracoesComponent implements OnInit {
-  backgroundOptions: BackgroundOption[] = [
-    { type: 'image', value: '/assets/images/background.jpeg', label: 'Imagem 1' },
-    { type: 'image', value: 'assets/images/background2.jpg', label: 'Imagem 2' },
-    { type: 'image', value: 'assets/images/background3.jpg', label: 'Imagem 3' },
-    { type: 'image', value: 'assets/images/background4.jpg', label: 'Imagem 4' },
-    { type: 'image', value: 'assets/images/background5.jpg', label: 'Imagem 5' },
-    { type: 'image', value: 'assets/images/background6.jpeg', label: 'Imagem 6' },
-    { type: 'image', value: 'assets/images/background7.jpeg', label: 'Imagem 7' },
-  ];
+export class ConfiguracoesComponent{ 
 
-  private changeBackgroundSubject = new Subject<string>();
-
-  constructor(private backgroundService: BackgroundService) { }
-
-  ngOnInit() {
-    this.preloadImages();
-    this.changeBackgroundSubject
-      .pipe(debounceTime(300)) // Aguarda 300ms antes de chamar a mudança
-      .subscribe(url => this.setBackground(url));
-  }
-
-  preloadImages() {
-    this.backgroundOptions.forEach(option => {
-      const img = new Image();
-      img.src = option.value;
-    });
-  }
-
-  setBackground(url: string) {
-    console.log('Mudando fundo para:', url);
-    this.backgroundService.setBackground(url);
-  }
-
-  onBackgroundChange(option: BackgroundOption) {
-    this.changeBackgroundSubject.next(option.value); // Chama o método de mudança de fundo
-  }
-
-  
-  isDropdownOpen: boolean = false;
-
-
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
-  }
+  notificationService = inject(NotificationService);
 
   logout(): void {
     window.location.href = '/login';
@@ -70,4 +25,51 @@ export class ConfiguracoesComponent implements OnInit {
   profileView(): void {
     window.location.href = 'admin/perfil';
   }
+
+    togglePasswordForm() {
+    this.showPasswordForm = !this.showPasswordForm;
+  }
+
+  decoder = new Decoder();
+  showPasswordForm: boolean = false;
+  newPassword: string = '';
+  http = inject(HttpClient);
+  userService = inject(UserService);
+  updatePassword() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.notificationService.handleAlert('Alerta', 'Token não encontrado! Faça o login novamente.', 'warning');
+      return;
+    }
+
+    const user = this.decoder.decodeJwt(token);
+    if (!user || !user.id) {
+      this.notificationService.handleAlert('Alerta', 'Usuário inválido. Faça login novamente.', 'warning');
+      return;
+    }
+
+    if (this.newPassword.trim() === '') {
+      this.notificationService.handleAlert('Alerta', 'Digite a nova senha.', 'warning');
+      return;
+    }
+
+    const userId = +user.id;
+    this.userService.updatePassword(userId, this.newPassword).subscribe({
+      next: () => {
+        this.notificationService.handleSuccess('Senha alterada com sucesso!');
+        this.showPasswordForm = false;
+        this.newPassword = '';
+      },
+      error: (err) => {
+        console.error('Erro ao atualizar senha:', err);
+        if (err.status === 0) {
+          this.notificationService.handleError('Erro de conexão: Verifique o servidor.');
+        } else {
+          this.notificationService.handleError(`Erro ${err.status}: ${err.message}`);
+        }
+      }
+    });
+  }
+
+    
 }

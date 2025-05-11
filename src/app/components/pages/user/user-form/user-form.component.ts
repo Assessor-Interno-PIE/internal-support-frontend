@@ -94,14 +94,24 @@ export class UserFormComponent {
   }
 
   updateUser(): void {
-    console.log('Atualizando usuário com isAdmin:', this.user.isAdmin);
-
-    this.userService.updateById(this.user.id, this.user).subscribe({
+    const userUpdatePayload = {
+      id: this.user.id,
+      name: this.user.name,
+      username: this.user.username,
+      password: this.user.password,
+      department: this.user.department,
+      isAdmin: this.user.isAdmin
+    };
+  
+    console.log("Payload para update:", userUpdatePayload);
+  
+    this.userService.updateById(this.user.id, userUpdatePayload).subscribe({
       next: () => {
         this.notificationService.handleSuccess('Usuário atualizado com sucesso!');
         this.router.navigate(['admin/users']);
       },
-      error: () => {
+      error: (error) => {
+        console.error('Erro ao atualizar usuário:', error);
         this.notificationService.handleError('Ocorreu um erro ao atualizar o usuário!');
       }
     });
