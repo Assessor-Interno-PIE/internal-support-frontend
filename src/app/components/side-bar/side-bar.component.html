@@ -32,7 +32,7 @@
           Dashboard
         </a>
       </li>
-      @if (authService.hasPermission(1)) {
+      @if (authService.hasPermission()) {
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/departamentos'"
           href="/admin/departamentos">
@@ -47,7 +47,7 @@
         </a>
       </li>
       
-      @if (authService.hasPermission(1)) {
+      @if (authService.hasPermission()) {
         <li>
           <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
             href="/admin/users">

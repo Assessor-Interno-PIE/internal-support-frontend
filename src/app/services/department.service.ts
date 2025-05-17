@@ -14,12 +14,12 @@ export class DepartmentService {
   http = inject(HttpClient);
 
   //API = ("http://localhost:5000/api/departments"); //alterei pra porta 5000, estava 8080
-  API = environment.API+"/api/departments";
+  API = environment.API+"/api/keycloak";
 
   constructor() { }
   
   findAll(): Observable<Department[]>{
-    return this.http.get<Department[]>(this.API+"/find-all");
+    return this.http.get<Department[]>(this.API+"/groups");
   }
 
   findAllPaginated(page: number, size: number): Observable<any> {
