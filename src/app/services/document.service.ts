@@ -30,7 +30,7 @@ export class DocumentService {
   }
 
   findById(id: number): Observable<Document> {
-    return this.http.get<Document>(this.API + "/find-by-id/" + id);
+    return this.http.get<Document>(this.API + "/" + id);
   }
 
   updateDocument(id: number, file: File, document: Document): Observable<string> {
@@ -40,7 +40,7 @@ export class DocumentService {
     formData.append('description', document.description);
     formData.append('departmentId', document.department.id.toString());
 
-    return this.http.put<string>(this.API + "/edit/" + id, formData, { responseType: 'text' as 'json' });
+    return this.http.put<string>(this.API + "/" + id, formData, { responseType: 'text' as 'json' });
   }
 
   
