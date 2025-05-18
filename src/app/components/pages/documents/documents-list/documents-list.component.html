@@ -5,7 +5,7 @@
 
 <!-- Lista de Documentos -->
 <section class="mt-4 mb-4 container-fluid">
-  <div class="bg-white p-4 rounded-4 shadow-sm ">
+  <div class="bg-white p-4 rounded-4 shadow-sm">
     <div class="d-flex justify-content-between">
       <h4 style="color: #12509b;">Lista de Documentos</h4>
       @if (authService.hasPermission()) {
@@ -41,16 +41,17 @@
               </td>
               <td class="text-center">{{ document.department.name }}</td>
               <td class="text-center">
-                <button (click)="visualizarPdf(document.id)" class="btn btn-link p-0">
+                <button *ngIf="document.filePath" (click)="visualizarPdf(document)" class="btn btn-link p-0">
                   <i class="fas fa-file-pdf"></i> Visualizar PDF
                 </button>
+                <span *ngIf="!document.filePath">Sem arquivo</span>
               </td>
               <td class="text-center" id="buttons">
                 <a class="btn btn-success me-2" (click)="downloadDocument(document.id)" target="_blank">
                   <i class="fas fa-download"></i>
                 </a>
                 @if (authService.hasPermission()) {
-                <a class="btn btn-primary me-2" href="admin/documentos/edit/{{document.id}}">
+                <a class="btn btn-primary me-2" [href]="'admin/documentos/edit/' + document.id">
                   <i class="fas fa-pen"></i>
                 </a>
                 <button class="btn btn-danger" (click)="deletar(document.id)">
@@ -92,8 +93,9 @@
           </a>
         </li>
 
-        <li class="p-2" style="color: #707EAE;">
-          <span class="">{{ currentPage }} de {{ totalPages }}</span>
+        <!-- Botões para páginas específicas -->
+        <li class="page-item" *ngFor="let page of getPageNumbers()" [ngClass]="{'active': currentPage === page}">
+          <a class="page-link" href="javascript:void(0)" (click)="goToPage(page)">{{ page }}</a>
         </li>
 
         <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages}">
@@ -103,7 +105,6 @@
           </a>
         </li>
       </ul>
-
     </div>
   </div>
 </section>

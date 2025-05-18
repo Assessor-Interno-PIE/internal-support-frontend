@@ -26,11 +26,11 @@ export class DepartmentFormComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     if (id) {
       this.isEditMode = true;
-      this.loadDepartment(Number(id));
+      this.loadDepartment(id);
     }
   }
 
-  loadDepartment(id: number): void {
+  loadDepartment(id: string): void {
     this.departmentService.findById(id).subscribe({
       next: (department) => {
         this.department = department;
@@ -63,7 +63,7 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   updateDepartment(): void {
-    this.departmentService.updateById(Number(this.department.id), this.department).subscribe({
+    this.departmentService.updateById(this.department.id, this.department).subscribe({
       next: () => {
         this.notificationService.handleSuccess('Departamento atualizado com sucesso!');
         this.router.navigate(['admin/departamentos']);

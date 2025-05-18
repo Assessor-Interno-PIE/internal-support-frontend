@@ -1,9 +1,9 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { DocumentService } from '../../../../services/document.service';
 import { Document } from '../../../../models/document';
+import { Department } from '../../../../models/department';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
-import { Department } from '../../../../models/department';
 import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NotificationService } from '../../../../services/notification.service';
@@ -16,95 +16,105 @@ import { AuthService } from '../../../../auth/auth.service';
   templateUrl: './documents-list.component.html',
   styleUrls: ['./documents-list.component.scss']
 })
-export class DocumentsListComponent {
-  documents: Document[] = [];  // Lista completa de documentos
-  @Input() document: Document = new Document(0, '', new Department('', '', [], []), '', '');
-  selectedDocument?: Document = this.document;
-
-  authService = inject(AuthService);
-
-  documentService = inject(DocumentService);
-  notificationService = inject(NotificationService);
-
-  totalElements: number = 0;
+export class DocumentsListComponent implements OnInit {
   paginatedDocuments: Document[] = [];
+  totalElements: number = 0;
   currentPage: number = 1;
   itemsPerPage: number = 5;
   totalPages: number = 1;
 
-  constructor() {
+  authService = inject(AuthService);
+  documentService = inject(DocumentService);
+  notificationService = inject(NotificationService);
+  sanitizer = inject(DomSanitizer);
+
+  ngOnInit(): void {
     this.loadPaginatedDocuments();
   }
 
-  sanitizer = inject(DomSanitizer);
-
-  loadPaginatedDocuments(page: number = 0, size: number = 5): void {
+  loadPaginatedDocuments(page: number = 0, size: number = this.itemsPerPage): void {
     this.documentService.findAllPaginated(page, size).subscribe({
       next: (response) => {
-        this.paginatedDocuments = response.content || [];
+        // Mapeia o groupId para department.name
+        this.paginatedDocuments = (response.content || []).map((doc: any) => ({
+          id: doc.id,
+          title: doc.title,
+          description: doc.description,
+          filePath: doc.filePath,
+          addedBy: doc.addedBy,
+          department: { name: doc.groupId } // Mapeia groupId para department.name
+        }));
         this.totalElements = response.totalElements || 0;
-        this.currentPage = response.number + 1;
+        this.currentPage = response.number + 1; // API usa índice 0, UI usa índice 1
         this.totalPages = response.totalPages || 1;
 
         if (this.paginatedDocuments.length === 0 && this.currentPage > 1) {
-          this.goToPage(this.currentPage - 1);
+          this.goToPage(this.currentPage - 1); // Volta para a página anterior se a atual estiver vazia
         }
       },
       error: (err) => {
-        console.log('Erro ao carregar docmentos paginados:', err);
-      },
-    });
-  }
-
-  visualizarPdf(id: number) {
-    this.documentService.viewDocument(id).subscribe({
-      next: (blob) => {
-        const fileUrl = URL.createObjectURL(blob);
-        window.open(fileUrl, '_blank'); // Abre o PDF em uma nova aba
-      },
-      error: () => {
-        console.log('Erro', 'Erro ao carregar o arquivo.', 'error');
+        this.notificationService.handleError('Erro ao carregar documentos paginados.');
+        console.error('Erro:', err);
       }
     });
-
   }
+
+  visualizarPdf(document: Document): void {
+    if (document.filePath) {
+      try {
+        // Assume que filePath contém Base64 puro (sem prefixo "data:application/pdf;base64,")
+        const base64Data = document.filePath;
+        const binaryString = window.atob(base64Data);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+        const blob = new Blob([bytes], { type: 'application/pdf' });
+        const fileUrl = URL.createObjectURL(blob);
+        window.open(fileUrl, '_blank');
+        URL.revokeObjectURL(fileUrl);
+      } catch (error) {
+        this.notificationService.handleError('Erro ao visualizar o arquivo PDF.');
+        console.error('Erro ao decodificar Base64:', error);
+      }
+    } else {
+      this.notificationService.handleError('Nenhum arquivo disponível para visualização.');
+    }
+  }
+
   downloadDocument(id: number): void {
     this.documentService.downloadDocument(id).subscribe({
       next: (response) => {
-        // O backend já envia o arquivo com o tipo de conteúdo correto
         const contentDisposition = response.headers.get('Content-Disposition');
-        const fileName = contentDisposition ? contentDisposition.split('filename=')[1].replace(/"/g, '') : 'documento.pdf';
-        // Cria o Blob a partir da resposta
+        const fileName = contentDisposition
+          ? contentDisposition.split('filename=')[1].replace(/"/g, '')
+          : 'documento.pdf';
         const blob = response.body as Blob;
         const fileUrl = window.URL.createObjectURL(blob);
-        // Cria um link para o download
         const link = document.createElement('a');
         link.href = fileUrl;
         link.download = fileName;
         link.click();
-        // Libera a URL temporária
         window.URL.revokeObjectURL(fileUrl);
-        console.log('Sucesso', 'Sucesso em baixar o arquivo!', 'success');
+        this.notificationService.handleSuccess('Arquivo baixado com sucesso!');
       },
       error: () => {
-        console.log('Erro', 'Deu erro em baixar o arquivo!', 'error');
+        this.notificationService.handleError('Erro ao baixar o arquivo.');
       }
     });
   }
 
-  // Função para navegar entre as páginas
-  goToPage(page: number) {
+  goToPage(page: number): void {
     if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
     this.loadPaginatedDocuments(page - 1, this.itemsPerPage);
   }
 
-  changePageSize() {
+  changePageSize(): void {
+    this.currentPage = 1; // Reseta para a primeira página ao mudar o tamanho
     this.loadPaginatedDocuments(0, this.itemsPerPage);
   }
 
-
-  // Função para deletar o documento com confirmação de exclusão
   deletar(id: number): void {
     Swal.fire({
       title: 'Você tem certeza?',
@@ -120,49 +130,33 @@ export class DocumentsListComponent {
         this.documentService.delete(id).subscribe({
           next: () => {
             this.notificationService.handleSuccess('Documento deletado com sucesso!');
-            this.documents = this.documents.filter(document => document.id !== id);
-            this.updateListDocuments();
+            this.loadPaginatedDocuments(this.currentPage - 1, this.itemsPerPage);
           },
           error: () => {
-            this.notificationService.handleError('Erro ao deletar o decumento.');
-          },
+            this.notificationService.handleError('Erro ao deletar o documento.');
+          }
         });
       }
     });
   }
 
-  // Função para att a lista de documentos após a exclusão
-  private updateListDocuments(): void {
-    this.documentService.findAllPaginated(this.currentPage - 1, this.itemsPerPage).subscribe({
-      next: (response) => {
-        if (response.content.length === 0 && this.currentPage > 1) {
-          this.currentPage -= 1;
-        }
-        this.loadPaginatedDocuments(this.currentPage - 1, this.itemsPerPage);
-      },
-      error: () => {
-        Swal.fire('Erro!', 'Erro ao carregar dados após exclusão.', 'error');
-      },
-    });
+  getPageNumbers(): number[] {
+    const pages = [];
+    const maxPagesToShow = 5; // Limite de botões de página exibidos
+    let startPage = Math.max(1, this.currentPage - Math.floor(maxPagesToShow / 2));
+    let endPage = Math.min(this.totalPages, startPage + maxPagesToShow - 1);
+
+    if (endPage - startPage + 1 < maxPagesToShow) {
+      startPage = Math.max(1, endPage - maxPagesToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(i);
+    }
+    return pages;
   }
 
-  // Função para rastrear os documentos pelo ID (necessário para *ngFor)
   trackById(index: number, document: Document): number {
     return document.id;
   }
 }
-
-
-  // findAll(): void {
-  //   this.documentService.findAll().subscribe({
-  //     next: (lista) => {
-  //       this.documents = lista.sort((a, b) => b.id - a.id);  // Ordena por ID decrescente
-  //       this.totalPages = Math.ceil(this.documents.length / this.itemsPerPage);
-  //       this.updatePage(); // Atualiza a lista paginada ao carregar os dados
-  //       console.log('Documentos carregados com sucesso!');
-  //     },
-  //     error: () => {
-  //       console.log('Erro ao carregar documentos.');
-  //     },
-  //   });
-  // }

@@ -27,7 +27,7 @@ export class DepartmentService {
     return this.http.get<any>(`${this.API}/find-all/paginated`, { params });
   }
 
-  findById(id: number): Observable<Department>{
+  findById(id: string): Observable<Department>{
     return this.http.get<Department>(this.API+"/groups/"+id);
   }
 
@@ -36,12 +36,12 @@ export class DepartmentService {
   }
 
   // byId
-  updateById(id:number, department: Department): Observable<string>{
+  updateById(id:string, department: Department): Observable<string>{
     return this.http.put<string>(this.API+"/groups/"+id, department, {responseType: 'text' as 'json'});
   }
 
   // byId
-  deleteById(id:number): Observable<string>{
+  deleteById(id:string): Observable<string>{
     return this.http.delete<string>(this.API+"/groups/"+id, {responseType: 'text' as 'json'});
   }
 

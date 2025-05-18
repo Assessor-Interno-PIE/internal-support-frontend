@@ -32,7 +32,7 @@ export class DashboardComponent {
   }
 
   getNumDocs(): void {
-    this.documentService.findDocumentsByDepartment(this.usuario.idDepartamento).subscribe(documents => {
+    this.documentService.findDocumentsByDepartment(this.usuario.idDepartamento.toString()).subscribe(documents => {
         const numDocsL = documents.length;
         this.numDocs = numDocsL;
     });

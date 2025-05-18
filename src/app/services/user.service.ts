@@ -42,7 +42,7 @@ export class UserService {
     return this.http.delete<string>(this.API+"/delete-by-id/"+id, {responseType: 'text' as 'json'});
   }
 
-  findUsersByDepartment(departmentId: number): Observable<User[]> {
+  findUsersByDepartment(departmentId: string): Observable<User[]> {
     return this.http.get<User[]>(`${this.API}/by-department/${departmentId}`);
   }
 

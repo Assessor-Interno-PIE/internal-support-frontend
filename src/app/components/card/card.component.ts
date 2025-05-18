@@ -53,7 +53,7 @@ export class CardComponent {
   }
 
   findAll(): void {
-    this.documentService.findDocumentsByDepartment(this.getDepartmentId()).subscribe({
+    this.documentService.findDocumentsByDepartment(this.getDepartmentId().toString()).subscribe({
       next: (lista) => {
         this.documents = this.initializeDocuments(lista);
         console.log('Sucesso', 'Documentos carregados com sucesso!', 'success');

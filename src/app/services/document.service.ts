@@ -73,7 +73,7 @@ export class DocumentService {
     return this.http.delete<string>(this.API + "/" + id, { responseType: 'text' as 'json' });
   }
 
-  findDocumentsByDepartment(departmentId: number): Observable<Document[]> {
+  findDocumentsByDepartment(departmentId: string): Observable<Document[]> {
     return this.http.get<Document[]>(`${this.API}/by-department/${departmentId}`);
   }
 
