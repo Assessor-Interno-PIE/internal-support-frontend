@@ -27,9 +27,12 @@
               <a class="btn btn-primary me-2" href="admin/departamentos/edit/{{department.id}}">
                 <i class="fas fa-pen"></i>
               </a>
-              <button class="btn btn-danger" (click)="deletar(department.id)">
-                <i class="fas fa-trash"></i>
+              <button class="btn btn-danger">
+                <a href="http://localhost:8080" target="_blank"><i class="fas fa-trash"></i></a>
               </button>
+              <!-- <button class="btn btn-danger" (click)="deletar(department.id)">
+                <i class="fas fa-trash"></i>
+              </button> -->
             </td>
           </tr>
         </ng-container>

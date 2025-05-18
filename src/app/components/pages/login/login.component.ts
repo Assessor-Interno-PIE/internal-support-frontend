@@ -79,7 +79,7 @@ export class LoginComponent {
       next: (token) => {
         if (token) {
           this.authService.addToken(token);
-          this.router.navigate(['admin/dashboard']);
+          this.router.navigate(['admin/documentos']);
         } else {
           Swal.fire('Erro!', 'Usuário ou senha incorretos.', 'error');
         }

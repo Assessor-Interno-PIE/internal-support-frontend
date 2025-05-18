@@ -26,12 +26,18 @@
   <div class="sidebar-content d-flex flex-column p-0" id="div-content-dashboard">
     <ul class="nav d-flex justify-content-center flex-column mb-auto">
       <li>
+        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/documentos'"
+          href="/admin/documentos">
+          <i class="fas fa-file-text"></i> Documentos
+        </a>
+      </li>
+      <!-- <li>
         <a class="nav-link d-flex align-items-center w-100" [class.active]="currentRoute === '/admin/dashboard'"
           href="/admin/dashboard">
           <i class="fas fa-rocket"></i>
           Dashboard
         </a>
-      </li>
+      </li> -->
       @if (authService.hasPermission()) {
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/departamentos'"
@@ -40,17 +46,12 @@
         </a>
       </li>
       }
-      <li>
-        <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/documentos'"
-          href="/admin/documentos">
-          <i class="fas fa-file-text"></i> Documentos
-        </a>
-      </li>
+      
       
       @if (authService.hasPermission()) {
         <li>
           <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
-            href="/admin/users">
+            href="http://localhost:8080" target="_blank">
             <i class="fa-solid fa-users"></i> Usuários
           </a>
         </li>
@@ -58,7 +59,7 @@
       
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/configuracoes'"
-          href="/admin/configuracoes">
+          href="http://localhost:8080" target="_blank">
           <i class="fas fa-cog"></i> Configurações
         </a>
       </li>
