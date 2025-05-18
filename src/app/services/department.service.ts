@@ -28,21 +28,21 @@ export class DepartmentService {
   }
 
   findById(id: number): Observable<Department>{
-    return this.http.get<Department>(this.API+"/find-by-id/"+id);
+    return this.http.get<Department>(this.API+"/groups/"+id);
   }
 
   save(department: Department): Observable<string>{
-    return this.http.post<string>(this.API+"/save", department, {responseType: 'text' as 'json'});
+    return this.http.post<string>(this.API+"/groups", department, {responseType: 'text' as 'json'});
   }
 
   // byId
   updateById(id:number, department: Department): Observable<string>{
-    return this.http.put<string>(this.API+"/update-by-id/"+id, department, {responseType: 'text' as 'json'});
+    return this.http.put<string>(this.API+"/groups/"+id, department, {responseType: 'text' as 'json'});
   }
 
   // byId
   deleteById(id:number): Observable<string>{
-    return this.http.delete<string>(this.API+"/delete-by-id/"+id, {responseType: 'text' as 'json'});
+    return this.http.delete<string>(this.API+"/groups/"+id, {responseType: 'text' as 'json'});
   }
 
   // coloquei o objeto department entre primeiro parameto

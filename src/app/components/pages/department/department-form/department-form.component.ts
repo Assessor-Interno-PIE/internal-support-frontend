@@ -14,7 +14,7 @@ import { NotificationService } from '../../../../services/notification.service';
   styleUrls: ['./department-form.component.scss'],
 })
 export class DepartmentFormComponent implements OnInit {
-  @Input() department: Department = new Department(0, '', [], []);
+  @Input() department: Department = new Department('', '', [], []);
   isEditMode: boolean = false;
 
   router = inject(Router);
@@ -63,7 +63,7 @@ export class DepartmentFormComponent implements OnInit {
   }
 
   updateDepartment(): void {
-    this.departmentService.updateById(this.department.id, this.department).subscribe({
+    this.departmentService.updateById(Number(this.department.id), this.department).subscribe({
       next: () => {
         this.notificationService.handleSuccess('Departamento atualizado com sucesso!');
         this.router.navigate(['admin/departamentos']);

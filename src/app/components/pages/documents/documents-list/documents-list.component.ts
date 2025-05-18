@@ -18,7 +18,7 @@ import { AuthService } from '../../../../auth/auth.service';
 })
 export class DocumentsListComponent {
   documents: Document[] = [];  // Lista completa de documentos
-  @Input() document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
+  @Input() document: Document = new Document(0, '', new Department('', '', [], []), '', '');
   selectedDocument?: Document = this.document;
 
   authService = inject(AuthService);

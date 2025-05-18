@@ -2,12 +2,12 @@ import { User } from "./user";
 import { Document } from './document';
 
 export class Department {
-    id!: number;
+    id!: string;
     name!: string;
     documents!: Document[];
     users!: User[];
 
-    constructor(id:number, name:string,
+    constructor(id:string, name:string,
         documents: Document[], users: User[]
     ){
         this.id = id;

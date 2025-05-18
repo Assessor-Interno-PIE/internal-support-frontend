@@ -16,7 +16,7 @@ import { NotificationService } from '../../../../services/notification.service';
 })
 export class UserListComponent {
 users: User[] = [];
-user: User = new User(0,'','','', new Department(0,'',[],[]),0);
+user: User = new User(0,'','','', new Department('','',[],[]),0);
 selectedUser?: User;
 
 isUsersPopupOpen = false;

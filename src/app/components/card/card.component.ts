@@ -19,7 +19,7 @@ export class CardComponent {
   visibleCards: number = 8; // Número inicial de cards visíveis
   decoder = new Decoder;
 
-  @Input() document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
+  @Input() document: Document = new Document(0, '', new Department('', '', [], []), '', '');
 
   documentService = inject(DocumentService);
   router = inject(Router);

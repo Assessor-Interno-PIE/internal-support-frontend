@@ -20,7 +20,7 @@ import { NotificationService } from '../../../../services/notification.service';
 })
 export class DepartmentListComponent {
   // Variáveis de dados
-  department: Department = new Department(0, '', [], []);
+  department: Department = new Department('', '', [], []);
   departmentStatsDTO: DepartmentStatsDTO = new DepartmentStatsDTO(0, 0);
   selectedDepartment?: Department;
   relatedDocuments: Document[] = [];
@@ -161,7 +161,7 @@ export class DepartmentListComponent {
     });
   }
 
-  trackById(index: number, department: Department): number {
+  trackById(index: number, department: Department): string {
     return department.id;
   }
 }

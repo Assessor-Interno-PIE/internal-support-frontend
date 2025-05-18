@@ -28,7 +28,19 @@ export class AuthService {
   }
 
   addToken(token: string) {
-    localStorage.setItem('token', token);
+    try {
+      // Parseia o JSON retornado (string) para extrair o access_token
+      const tokenData = JSON.parse(token);
+      const accessToken = tokenData.access_token;
+      if (accessToken) {
+        localStorage.setItem('token', accessToken); // Salva apenas o access_token
+        console.log('Access token salvo:', accessToken); // Log para depuração
+      } else {
+        console.error('Nenhum access_token encontrado no JSON retornado');
+      }
+    } catch (e) {
+      console.error('Erro ao parsear o token:', e);
+    }
   }
 
   removeToken() {

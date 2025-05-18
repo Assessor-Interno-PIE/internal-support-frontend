@@ -16,7 +16,7 @@ import { NotificationService } from '../../../../services/notification.service';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent {
-  @Input() user: User = new User(0, '', '', '', new Department(0, '', [], []), 0);
+  @Input() user: User = new User(0, '', '', '', new Department('', '', [], []), 0);
   users: User[] = [];
   departments: Department[] = [];
   department: Department;
@@ -35,13 +35,13 @@ export class UserFormComponent {
       this.findUserById(id);
     }
 
-    this.department = new Department(0, '', [], []); 
+    this.department = new Department('', '', [], []); 
     this.findDepartments();
   }
 
   selectDepartment(department: Department | null): void {
     if (department === null) {
-      this.user.department = new Department(0, 'Selecione um Departamento', [], []);
+      this.user.department = new Department('0', 'Selecione um Departamento', [], []);
     } else {
       this.user.department = department;
     }

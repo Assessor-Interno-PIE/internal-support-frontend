@@ -19,10 +19,10 @@ import { NotificationService } from '../../../../services/notification.service';
   styleUrls: ['./documents-form.component.scss'],
 })
 export class DocumentsFormComponent {
-  document: Document = new Document(0, '', new Department(0, '', [], []), '', '');
+  document: Document = new Document(0, '', new Department('', '', [], []), '', '');
   documents: Document[] = [];
   departments: Department[] = [];
-  department: Department = new Department(0, '', [], []);
+  department: Department = new Department('', '', [], []);
   selectedFile!: File;
 
   router = inject(Router);
@@ -94,7 +94,7 @@ export class DocumentsFormComponent {
 
   selectDepartment(department: Department | null): void {
     if (department === null) {
-      this.document.department = new Department(0, 'Selecione um Departamento', [], []);
+      this.document.department = new Department('', 'Selecione um Departamento', [], []);
     } else {
       this.document.department = department;
     }

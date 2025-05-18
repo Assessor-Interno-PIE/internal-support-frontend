@@ -26,7 +26,7 @@ export class DocumentService {
 
   findAllPaginated(page: number, size: number): Observable<any> {
     const params = new HttpParams().set('page', page).set('size', size);
-    return this.http.get<any>(`${this.API}/find-all/paginated`, { params });
+    return this.http.get<any>(`${this.API}/paginated`, { params });
   }
 
   findById(id: number): Observable<Document> {
@@ -53,9 +53,10 @@ export class DocumentService {
     const formData: FormData = new FormData();
     // add new archives e other date to FormData
     formData.append('file', file);
-    formData.append('departmentId', department.id.toString());
+    formData.append('groupId', department.id.toString());
     formData.append('title', title);
     formData.append('description', description);
+    formData.append('addedBy', description);
     // return with request post to backend
     return this.http.post<string>(this.API + "/save", formData, { responseType: 'text' as 'json' });
   }

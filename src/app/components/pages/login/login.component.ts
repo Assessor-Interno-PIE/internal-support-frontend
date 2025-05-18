@@ -24,8 +24,8 @@ export class LoginComponent {
   login: Login = new Login();
 
   @ViewChild('container') container!: ElementRef;
-  @Input() user: User = new User(0,'','','', new Department(0,'',[],[]),0);
-  department: Department = new Department(0,'',[],[]);
+  @Input() user: User = new User(0,'','','', new Department('','',[],[]),0);
+  department: Department = new Department('','',[],[]);
   departments: Department[]=[];
   selectedUser?: User;
     username: string = '';
