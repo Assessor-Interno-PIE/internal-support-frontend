@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { Decoder } from '../../decoder/decoder';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,6 +12,8 @@ import { Decoder } from '../../decoder/decoder';
   styleUrl: './side-bar.component.scss'
 })
 export class SideBarComponent {
+  keycloakUrl = environment.KEYCLOAK;
+
   decoder = new Decoder();
   usuario = {
     nome: '',

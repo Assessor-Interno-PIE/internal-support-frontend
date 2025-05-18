@@ -1,3 +1,4 @@
 export const environment = {
-    API: "http://localhost:8000"
+    API: "http://localhost:8000",
+    KEYCLOAK: "http://localhost:8080"
 };

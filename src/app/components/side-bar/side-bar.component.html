@@ -51,7 +51,7 @@
       @if (authService.hasPermission()) {
         <li>
           <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/users'"
-            href="http://localhost:8080" target="_blank">
+            [href]="keycloakUrl" target="_blank">
             <i class="fa-solid fa-users"></i> Usuários
           </a>
         </li>
@@ -59,7 +59,7 @@
       
       <li>
         <a class="nav-link d-flex align-items-center" [class.active]="currentRoute === '/admin/configuracoes'"
-          href="http://localhost:8080" target="_blank">
+          [href]="keycloakUrl" target="_blank">
           <i class="fas fa-cog"></i> Configurações
         </a>
       </li>
@@ -79,11 +79,11 @@
       </p>
     </a>
     <ul class="p-2 dropdown-menu dropdown-menu-white text-small shadow" aria-labelledby="dropdownUser1">
-      <li> <a class="dropdown-item rounded-0" href="admin/perfil">
-          <i class="fas fa-user me-2 p-1"></i>Perfil</a></li>
-      <li>
+      <!-- <li> <a class="dropdown-item rounded-0" href="admin/perfil">
+          <i class="fas fa-user me-2 p-1"></i>Perfil</a></li> -->
+      <!-- <li>
         <hr class="dropdown-divider">
-      </li>
+      </li> -->
       <li><a class="dropdown-item rounded-0" href="">
           <i class="fas fa-right-from-bracket me-2 p-1"></i>Sair da conta</a></li>
     </ul>

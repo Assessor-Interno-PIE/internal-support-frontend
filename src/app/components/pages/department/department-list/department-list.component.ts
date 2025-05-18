@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { DepartmentStatsDTO } from '../../../../models/DTO/department-stats-dto';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../../../services/notification.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-department-list',
@@ -19,6 +20,7 @@ import { NotificationService } from '../../../../services/notification.service';
   styleUrls: ['./department-list.component.scss'],
 })
 export class DepartmentListComponent {
+  keycloakUrl = environment.KEYCLOAK;
   // Variáveis de dados
   department: Department = new Department('', '', [], []);
   departmentStatsDTO: DepartmentStatsDTO = new DepartmentStatsDTO(0, 0);

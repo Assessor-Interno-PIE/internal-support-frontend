@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NotificationService } from '../../../../services/notification.service';
 import { AuthService } from '../../../../auth/auth.service';
+import { DepartmentService } from '../../../../services/department.service';
 
 @Component({
   selector: 'app-documents-list',
@@ -17,44 +18,64 @@ import { AuthService } from '../../../../auth/auth.service';
   styleUrls: ['./documents-list.component.scss']
 })
 export class DocumentsListComponent implements OnInit {
-  paginatedDocuments: Document[] = [];
-  totalElements: number = 0;
-  currentPage: number = 1;
-  itemsPerPage: number = 5;
-  totalPages: number = 1;
+ paginatedDocuments: Document[] = [];
+  totalElements = 0;
+  currentPage = 1;
+  itemsPerPage = 5;
+  totalPages = 1;
+
+  departments: Department[] = []; // GUARDA OS DEPARTAMENTOS
 
   authService = inject(AuthService);
   documentService = inject(DocumentService);
   notificationService = inject(NotificationService);
   sanitizer = inject(DomSanitizer);
+  departmentService = inject(DepartmentService);
 
   ngOnInit(): void {
-    this.loadPaginatedDocuments();
+    this.loadDepartmentsAndDocuments();
   }
 
-  loadPaginatedDocuments(page: number = 0, size: number = this.itemsPerPage): void {
+  loadDepartmentsAndDocuments(): void {
+    this.departmentService.findAll().subscribe({ // supondo que você tenha findAll() aqui
+      next: (deps) => {
+        this.departments = deps;
+        this.loadPaginatedDocuments();
+      },
+      error: (err) => {
+        this.notificationService.handleError('Erro ao carregar departamentos.');
+        console.error(err);
+      }
+    });
+  }
+
+  getDepartmentNameById(id: string): string {
+    const dept = this.departments.find(d => d.id === id);
+    return dept ? dept.name : 'Desconhecido';
+  }
+
+  loadPaginatedDocuments(page = 0, size = this.itemsPerPage): void {
     this.documentService.findAllPaginated(page, size).subscribe({
       next: (response) => {
-        // Mapeia o groupId para department.name
         this.paginatedDocuments = (response.content || []).map((doc: any) => ({
           id: doc.id,
           title: doc.title,
           description: doc.description,
           filePath: doc.filePath,
           addedBy: doc.addedBy,
-          department: { name: doc.groupId } // Mapeia groupId para department.name
+          department: { name: this.getDepartmentNameById(doc.groupId) } // pega o nome certo aqui
         }));
         this.totalElements = response.totalElements || 0;
-        this.currentPage = response.number + 1; // API usa índice 0, UI usa índice 1
+        this.currentPage = response.number + 1;
         this.totalPages = response.totalPages || 1;
 
         if (this.paginatedDocuments.length === 0 && this.currentPage > 1) {
-          this.goToPage(this.currentPage - 1); // Volta para a página anterior se a atual estiver vazia
+          this.goToPage(this.currentPage - 1);
         }
       },
       error: (err) => {
         this.notificationService.handleError('Erro ao carregar documentos paginados.');
-        console.error('Erro:', err);
+        console.error(err);
       }
     });
   }
