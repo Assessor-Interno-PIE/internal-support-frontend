@@ -12,6 +12,7 @@ import { DepartmentListComponent } from './components/pages/department/departmen
 import { DepartmentFormComponent } from './components/pages/department/department-form/department-form.component';
 import { UserFormComponent } from './components/pages/user/user-form/user-form.component';
 import { UserListComponent } from './components/pages/user/user-list/user-list.component';
+import { AuditLogsComponent } from './components/pages/audit-logs/audit-logs.component';
 import { loginGuard } from './auth/login.guard';
 
 export const routes: Routes = [
@@ -38,7 +39,8 @@ export const routes: Routes = [
 
         {path: "configuracoes", component: ConfiguracoesComponent},
 
-        {path: "perfil", component: PerfilComponent}
+        {path: "perfil", component: PerfilComponent},
 
+        {path: 'audit-logs', component: AuditLogsComponent}
     ] }
 ];

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import {NavigationEnd, Router, RouterLink} from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { Decoder } from '../../decoder/decoder';
 import { environment } from '../../../environments/environment';
@@ -7,7 +7,9 @@ import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-side-bar',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './side-bar.component.html',
   styleUrl: './side-bar.component.scss'
 })
@@ -37,7 +39,7 @@ export class SideBarComponent {
 
   getUser() {
     const storedValue: string | null = localStorage.getItem('token');
-    
+
     if (storedValue === null) {
         throw new Error("Token not found in localStorage");
     }
