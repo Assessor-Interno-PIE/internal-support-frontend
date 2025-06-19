@@ -1,28 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuditLog, AuditLogResponse } from '../models/audit-log';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuditLogService {
-  private apiUrl = '/api/logs/audit';
+  API = environment.API+"/api/logs";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAllAuditLogs(
-    page: number = 0,
-    size: number = 20,
-    sortBy: string = 'timestamp',
-    sortDir: string = 'desc'
-  ): Observable<AuditLogResponse> {
+  getAuditLogs(page: number, size: number, sortBy: string, sortDir: string): Observable<any> {
     let params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString())
+      .set('page', page)
+      .set('size', size)
       .set('sortBy', sortBy)
       .set('sortDir', sortDir);
 
-    return this.http.get<AuditLogResponse>(this.apiUrl, { params });
+    return this.http.get(`${this.API}/audit`, { params });
   }
 }

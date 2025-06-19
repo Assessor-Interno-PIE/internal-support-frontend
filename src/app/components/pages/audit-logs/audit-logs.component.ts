@@ -31,7 +31,7 @@ export class AuditLogsComponent implements OnInit {
   }
 
   loadAuditLogs(page = 0, size = this.itemsPerPage): void {
-    this.auditLogService.getAllAuditLogs(page, size, this.sortBy, this.sortDir).subscribe({
+    this.auditLogService.getAuditLogs(page, size, this.sortBy, this.sortDir).subscribe({
       next: (response) => {
         this.auditLogs = response.content || [];
         this.totalElements = response.totalElements || 0;
