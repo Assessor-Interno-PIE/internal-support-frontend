@@ -16,7 +16,7 @@ export class AuditLogsComponent implements OnInit {
   auditLogs: AuditLog[] = [];
   totalElements = 0;
   currentPage = 1;
-  itemsPerPage = 20;
+  itemsPerPage = 10;
   totalPages = 1;
   sortBy = 'timestamp';
   sortDir = 'desc';
