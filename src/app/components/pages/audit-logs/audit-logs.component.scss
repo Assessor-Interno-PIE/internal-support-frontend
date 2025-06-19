@@ -61,9 +61,19 @@ td {
   padding: 10px 15px;
 }
 
+.bg-white.p-4.rounded-4.shadow-sm {
+  /* This is the main container div for the filters and table. */
+  /* Ensure it has proper padding and handles its children well. */
+  padding: 1.5rem !important; /* Adjust padding as needed */
+}
+
 .bg-light {
+  /* This targets the div containing the filter inputs and buttons */
+  /* Remove any conflicting max-width or margin properties if they were causing issues. */
   padding: 1rem;
-  max-width: 98%;
+  margin: 0 auto;
+  width: 100%; /* Ensure it takes full available width within its parent */
+  box-sizing: border-box; /* Important for consistent padding */
 }
 
 .btn {
@@ -139,6 +149,11 @@ td {
 
 .method-delete {
   background-color: #dc3545;
+  color: white;
+}
+
+.method-patch {
+  background-color: #fd7e14;
   color: white;
 }
 
@@ -306,6 +321,31 @@ td {
 .pagination .page-item .page-link:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
+
+/* ** CRITICAL FIXES FOR BUTTON ALIGNMENT AND SPACING ** */
+.row.g-3.align-items-center.my-3.p-3.border.rounded.bg-light {
+  /* This specific class targets the entire filter form row */
+  /* Ensure it has no extra margins pushing it right */
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+  width: 100%; /* Make sure it takes full width of its parent */
+  padding: 1.5rem 1rem !important; /* Adjusted vertical and horizontal padding */
+}
+
+.col-md-6.d-flex.align-items-end {
+  /* This targets the column containing the buttons */
+  /* Use flexbox properties to align the items */
+  display: flex; /* Ensure flexbox is active */
+  justify-content: flex-start; /* Align items to the start of the flex container (left) */
+  align-items: center; /* Vertically center the items if they have different heights */
+  padding-top: 0 !important; /* Remove any unnecessary top padding if causing misalignment */
+  padding-left: 0 !important; /* Adjust padding as needed */
+}
+
+.col-md-6.d-flex.align-items-end .btn {
+  margin-right: 0.5rem; /* Add some spacing between the buttons */
+}
+
 
 @media (max-width: 768px) {
   .table th,
