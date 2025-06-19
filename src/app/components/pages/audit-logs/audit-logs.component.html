@@ -3,16 +3,15 @@
   <h2 style="color: #12509b;">Logs de Auditoria</h2>
 </section>
 
-<!-- Lista de Logs -->
 <section class="mt-4 mb-4 container-fluid">
   <div class="bg-white p-4 rounded-4 shadow-sm">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
       <h4 style="color: #12509b;">Lista de Logs de Auditoria</h4>
       <div class="d-flex align-items-center">
         <label for="sortBy" class="custom-label me-2">Ordenar por:</label>
         <select class="form-select custom-select me-3" id="sortBy" [(ngModel)]="sortBy" (change)="changeSortBy(sortBy)">
           <option value="timestamp">Data/Hora</option>
-          <option value="action">Ação</option>
+          <option value="httpMethod">Método</option>
           <option value="userId">Usuário</option>
           <option value="endpoint">Endpoint</option>
         </select>
@@ -22,33 +21,57 @@
       </div>
     </div>
 
-    <!-- Adicionando a classe table-responsive -->
+    <div class="row g-3 align-items-center my-3 p-3 border rounded bg-light">
+      <div class="col-md-3">
+        <label for="startDate" class="form-label custom-label">Data Início</label>
+        <input type="date" id="startDate" class="form-control" [(ngModel)]="filters.startDate">
+      </div>
+      <div class="col-md-3">
+        <label for="endDate" class="form-label custom-label">Data Fim</label>
+        <input type="date" id="endDate" class="form-control" [(ngModel)]="filters.endDate">
+      </div>
+      <div class="col-md-3">
+        <label for="method" class="form-label custom-label">Método</label>
+        <select id="method" class="form-select" [(ngModel)]="filters.method">
+          <option value="">Todos</option>
+          <option *ngFor="let method of auditedMethods" [value]="method">{{ method }}</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="userId" class="form-label custom-label">Usuário</label>
+        <input type="text" id="userId" class="form-control" [(ngModel)]="filters.userId" placeholder="ID ou nome do Usuário">
+      </div>
+      <div class="col-md-6">
+        <label for="endpoint" class="form-label custom-label">Endpoint</label>
+        <input type="text" id="endpoint" class="form-control" [(ngModel)]="filters.endpoint" placeholder="Parte do endpoint">
+      </div>
+      <div class="col-md-6 d-flex align-items-end">
+        <button class="btn btn-primary me-2" (click)="applyFilters()">
+          <i class="fas fa-search me-1"></i> Filtrar
+        </button>
+        <button class="btn btn-secondary" (click)="clearFilters()">
+          <i class="fas fa-eraser me-1"></i> Limpar
+        </button>
+      </div>
+    </div>
+
+
     <div class="table-responsive">
       <table class="table table-light table-hover mt-2 shadow-sm">
         <thead>
         <tr>
           <th scope="col" class="text-center">ID</th>
-          <th scope="col" class="text-center" (click)="changeSortBy('timestamp')" style="cursor: pointer;">
-            Data/Hora
-            <i class="fas ms-1" [ngClass]="sortBy === 'timestamp' ? (sortDir === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort'"></i>
-          </th>
-          <th scope="col" class="text-center" (click)="changeSortBy('action')" style="cursor: pointer;">
-            Ação
-            <i class="fas ms-1" [ngClass]="sortBy === 'action' ? (sortDir === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort'"></i>
-          </th>
+          <th scope="col" class="text-center">Data/Hora</th>
+          <th scope="col" class="text-center">Ação</th>
           <th scope="col" class="text-center">Método</th>
           <th scope="col" class="text-center">Endpoint</th>
-          <th scope="col" class="text-center" (click)="changeSortBy('userId')" style="cursor: pointer;">
-            Usuário
-            <i class="fas ms-1" [ngClass]="sortBy === 'userId' ? (sortDir === 'asc' ? 'fa-sort-up' : 'fa-sort-down') : 'fa-sort'"></i>
-          </th>
+          <th scope="col" class="text-center">Usuário</th>
           <th scope="col" class="text-center">Detalhes</th>
         </tr>
         </thead>
         <tbody class="table-group-divider">
         <ng-container *ngIf="auditLogs.length > 0; else noLogs">
           <ng-container *ngFor="let log of auditLogs; trackBy: trackById">
-            <!-- Linha principal -->
             <tr>
               <td class="text-center">{{ log.id }}</td>
               <td class="text-center">{{ formatTimestamp(log.timestamp) }}</td>
@@ -75,7 +98,6 @@
               </td>
             </tr>
 
-            <!-- Linha de detalhes expandida -->
             <tr *ngIf="isRowExpanded(log.id)" class="expanded-row">
               <td colspan="7">
                 <div class="card card-details show">
@@ -107,7 +129,7 @@
         <ng-template #noLogs>
           <tr>
             <td colspan="7" class="text-center">
-              Nenhum log de auditoria encontrado.
+              Nenhum log de auditoria encontrado para os filtros aplicados.
             </td>
           </tr>
         </ng-template>
@@ -129,13 +151,12 @@
 
       <div class="d-flex align-items-center">
         <span class="me-3 text-muted">
-          Mostrando {{ (currentPage - 1) * itemsPerPage + 1 }} -
+          Mostrando {{ auditLogs.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0 }} -
           {{ Math.min(currentPage * itemsPerPage, totalElements) }}
           de {{ totalElements }} registros
         </span>
       </div>
 
-      <!-- Controles de Paginação -->
       <ul class="pagination align-items-center mt-3 mb-0">
         <li class="page-item" [ngClass]="{'disabled': currentPage === 1}">
           <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)"
@@ -143,12 +164,9 @@
             <i class="fas fa-angle-left"></i>
           </a>
         </li>
-
-        <!-- Botões para páginas específicas -->
         <li class="page-item" *ngFor="let page of getPageNumbers()" [ngClass]="{'active': currentPage === page}">
           <a class="page-link" href="javascript:void(0)" (click)="goToPage(page)">{{ page }}</a>
         </li>
-
         <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages}">
           <a class="page-link border-3 text-white hover-custom" href="javascript:void(0)"
              (click)="goToPage(currentPage + 1)">

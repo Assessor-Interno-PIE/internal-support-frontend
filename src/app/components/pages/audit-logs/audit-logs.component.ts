@@ -21,6 +21,18 @@ export class AuditLogsComponent implements OnInit {
   sortBy = 'timestamp';
   sortDir = 'desc';
 
+  // Propriedades para os filtros
+  filters = {
+    startDate: '',
+    endDate: '',
+    userId: '',
+    endpoint: '',
+    method: ''
+  };
+
+  // Lista de métodos para o dropdown de filtro
+  auditedMethods: string[] = ["POST", "PUT", "DELETE", "PATCH", "GET"];
+
   expandedRows: Set<number> = new Set();
 
   auditLogService = inject(AuditLogService);
@@ -30,8 +42,10 @@ export class AuditLogsComponent implements OnInit {
     this.loadAuditLogs();
   }
 
-  loadAuditLogs(page = 0, size = this.itemsPerPage): void {
-    this.auditLogService.getAuditLogs(page, size, this.sortBy, this.sortDir).subscribe({
+  loadAuditLogs(): void {
+    const page = this.currentPage - 1;
+    const size = this.itemsPerPage;
+    this.auditLogService.getAuditLogs(page, size, this.sortBy, this.sortDir, this.filters).subscribe({
       next: (response) => {
         this.auditLogs = response.content || [];
         this.totalElements = response.totalElements || 0;
@@ -49,15 +63,32 @@ export class AuditLogsComponent implements OnInit {
     });
   }
 
+  applyFilters(): void {
+    this.currentPage = 1;
+    this.loadAuditLogs();
+  }
+
+  clearFilters(): void {
+    this.filters = {
+      startDate: '',
+      endDate: '',
+      userId: '',
+      endpoint: '',
+      method: ''
+    };
+    this.currentPage = 1;
+    this.loadAuditLogs();
+  }
+
   goToPage(page: number): void {
     if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
-    this.loadAuditLogs(page - 1, this.itemsPerPage);
+    this.loadAuditLogs();
   }
 
   changePageSize(): void {
     this.currentPage = 1;
-    this.loadAuditLogs(0, this.itemsPerPage);
+    this.loadAuditLogs();
   }
 
   changeSortBy(field: string): void {
@@ -65,10 +96,10 @@ export class AuditLogsComponent implements OnInit {
       this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
     } else {
       this.sortBy = field;
-      this.sortDir = 'desc';
+      this.sortDir = 'desc'; // ou 'asc', dependendo do padrão desejado
     }
     this.currentPage = 1;
-    this.loadAuditLogs(0, this.itemsPerPage);
+    this.loadAuditLogs();
   }
 
   toggleRowExpansion(logId: number): void {
@@ -109,6 +140,8 @@ export class AuditLogsComponent implements OnInit {
         return 'method-put';
       case 'delete':
         return 'method-delete';
+      case 'patch':
+        return 'method-put'; // Pode usar uma cor similar ao PUT
       default:
         return 'method-default';
     }
